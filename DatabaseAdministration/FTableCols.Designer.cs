@@ -55,7 +55,7 @@
             this.btnOK.Location = new System.Drawing.Point(18, 6);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(116, 27);
-            this.btnOK.TabIndex = 6;
+            this.btnOK.TabIndex = 0;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -66,7 +66,7 @@
             this.btnCancel.Location = new System.Drawing.Point(140, 6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(116, 27);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -79,7 +79,7 @@
             this.panel1.Location = new System.Drawing.Point(85, 380);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(275, 36);
-            this.panel1.TabIndex = 8;
+            this.panel1.TabIndex = 1;
             // 
             // FTableCols
             // 

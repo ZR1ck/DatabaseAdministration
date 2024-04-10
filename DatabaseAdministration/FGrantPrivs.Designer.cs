@@ -51,7 +51,7 @@
             this.comboBoxPrivs.Location = new System.Drawing.Point(72, 13);
             this.comboBoxPrivs.Name = "comboBoxPrivs";
             this.comboBoxPrivs.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxPrivs.TabIndex = 0;
+            this.comboBoxPrivs.TabIndex = 1;
             // 
             // comboBoxTable
             // 
@@ -64,7 +64,7 @@
             this.comboBoxTable.Name = "comboBoxTable";
             this.comboBoxTable.Size = new System.Drawing.Size(348, 24);
             this.comboBoxTable.Sorted = true;
-            this.comboBoxTable.TabIndex = 1;
+            this.comboBoxTable.TabIndex = 2;
             // 
             // checkBoxGrantOpt
             // 
@@ -73,7 +73,7 @@
             this.checkBoxGrantOpt.Location = new System.Drawing.Point(612, 18);
             this.checkBoxGrantOpt.Name = "checkBoxGrantOpt";
             this.checkBoxGrantOpt.Size = new System.Drawing.Size(166, 20);
-            this.checkBoxGrantOpt.TabIndex = 2;
+            this.checkBoxGrantOpt.TabIndex = 3;
             this.checkBoxGrantOpt.Text = "WITH GRANT OPTION";
             this.checkBoxGrantOpt.UseVisualStyleBackColor = true;
             // 
@@ -82,7 +82,7 @@
             this.btnOK.Location = new System.Drawing.Point(593, 99);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(102, 29);
-            this.btnOK.TabIndex = 3;
+            this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -92,7 +92,7 @@
             this.btnCancel.Location = new System.Drawing.Point(721, 99);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(102, 29);
-            this.btnCancel.TabIndex = 4;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -107,7 +107,7 @@
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(811, 67);
-            this.panel1.TabIndex = 5;
+            this.panel1.TabIndex = 0;
             // 
             // label2
             // 
@@ -116,7 +116,7 @@
             this.label2.Location = new System.Drawing.Point(208, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 16);
-            this.label2.TabIndex = 4;
+            this.label2.TabIndex = 0;
             this.label2.Text = "ON";
             // 
             // label1
@@ -126,7 +126,7 @@
             this.label1.Location = new System.Drawing.Point(5, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 16);
-            this.label1.TabIndex = 3;
+            this.label1.TabIndex = 0;
             this.label1.Text = "GRANT";
             // 
             // FGrantPrivs

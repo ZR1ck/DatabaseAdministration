@@ -1,5 +1,4 @@
 .vs
-packages/
 DatabaseAdministration/.vs/
-DatabaseAdministration/bin/debug
-DatabaseAdministration/object/debug
+DatabaseAdministration/bin/Debug
+DatabaseAdministration/object/Debug

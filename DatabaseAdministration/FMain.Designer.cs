@@ -136,7 +136,7 @@ namespace DatabaseAdministration
             this.dataGridViewRole.RowTemplate.Height = 24;
             this.dataGridViewRole.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewRole.Size = new System.Drawing.Size(268, 435);
-            this.dataGridViewRole.TabIndex = 1;
+            this.dataGridViewRole.TabIndex = 0;
             this.dataGridViewRole.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewRole_CellMouseClick);
             // 
             // tabControlPrivs
@@ -152,7 +152,7 @@ namespace DatabaseAdministration
             this.tabControlPrivs.Name = "tabControlPrivs";
             this.tabControlPrivs.SelectedIndex = 0;
             this.tabControlPrivs.Size = new System.Drawing.Size(482, 470);
-            this.tabControlPrivs.TabIndex = 1;
+            this.tabControlPrivs.TabIndex = 0;
             // 
             // tabPageTabPrivs
             // 
@@ -238,7 +238,7 @@ namespace DatabaseAdministration
             this.dataGridViewRolePrivs.RowTemplate.Height = 24;
             this.dataGridViewRolePrivs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewRolePrivs.Size = new System.Drawing.Size(468, 435);
-            this.dataGridViewRolePrivs.TabIndex = 1;
+            this.dataGridViewRolePrivs.TabIndex = 0;
             this.dataGridViewRolePrivs.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridViewRolePrivs_MouseDown);
             // 
             // panel2
@@ -273,7 +273,7 @@ namespace DatabaseAdministration
             this.btnHistory.Location = new System.Drawing.Point(3, 146);
             this.btnHistory.Name = "btnHistory";
             this.btnHistory.Size = new System.Drawing.Size(184, 46);
-            this.btnHistory.TabIndex = 3;
+            this.btnHistory.TabIndex = 2;
             this.btnHistory.Text = "History";
             this.btnHistory.UseVisualStyleBackColor = true;
             // 
@@ -284,7 +284,7 @@ namespace DatabaseAdministration
             this.btnUpdate.Location = new System.Drawing.Point(3, 198);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(184, 46);
-            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Update Current User/Role";
             this.btnUpdate.UseVisualStyleBackColor = true;
             // 
