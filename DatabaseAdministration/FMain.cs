@@ -14,6 +14,7 @@ namespace DatabaseAdministration
 {
     public partial class FMain : Form
     {
+        string currentChecked = null;
         DatabaseProvider databaseProvider = DatabaseProvider.getInstance();
         public FMain()
         {
@@ -32,61 +33,63 @@ namespace DatabaseAdministration
             dataGridViewTabPrivs.DataSource = databaseProvider.getTabPrivs(grantee);
             dataGridViewSysPrivs.DataSource = databaseProvider.getSysPrivs(grantee);
             dataGridViewRolePrivs.DataSource = databaseProvider.getRolePrivs(grantee);
+            dataGridViewColPrivs.DataSource = databaseProvider.getColsPrivs(grantee);
         }
 
         private void dataGridViewUser_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            // Right click
-            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                // Get cell location
-                Point cellLocation = dataGridViewUser.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location;
-                cellLocation.X += cellLocation.X / 2;
-
-                // Get cell data
-                string cellValue = dataGridViewUser.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-
-                // ContextMenuStrip
-                ContextMenuStrip contextMenu = new ContextMenuStrip();
-
-                ToolStripMenuItem privs = new ToolStripMenuItem("Grant privilege");
-                privs.Click += (s, args) =>
-                {
-                    // Handle grant privs click
-                    MessageBox.Show("Grant privilege");
-                };
-
-                ToolStripMenuItem role = new ToolStripMenuItem("Grant role");
-                role.Click += (s, args) =>
-                {
-                    // Handle grant role click
-                    MessageBox.Show("Grant role");
-                };
-
-                contextMenu.Items.Add(privs);
-                contextMenu.Items.Add(role);
-
-                contextMenu.Show(dataGridViewUser, cellLocation);
-            }
-            // Left click
-            else if (e.Button == MouseButtons.Left && e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                string cellValue = dataGridViewUser.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                LoadPrivs(cellValue);
-            }
+            clickUserAndRoleEvent(dataGridViewUser, e);
         }
 
         private void dataGridViewRole_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            clickUserAndRoleEvent(dataGridViewRole, e);
+        }
+
+        private void dataGridViewTabPrivs_MouseDown(object sender, MouseEventArgs e)
+        {
+            privsClickEvent(dataGridViewTabPrivs, e);
+        }
+
+        private void dataGridViewSysPrivs_MouseDown(object sender, MouseEventArgs e)
+        {
+            privsClickEvent(dataGridViewSysPrivs, e);
+        }
+
+        private void dataGridViewRolePrivs_MouseDown(object sender, MouseEventArgs e)
+        {
+            privsClickEvent(dataGridViewRolePrivs, e);
+        }
+
+        private void dataGridViewColPrivs_MouseDown(object sender, MouseEventArgs e)
+        {
+            privsClickEvent(dataGridViewColPrivs, e);
+        }
+
+
+
+        // Callback after grant new priv
+        private void mainGridDataUpdated(object sender, EventArgs e)
+        {
+            LoadPrivs(currentChecked);
+        }
+
+
+
+
+        // Handle users role click (grant privileges, grant roles, show current privileges)
+        private void clickUserAndRoleEvent(DataGridView dataGrid, DataGridViewCellMouseEventArgs e)
+        {
             // Right click
             if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 // Get cell location
-                Point cellLocation = dataGridViewRole.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location;
+                Point cellLocation = dataGrid.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location;
                 cellLocation.X += cellLocation.X / 2;
 
-                // Get cell data
-                string cellValue = dataGridViewRole.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                // Get cell data (user)
+                string cellValue = dataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                currentChecked = cellValue;
 
                 // ContextMenuStrip
                 ContextMenuStrip contextMenu = new ContextMenuStrip();
@@ -95,53 +98,115 @@ namespace DatabaseAdministration
                 privs.Click += (s, args) =>
                 {
                     // Handle grant privs click
-                    MessageBox.Show("Grant privilege");
+                    FGrantPrivs fGrantPrivs = new FGrantPrivs(cellValue);
+                    // Register callback for fGrantPrivs
+                    fGrantPrivs.dataUpdated += mainGridDataUpdated;
+                    fGrantPrivs.ShowDialog();
                 };
 
                 ToolStripMenuItem role = new ToolStripMenuItem("Grant role");
                 role.Click += (s, args) =>
                 {
-                    // Handle grant role click
+
+
+                    // Handle grant role click------------------------------------------------------------------
                     MessageBox.Show("Grant role");
+
+
+
+
+
+
+
+
+
+
+
+
                 };
 
                 contextMenu.Items.Add(privs);
                 contextMenu.Items.Add(role);
 
-                contextMenu.Show(dataGridViewRole, cellLocation);
+                contextMenu.Show(dataGrid, cellLocation);
             }
             // Left click
             else if (e.Button == MouseButtons.Left && e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                string cellValue = dataGridViewRole.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                string cellValue = dataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
                 LoadPrivs(cellValue);
             }
         }
 
-        private void dataGridViewRolePrivs_MouseDown(object sender, MouseEventArgs e)
+        // Handle privs click (revoke privileges)
+        private void privsClickEvent(DataGridView dataGrid, MouseEventArgs e)
         {
+            // Right click
             if (e.Button == MouseButtons.Right)
             {
-                int currentMouseOverRow = dataGridViewRolePrivs.HitTest(e.X, e.Y).RowIndex;
+                int currentMouseOverRow = dataGrid.HitTest(e.X, e.Y).RowIndex;
                 if (currentMouseOverRow >= 0)
                 {
-                    dataGridViewRolePrivs.ClearSelection();
-                    dataGridViewRolePrivs.Rows[currentMouseOverRow].Selected = true;
+                    dataGrid.ClearSelection();
+                    dataGrid.Rows[currentMouseOverRow].Selected = true;
 
-                    string grantee = dataGridViewRolePrivs.Rows[currentMouseOverRow].Cells["GRANTEE"].Value.ToString();
-                    string grantedRole = dataGridViewRolePrivs.Rows[currentMouseOverRow].Cells["GRANTED_ROLE"].Value.ToString();
+                    string grantee = dataGrid.Rows[currentMouseOverRow].Cells["GRANTEE"].Value.ToString();
+
+                    string revokeType = null;
+                    if (dataGrid.Equals(dataGridViewTabPrivs))
+                    {
+                        revokeType = "PRIVILEGE";
+                    }
+                    else if (dataGrid.Equals(dataGridViewSysPrivs))
+                    {
+                        revokeType = "PRIVILEGE";
+                    }
+                    else if (dataGrid.Equals(dataGridViewRolePrivs))
+                    {
+                        revokeType = "GRANTED_ROLE";
+                    }
+                    else if (dataGrid.Equals(dataGridViewColPrivs))
+                    {
+                        revokeType = "PRIVILEGE";
+                    }
+                    // (select, insert, update, delete)
+                    string revoke = dataGrid.Rows[currentMouseOverRow].Cells[revokeType].Value.ToString();
+
+                    // table name (nullable)
+                    string tableName = null;
+                    try
+                    {
+                        tableName = dataGrid.Rows[currentMouseOverRow].Cells["TABLE_NAME"].Value.ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                    }
 
                     ContextMenuStrip contextMenu = new ContextMenuStrip();
                     ToolStripMenuItem privs = new ToolStripMenuItem("Revoke privilege");
                     privs.Click += (s, args) =>
                     {
-                        // Handle revoke privs click
-                        MessageBox.Show("revoke privilege" + grantee + " " + grantedRole);
+
+
+
+
+                        // Handle revoke privs click------------------------------------------------------------------
+                        MessageBox.Show("revoke privilege" + grantee + " " + revoke + " " + tableName);
+
+
+
+
+
+
+
                     };
                     contextMenu.Items.Add(privs);
-                    contextMenu.Show(dataGridViewRolePrivs, new Point(e.X, e.Y));
+                    contextMenu.Show(dataGrid, new Point(e.X, e.Y));
                 }
             }
         }
+
+
     }
 }

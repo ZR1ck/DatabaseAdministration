@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace DatabaseAdministration.DataProvider
 {
@@ -50,6 +51,28 @@ namespace DatabaseAdministration.DataProvider
         }
 
 
+        public bool ExecuteNonQuery(string query)
+        {
+            using (OracleConnection connection = new OracleConnection(LoginHelper.getInstance().ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (OracleCommand command = new OracleCommand(query, connection))
+                    {
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+        }
+
 
         public DataTable getUsers()
         {
@@ -78,6 +101,45 @@ namespace DatabaseAdministration.DataProvider
         public DataTable getRolePrivs(string grantee)
         {
             string query = $"SELECT *FROM DBA_ROLE_PRIVS WHERE GRANTEE = '{grantee}'";
+            return ExecuteQuery(query);
+        }
+        public DataTable getColsPrivs(string grantee)
+        {
+            string query = $"SELECT *FROM DBA_COL_PRIVS WHERE GRANTEE = '{grantee}'";
+            return ExecuteQuery(query);
+        }
+
+        public DataTable getAllTableName()
+        {
+            string query = $"SELECT OWNER || '.' || TABLE_NAME AS TABLE_NAME FROM ALL_TABLES";
+            return ExecuteQuery(query);
+        }
+
+        public bool grantPrivs(string priv, string tbName, string grantee, bool grntOpt, List<string> cols = null)
+        {
+            string onCols = "";
+            if (cols != null && cols.Count > 0)
+            {
+                string s = string.Join(", ", cols);
+                onCols = "(" + s + ")";
+            }
+            string query = $"GRANT {priv} {onCols} ON {tbName} TO {grantee}";
+            if (grntOpt)
+            {
+                query += " WITH GRANT OPTION";
+            }
+            return ExecuteNonQuery(query);
+        }
+
+        public DataTable getTableColsName(string tableName)
+        {
+            string[] tb = tableName.Split('.');
+            string tbName = "";
+            if (tb.Length > 1)
+            {
+                tbName = tb[1];
+            }
+            string query = $"SELECT COLUMN_NAME FROM ALL_TAB_COLUMNS WHERE TABLE_NAME = '{tbName}'";
             return ExecuteQuery(query);
         }
     }
