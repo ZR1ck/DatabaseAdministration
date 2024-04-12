@@ -1,4 +1,4 @@
 .vs
 DatabaseAdministration/.vs/
-DatabaseAdministration/bin/Debug
-DatabaseAdministration/object/Debug
+DatabaseAdministration/bin/
+DatabaseAdministration/obj/

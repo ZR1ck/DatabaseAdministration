@@ -28,136 +28,171 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBoxPrivs = new System.Windows.Forms.ComboBox();
-            this.comboBoxTable = new System.Windows.Forms.ComboBox();
-            this.checkBoxGrantOpt = new System.Windows.Forms.CheckBox();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.privsCbBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tablesCbBox = new System.Windows.Forms.ComboBox();
+            this.withGrantOptionCheck = new System.Windows.Forms.CheckBox();
+            this.OKBtn = new System.Windows.Forms.Button();
+            this.cancelBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.columnsCbBox = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.schemaCbBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // comboBoxPrivs
-            // 
-            this.comboBoxPrivs.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
-            this.comboBoxPrivs.FormattingEnabled = true;
-            this.comboBoxPrivs.Items.AddRange(new object[] {
-            "SELECT",
-            "UPDATE",
-            "INSERT",
-            "DELETE"});
-            this.comboBoxPrivs.Location = new System.Drawing.Point(72, 13);
-            this.comboBoxPrivs.Name = "comboBoxPrivs";
-            this.comboBoxPrivs.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxPrivs.TabIndex = 1;
-            // 
-            // comboBoxTable
-            // 
-            this.comboBoxTable.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.comboBoxTable.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxTable.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.comboBoxTable.FormattingEnabled = true;
-            this.comboBoxTable.IntegralHeight = false;
-            this.comboBoxTable.Location = new System.Drawing.Point(249, 14);
-            this.comboBoxTable.Name = "comboBoxTable";
-            this.comboBoxTable.Size = new System.Drawing.Size(348, 24);
-            this.comboBoxTable.Sorted = true;
-            this.comboBoxTable.TabIndex = 2;
-            // 
-            // checkBoxGrantOpt
-            // 
-            this.checkBoxGrantOpt.AutoSize = true;
-            this.checkBoxGrantOpt.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.checkBoxGrantOpt.Location = new System.Drawing.Point(612, 18);
-            this.checkBoxGrantOpt.Name = "checkBoxGrantOpt";
-            this.checkBoxGrantOpt.Size = new System.Drawing.Size(166, 20);
-            this.checkBoxGrantOpt.TabIndex = 3;
-            this.checkBoxGrantOpt.Text = "WITH GRANT OPTION";
-            this.checkBoxGrantOpt.UseVisualStyleBackColor = true;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(593, 99);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(102, 29);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(721, 99);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(102, 29);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.checkBoxGrantOpt);
-            this.panel1.Controls.Add(this.comboBoxTable);
-            this.panel1.Controls.Add(this.comboBoxPrivs);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(811, 67);
-            this.panel1.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label2.Location = new System.Drawing.Point(208, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 16);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "ON";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.Location = new System.Drawing.Point(5, 16);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(50, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.Size = new System.Drawing.Size(116, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "GRANT";
+            this.label1.Text = "Select privilege";
+            // 
+            // privsCbBox
+            // 
+            this.privsCbBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.privsCbBox.FormattingEnabled = true;
+            this.privsCbBox.Items.AddRange(new object[] {
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE"});
+            this.privsCbBox.Location = new System.Drawing.Point(180, 35);
+            this.privsCbBox.Name = "privsCbBox";
+            this.privsCbBox.Size = new System.Drawing.Size(146, 24);
+            this.privsCbBox.TabIndex = 1;
+            this.privsCbBox.SelectionChangeCommitted += new System.EventHandler(this.privsCbBox_SelectionChangeCommitted);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(50, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 16);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Table";
+            // 
+            // tablesCbBox
+            // 
+            this.tablesCbBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tablesCbBox.FormattingEnabled = true;
+            this.tablesCbBox.Location = new System.Drawing.Point(180, 69);
+            this.tablesCbBox.Name = "tablesCbBox";
+            this.tablesCbBox.Size = new System.Drawing.Size(146, 24);
+            this.tablesCbBox.TabIndex = 3;
+            this.tablesCbBox.SelectionChangeCommitted += new System.EventHandler(this.tablesCbBox_SelectionChangeCommitted);
+            // 
+            // withGrantOptionCheck
+            // 
+            this.withGrantOptionCheck.AutoSize = true;
+            this.withGrantOptionCheck.Location = new System.Drawing.Point(53, 113);
+            this.withGrantOptionCheck.Name = "withGrantOptionCheck";
+            this.withGrantOptionCheck.Size = new System.Drawing.Size(132, 20);
+            this.withGrantOptionCheck.TabIndex = 4;
+            this.withGrantOptionCheck.Text = "With Grant Option";
+            this.withGrantOptionCheck.UseVisualStyleBackColor = true;
+            // 
+            // OKBtn
+            // 
+            this.OKBtn.Location = new System.Drawing.Point(383, 157);
+            this.OKBtn.Name = "OKBtn";
+            this.OKBtn.Size = new System.Drawing.Size(68, 27);
+            this.OKBtn.TabIndex = 5;
+            this.OKBtn.Text = "OK";
+            this.OKBtn.UseVisualStyleBackColor = true;
+            this.OKBtn.Click += new System.EventHandler(this.OKBtn_Click);
+            // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Location = new System.Drawing.Point(468, 157);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(87, 27);
+            this.cancelBtn.TabIndex = 6;
+            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(355, 72);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 16);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Columns";
+            // 
+            // columnsCbBox
+            // 
+            this.columnsCbBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.columnsCbBox.FormattingEnabled = true;
+            this.columnsCbBox.Location = new System.Drawing.Point(427, 69);
+            this.columnsCbBox.Name = "columnsCbBox";
+            this.columnsCbBox.Size = new System.Drawing.Size(128, 24);
+            this.columnsCbBox.TabIndex = 8;
+            this.columnsCbBox.SelectionChangeCommitted += new System.EventHandler(this.columnsCbBox_SelectionChangeCommitted);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(355, 38);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 16);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Schema";
+            // 
+            // schemaCbBox
+            // 
+            this.schemaCbBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.schemaCbBox.FormattingEnabled = true;
+            this.schemaCbBox.Location = new System.Drawing.Point(427, 35);
+            this.schemaCbBox.Name = "schemaCbBox";
+            this.schemaCbBox.Size = new System.Drawing.Size(128, 24);
+            this.schemaCbBox.TabIndex = 10;
+            this.schemaCbBox.SelectionChangeCommitted += new System.EventHandler(this.schemaCbBox_SelectionChangeCommitted);
             // 
             // FGrantPrivs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 144);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnOK);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.ClientSize = new System.Drawing.Size(567, 196);
+            this.Controls.Add(this.schemaCbBox);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.columnsCbBox);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cancelBtn);
+            this.Controls.Add(this.OKBtn);
+            this.Controls.Add(this.withGrantOptionCheck);
+            this.Controls.Add(this.tablesCbBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.privsCbBox);
+            this.Controls.Add(this.label1);
             this.Name = "FGrantPrivs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Grant Privileges";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Text = "Grant privilege";
+            this.Load += new System.EventHandler(this.FGrantPrivs_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBoxPrivs;
-        private System.Windows.Forms.ComboBox comboBoxTable;
-        private System.Windows.Forms.CheckBox checkBoxGrantOpt;
-        private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox privsCbBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox tablesCbBox;
+        private System.Windows.Forms.CheckBox withGrantOptionCheck;
+        private System.Windows.Forms.Button OKBtn;
+        private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox columnsCbBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox schemaCbBox;
     }
 }

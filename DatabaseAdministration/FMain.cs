@@ -98,7 +98,10 @@ namespace DatabaseAdministration
                 privs.Click += (s, args) =>
                 {
                     // Handle grant privs click
-
+                    FGrantPrivs fUserGrantPrivs = new FGrantPrivs();
+                    fUserGrantPrivs.setGrantee(cellValue);
+                    fUserGrantPrivs.dataUpdated += mainGridDataUpdated;
+                    fUserGrantPrivs.ShowDialog();
                 };
 
                 ToolStripMenuItem role = new ToolStripMenuItem("Grant role");
@@ -107,6 +110,20 @@ namespace DatabaseAdministration
 
 
                     // Handle grant role click
+                    FGrantRole fGrantRole = new FGrantRole();
+                    fGrantRole.setUser(cellValue);
+                    fGrantRole.dataUpdated += mainGridDataUpdated;
+                    fGrantRole.ShowDialog();
+
+
+
+
+
+
+
+
+
+
 
 
                 };
