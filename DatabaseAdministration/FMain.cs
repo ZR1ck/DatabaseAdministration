@@ -62,7 +62,9 @@ namespace DatabaseAdministration
                 role.Click += (s, args) =>
                 {
                     // Handle grant role click
-                    MessageBox.Show("grant role bro");
+                    FGrantRole fGrantRole = new FGrantRole();
+                    fGrantRole.setUser(cellValue);
+                    fGrantRole.Show();
                 };
                 ToolStripMenuItem privs_revoke = new ToolStripMenuItem("Revoke privileges");
                 ToolStripMenuItem roles_revoke = new ToolStripMenuItem("Revoke roles");

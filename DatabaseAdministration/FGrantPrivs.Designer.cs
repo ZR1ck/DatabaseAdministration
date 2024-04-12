@@ -173,6 +173,7 @@
             this.Controls.Add(this.privsCbBox);
             this.Controls.Add(this.label1);
             this.Name = "FGrantPrivs";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Grant privilege";
             this.Load += new System.EventHandler(this.FGrantPrivs_Load);
             this.ResumeLayout(false);

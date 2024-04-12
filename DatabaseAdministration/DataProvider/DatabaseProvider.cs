@@ -125,7 +125,6 @@ namespace DatabaseAdministration.DataProvider
             {
                 sqlstr += " WITH GRANT OPTION";
             }
-            Console.WriteLine(sqlstr);
             return ExecuteNonQuery(sqlstr);
         }
 
@@ -136,7 +135,12 @@ namespace DatabaseAdministration.DataProvider
             {
                 sqlstr += " WITH GRANT OPTION";
             }
-            Console.WriteLine(sqlstr);
+            return ExecuteNonQuery(sqlstr);
+        }
+
+        public bool grantRole(string role, string user)
+        {
+            string sqlstr = $"GRANT {role} TO {user}";
             return ExecuteNonQuery(sqlstr);
         }
     }
