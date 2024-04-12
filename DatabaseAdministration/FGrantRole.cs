@@ -13,6 +13,7 @@ namespace DatabaseAdministration
 {
     public partial class FGrantRole : Form
     {
+        public EventHandler dataUpdated;
         DatabaseProvider databaseProvider = DatabaseProvider.getInstance();
         string user;
         string role;
@@ -53,11 +54,17 @@ namespace DatabaseAdministration
                 if(databaseProvider.grantRole(role, user))
                 {
                     MessageBox.Show("Grant sucess");
+                    onPrivsUpdated(EventArgs.Empty);
                 } else
                 {
                     MessageBox.Show("Grant failed");
                 }
             }
+        }
+
+        protected virtual void onPrivsUpdated(EventArgs eventArgs)
+        {
+            dataUpdated?.Invoke(this, eventArgs);
         }
     }
 }

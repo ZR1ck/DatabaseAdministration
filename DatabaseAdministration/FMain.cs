@@ -100,7 +100,8 @@ namespace DatabaseAdministration
                     // Handle grant privs click
                     FGrantPrivs fUserGrantPrivs = new FGrantPrivs();
                     fUserGrantPrivs.setGrantee(cellValue);
-                    fUserGrantPrivs.Show();
+                    fUserGrantPrivs.dataUpdated += mainGridDataUpdated;
+                    fUserGrantPrivs.ShowDialog();
                 };
 
                 ToolStripMenuItem role = new ToolStripMenuItem("Grant role");
@@ -111,7 +112,8 @@ namespace DatabaseAdministration
                     // Handle grant role click
                     FGrantRole fGrantRole = new FGrantRole();
                     fGrantRole.setUser(cellValue);
-                    fGrantRole.Show();
+                    fGrantRole.dataUpdated += mainGridDataUpdated;
+                    fGrantRole.ShowDialog();
 
 
 

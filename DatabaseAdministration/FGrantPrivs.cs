@@ -14,6 +14,7 @@ namespace DatabaseAdministration
 {
     public partial class FGrantPrivs : Form
     {
+        public EventHandler dataUpdated;
         DatabaseProvider databaseProvider = DatabaseProvider.getInstance();
         string grantee;
         string priv;
@@ -104,6 +105,7 @@ namespace DatabaseAdministration
                 else if(databaseProvider.grantPriv(priv, schema, table, column, grantee, withGrantOptionCheck.Checked))
                 {
                     MessageBox.Show("Grant success");
+                    onPrivsUpdated(EventArgs.Empty);
                 } else
                 {
                     MessageBox.Show("Grant failed");
@@ -117,12 +119,17 @@ namespace DatabaseAdministration
                 else if (databaseProvider.grantPriv(priv, schema, table, grantee, withGrantOptionCheck.Checked))
                 {
                     MessageBox.Show("Grant success");
+                    onPrivsUpdated(EventArgs.Empty);
                 }
                 else
                 {
                     MessageBox.Show("Grant failed");
                 }
             }
+        }
+        protected virtual void onPrivsUpdated(EventArgs eventArgs)
+        {
+            dataUpdated?.Invoke(this, eventArgs);
         }
     }
 }
