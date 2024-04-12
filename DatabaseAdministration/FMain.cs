@@ -49,23 +49,26 @@ namespace DatabaseAdministration
                 // ContextMenuStrip
                 ContextMenuStrip contextMenu = new ContextMenuStrip();
 
-                ToolStripMenuItem privs = new ToolStripMenuItem("Grant privilege");
+                ToolStripMenuItem privs = new ToolStripMenuItem("Grant privileges");
                 privs.Click += (s, args) =>
                 {
                     // Handle grant privs click
-                    MessageBox.Show("Grant privilege");
+                    FUserGrantPrivs fUserGrantPrivs= new FUserGrantPrivs();
+                    fUserGrantPrivs.Show();
                 };
 
-                ToolStripMenuItem role = new ToolStripMenuItem("Grant role");
+                ToolStripMenuItem role = new ToolStripMenuItem("Grant roles");
                 role.Click += (s, args) =>
                 {
                     // Handle grant role click
                     MessageBox.Show("Grant role");
                 };
-
+                ToolStripMenuItem privs_revoke = new ToolStripMenuItem("Revoke privileges");
+                ToolStripMenuItem roles_revoke = new ToolStripMenuItem("Revoke roles");
                 contextMenu.Items.Add(privs);
                 contextMenu.Items.Add(role);
-
+                contextMenu.Items.Add(privs_revoke);
+                contextMenu.Items.Add(roles_revoke);
                 contextMenu.Show(dataGridViewUser, cellLocation);
             }
             // Left click

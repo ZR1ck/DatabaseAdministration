@@ -80,5 +80,23 @@ namespace DatabaseAdministration.DataProvider
             string query = $"SELECT *FROM DBA_ROLE_PRIVS WHERE GRANTEE = '{grantee}'";
             return ExecuteQuery(query);
         }
+
+        public DataTable getSchema()
+        {
+            string query = "SELECT username  FROM dba_users u WHERE EXISTS (SELECT 1 FROM dba_objects o  WHERE o.owner = u.username )";
+            return ExecuteQuery(query);
+        }
+
+        public DataTable getTableNames(string schema)
+        {
+            string query = $"SELECT table_name FROM all_tables WHERE owner = '{schema}'";
+            return ExecuteQuery(query);
+        }
+
+        public DataTable getColumnNames(string schema, string table)
+        {
+            string query = $"SELECT column_name FROM all_tab_columns WHERE table_name = '{table}' AND owner = '{schema}'";
+            return ExecuteQuery(query);
+        }
     }
 }
