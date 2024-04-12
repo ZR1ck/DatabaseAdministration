@@ -108,39 +108,5 @@ namespace DatabaseAdministration.DataProvider
             string query = $"SELECT *FROM DBA_COL_PRIVS WHERE GRANTEE = '{grantee}'";
             return ExecuteQuery(query);
         }
-
-        public DataTable getAllTableName()
-        {
-            string query = $"SELECT OWNER || '.' || TABLE_NAME AS TABLE_NAME FROM ALL_TABLES";
-            return ExecuteQuery(query);
-        }
-
-        public bool grantPrivs(string priv, string tbName, string grantee, bool grntOpt, List<string> cols = null)
-        {
-            string onCols = "";
-            if (cols != null && cols.Count > 0)
-            {
-                string s = string.Join(", ", cols);
-                onCols = "(" + s + ")";
-            }
-            string query = $"GRANT {priv} {onCols} ON {tbName} TO {grantee}";
-            if (grntOpt)
-            {
-                query += " WITH GRANT OPTION";
-            }
-            return ExecuteNonQuery(query);
-        }
-
-        public DataTable getTableColsName(string tableName)
-        {
-            string[] tb = tableName.Split('.');
-            string tbName = "";
-            if (tb.Length > 1)
-            {
-                tbName = tb[1];
-            }
-            string query = $"SELECT COLUMN_NAME FROM ALL_TAB_COLUMNS WHERE TABLE_NAME = '{tbName}'";
-            return ExecuteQuery(query);
-        }
     }
 }
