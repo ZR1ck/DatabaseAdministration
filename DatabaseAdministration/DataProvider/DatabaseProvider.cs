@@ -48,8 +48,27 @@ namespace DatabaseAdministration.DataProvider
             }
             return dataTable;
         }
-
-
+        public bool ExecuteNonQuery(string query)
+        {
+            using (OracleConnection connection = new OracleConnection(LoginHelper.getInstance().ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (OracleCommand command = new OracleCommand(query, connection))
+                    {
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+        }
 
         public DataTable getUsers()
         {
@@ -97,6 +116,28 @@ namespace DatabaseAdministration.DataProvider
         {
             string query = $"SELECT column_name FROM all_tab_columns WHERE table_name = '{table}' AND owner = '{schema}'";
             return ExecuteQuery(query);
+        }
+
+        public bool grantPriv(string priv, string schema, string table, string grantee, bool grantWithOptionChecked)
+        {
+            string sqlstr = $"GRANT {priv} ON {schema}.{table} TO {grantee}";
+            if (grantWithOptionChecked)
+            {
+                sqlstr += " WITH GRANT OPTION";
+            }
+            Console.WriteLine(sqlstr);
+            return ExecuteNonQuery(sqlstr);
+        }
+
+        public bool grantPriv(string priv, string schema, string table, string col, string grantee, bool grantWithOptionChecked)
+        {
+            string sqlstr = $"GRANT {priv} ({col}) ON {schema}.{table} TO {grantee}";
+            if(grantWithOptionChecked)
+            {
+                sqlstr += " WITH GRANT OPTION";
+            }
+            Console.WriteLine(sqlstr);
+            return ExecuteNonQuery(sqlstr);
         }
     }
 }

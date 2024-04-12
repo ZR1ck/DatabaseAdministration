@@ -53,7 +53,8 @@ namespace DatabaseAdministration
                 privs.Click += (s, args) =>
                 {
                     // Handle grant privs click
-                    FUserGrantPrivs fUserGrantPrivs= new FUserGrantPrivs();
+                    FGrantPrivs fUserGrantPrivs= new FGrantPrivs();
+                    fUserGrantPrivs.setGrantee(cellValue); 
                     fUserGrantPrivs.Show();
                 };
 
@@ -61,7 +62,7 @@ namespace DatabaseAdministration
                 role.Click += (s, args) =>
                 {
                     // Handle grant role click
-                    MessageBox.Show("Grant role");
+                    MessageBox.Show("grant role bro");
                 };
                 ToolStripMenuItem privs_revoke = new ToolStripMenuItem("Revoke privileges");
                 ToolStripMenuItem roles_revoke = new ToolStripMenuItem("Revoke roles");
@@ -98,7 +99,9 @@ namespace DatabaseAdministration
                 privs.Click += (s, args) =>
                 {
                     // Handle grant privs click
-                    MessageBox.Show("Grant privilege");
+                    FGrantPrivs fGrantPrivs = new FGrantPrivs();
+                    fGrantPrivs.setGrantee(cellValue);
+                    fGrantPrivs.Show();
                 };
 
                 ToolStripMenuItem role = new ToolStripMenuItem("Grant role");

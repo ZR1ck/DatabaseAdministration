@@ -12,17 +12,22 @@ using DatabaseAdministration.DataProvider;
 
 namespace DatabaseAdministration
 {
-    public partial class FUserGrantPrivs : Form
+    public partial class FGrantPrivs : Form
     {
         DatabaseProvider databaseProvider = DatabaseProvider.getInstance();
-        string user;
+        string grantee;
         string priv;
         string schema;
         string table;
         string column;
-        public FUserGrantPrivs()
+        public FGrantPrivs()
         {
             InitializeComponent();
+        }
+
+        public void setGrantee(string grantee)
+        {
+            this.grantee = grantee;
         }
 
         private void loadColumns()
@@ -36,7 +41,7 @@ namespace DatabaseAdministration
             }
         }
 
-        private void FUserGrantPrivs_Load(object sender, EventArgs e)
+        private void FGrantPrivs_Load(object sender, EventArgs e)
         {
             DataTable schemaData = databaseProvider.getSchema();
             List<string> schemaList = new List<string>();
@@ -88,6 +93,36 @@ namespace DatabaseAdministration
             this.Close();
         }
 
-        
+        private void OKBtn_Click(object sender, EventArgs e)
+        {
+            if(priv == "SELECT" || priv == "UPDATE")
+            {
+                if(priv == null || schema == null || table == null || column == null)
+                {
+                    MessageBox.Show("There is unselected field");
+                }
+                else if(databaseProvider.grantPriv(priv, schema, table, column, grantee, withGrantOptionCheck.Checked))
+                {
+                    MessageBox.Show("Grant success");
+                } else
+                {
+                    MessageBox.Show("Grant failed");
+                }
+            } else
+            {
+                if (priv == null || schema == null || table == null)
+                {
+                    MessageBox.Show("There is unselected field");
+                }
+                else if (databaseProvider.grantPriv(priv, schema, table, grantee, withGrantOptionCheck.Checked))
+                {
+                    MessageBox.Show("Grant success");
+                }
+                else
+                {
+                    MessageBox.Show("Grant failed");
+                }
+            }
+        }
     }
 }

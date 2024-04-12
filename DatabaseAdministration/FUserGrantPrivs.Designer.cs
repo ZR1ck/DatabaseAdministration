@@ -1,6 +1,6 @@
 ﻿namespace DatabaseAdministration
 {
-    partial class FUserGrantPrivs
+    partial class FGrantPrivs
     {
         /// <summary>
         /// Required designer variable.
@@ -104,6 +104,7 @@
             this.OKBtn.TabIndex = 5;
             this.OKBtn.Text = "OK";
             this.OKBtn.UseVisualStyleBackColor = true;
+            this.OKBtn.Click += new System.EventHandler(this.OKBtn_Click);
             // 
             // cancelBtn
             // 
@@ -155,7 +156,7 @@
             this.schemaCbBox.TabIndex = 10;
             this.schemaCbBox.SelectionChangeCommitted += new System.EventHandler(this.schemaCbBox_SelectionChangeCommitted);
             // 
-            // FUserGrantPrivs
+            // FGrantPrivs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -171,9 +172,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.privsCbBox);
             this.Controls.Add(this.label1);
-            this.Name = "FUserGrantPrivs";
-            this.Text = "Grant privilege to user";
-            this.Load += new System.EventHandler(this.FUserGrantPrivs_Load);
+            this.Name = "FGrantPrivs";
+            this.Text = "Grant privilege";
+            this.Load += new System.EventHandler(this.FGrantPrivs_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

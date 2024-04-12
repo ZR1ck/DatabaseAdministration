@@ -65,4 +65,4 @@ D:\STUDENT\Year 3\ATBM\DatabaseAdministration\DatabaseAdministration\DatabaseAdm
 D:\STUDENT\Year 3\ATBM\DatabaseAdministration\DatabaseAdministration\DatabaseAdministration\obj\Debug\DatabaseAdministration.csproj.CopyComplete
 D:\STUDENT\Year 3\ATBM\DatabaseAdministration\DatabaseAdministration\DatabaseAdministration\obj\Debug\DatabaseAdministration.exe
 D:\STUDENT\Year 3\ATBM\DatabaseAdministration\DatabaseAdministration\DatabaseAdministration\obj\Debug\DatabaseAdministration.pdb
-D:\STUDENT\Year 3\ATBM\DatabaseAdministration\DatabaseAdministration\DatabaseAdministration\obj\Debug\DatabaseAdministration.FUserGrantPrivs.resources
+D:\STUDENT\Year 3\ATBM\DatabaseAdministration\DatabaseAdministration\DatabaseAdministration\obj\Debug\DatabaseAdministration.FGrantPrivs.resources
