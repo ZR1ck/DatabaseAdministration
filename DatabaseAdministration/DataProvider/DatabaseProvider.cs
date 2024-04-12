@@ -49,8 +49,6 @@ namespace DatabaseAdministration.DataProvider
             }
             return dataTable;
         }
-
-
         public bool ExecuteNonQuery(string query)
         {
             using (OracleConnection connection = new OracleConnection(LoginHelper.getInstance().ConnectionString))
@@ -72,7 +70,6 @@ namespace DatabaseAdministration.DataProvider
                 }
             }
         }
-
 
         public DataTable getUsers()
         {
@@ -103,10 +100,54 @@ namespace DatabaseAdministration.DataProvider
             string query = $"SELECT *FROM DBA_ROLE_PRIVS WHERE GRANTEE = '{grantee}'";
             return ExecuteQuery(query);
         }
+
+        public DataTable getSchema()
+        {
+            string query = "SELECT username  FROM dba_users u WHERE EXISTS (SELECT 1 FROM dba_objects o  WHERE o.owner = u.username )";
+            return ExecuteQuery(query);
+        }
         public DataTable getColsPrivs(string grantee)
         {
             string query = $"SELECT *FROM DBA_COL_PRIVS WHERE GRANTEE = '{grantee}'";
             return ExecuteQuery(query);
+        }
+
+        public DataTable getTableNames(string schema)
+        {
+            string query = $"SELECT table_name FROM all_tables WHERE owner = '{schema}'";
+            return ExecuteQuery(query);
+        }
+
+        public DataTable getColumnNames(string schema, string table)
+        {
+            string query = $"SELECT column_name FROM all_tab_columns WHERE table_name = '{table}' AND owner = '{schema}'";
+            return ExecuteQuery(query);
+        }
+
+        public bool grantPriv(string priv, string schema, string table, string grantee, bool grantWithOptionChecked)
+        {
+            string sqlstr = $"GRANT {priv} ON {schema}.{table} TO {grantee}";
+            if (grantWithOptionChecked)
+            {
+                sqlstr += " WITH GRANT OPTION";
+            }
+            return ExecuteNonQuery(sqlstr);
+        }
+
+        public bool grantPriv(string priv, string schema, string table, string col, string grantee, bool grantWithOptionChecked)
+        {
+            string sqlstr = $"GRANT {priv} ({col}) ON {schema}.{table} TO {grantee}";
+            if(grantWithOptionChecked)
+            {
+                sqlstr += " WITH GRANT OPTION";
+            }
+            return ExecuteNonQuery(sqlstr);
+        }
+
+        public bool grantRole(string role, string user)
+        {
+            string sqlstr = $"GRANT {role} TO {user}";
+            return ExecuteNonQuery(sqlstr);
         }
     }
 }

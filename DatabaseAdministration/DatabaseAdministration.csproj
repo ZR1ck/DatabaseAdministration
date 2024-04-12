@@ -84,6 +84,12 @@
   <ItemGroup>
     <Compile Include="DataProvider\DatabaseProvider.cs" />
     <Compile Include="DataProvider\LoginHelper.cs" />
+    <Compile Include="FGrantRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FGrantRole.Designer.cs">
+      <DependentUpon>FGrantRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="FLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,13 +102,25 @@
     <Compile Include="FMain.Designer.cs">
       <DependentUpon>FMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FGrantPrivs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FGrantPrivs.Designer.cs">
+      <DependentUpon>FGrantPrivs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FGrantRole.resx">
+      <DependentUpon>FGrantRole.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FLogin.resx">
       <DependentUpon>FLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FMain.resx">
       <DependentUpon>FMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FGrantPrivs.resx">
+      <DependentUpon>FGrantPrivs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
