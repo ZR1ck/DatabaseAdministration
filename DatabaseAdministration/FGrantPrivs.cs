@@ -33,38 +33,6 @@ namespace DatabaseAdministration
             comboBoxPrivs.SelectedIndex = 0;
         }
 
-        private bool grantPrivs(string grantee)
-        {
-
-            if (comboBoxPrivs.SelectedIndex != -1 && comboBoxTable.SelectedIndex != -1)
-            {
-                string priv = comboBoxPrivs.Text;
-                string tableName = comboBoxTable.Text;
-                bool grantOpt = checkBoxGrantOpt.Checked;
-                List<string> selectedCols = null;
-                // Selete, Update
-                if (comboBoxPrivs.SelectedIndex == 0 || comboBoxPrivs.SelectedIndex == 1)
-                {
-                    using (FTableCols tableCols = new FTableCols(tableName))
-                    {
-                        DialogResult dialogResult = tableCols.ShowDialog();
-                        if (dialogResult == DialogResult.OK)
-                        {
-                            selectedCols = tableCols.SelectedItems;
-                            if (selectedCols.Count <= 0 || selectedCols == null) { return false; }
-                        }
-                        else if (dialogResult == DialogResult.Cancel)
-                        {
-                            return false;
-                        }
-                    }
-                }
-                // Insert, Delete
-                return provider.grantPrivs(priv, tableName, grantee, grantOpt, selectedCols);
-            }
-            return false;
-        }
-
         protected virtual void onPrivsUpdated(EventArgs eventArgs)
         {
             dataUpdated?.Invoke(this, eventArgs);
@@ -77,15 +45,7 @@ namespace DatabaseAdministration
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (grantPrivs(this.grantee))
-            {
-                MessageBox.Show("Grant Succeeded");
-                onPrivsUpdated(EventArgs.Empty);
-            }
-            else
-            {
-                MessageBox.Show("Failed");
-            }
+
         }
     }
 }

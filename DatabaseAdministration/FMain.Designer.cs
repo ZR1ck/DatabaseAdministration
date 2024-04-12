@@ -42,6 +42,8 @@ namespace DatabaseAdministration
             this.dataGridViewSysPrivs = new System.Windows.Forms.DataGridView();
             this.tabPageRolePrivs = new System.Windows.Forms.TabPage();
             this.dataGridViewRolePrivs = new System.Windows.Forms.DataGridView();
+            this.tabPageColPrivs = new System.Windows.Forms.TabPage();
+            this.dataGridViewColPrivs = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDeleteCurrent = new System.Windows.Forms.Button();
             this.btnHistory = new System.Windows.Forms.Button();
@@ -49,8 +51,6 @@ namespace DatabaseAdministration
             this.btnAddRole = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tabPageColPrivs = new System.Windows.Forms.TabPage();
-            this.dataGridViewColPrivs = new System.Windows.Forms.DataGridView();
             this.tabControl.SuspendLayout();
             this.tabPageUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
@@ -63,10 +63,10 @@ namespace DatabaseAdministration
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSysPrivs)).BeginInit();
             this.tabPageRolePrivs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRolePrivs)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.tabPageColPrivs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewColPrivs)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -241,6 +241,35 @@ namespace DatabaseAdministration
             this.dataGridViewRolePrivs.TabIndex = 0;
             this.dataGridViewRolePrivs.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridViewRolePrivs_MouseDown);
             // 
+            // tabPageColPrivs
+            // 
+            this.tabPageColPrivs.Controls.Add(this.dataGridViewColPrivs);
+            this.tabPageColPrivs.Location = new System.Drawing.Point(4, 25);
+            this.tabPageColPrivs.Name = "tabPageColPrivs";
+            this.tabPageColPrivs.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageColPrivs.Size = new System.Drawing.Size(474, 441);
+            this.tabPageColPrivs.TabIndex = 3;
+            this.tabPageColPrivs.Text = "DBA_COL_PRIVS";
+            this.tabPageColPrivs.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewColPrivs
+            // 
+            this.dataGridViewColPrivs.AllowUserToAddRows = false;
+            this.dataGridViewColPrivs.AllowUserToDeleteRows = false;
+            this.dataGridViewColPrivs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewColPrivs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewColPrivs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewColPrivs.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewColPrivs.MultiSelect = false;
+            this.dataGridViewColPrivs.Name = "dataGridViewColPrivs";
+            this.dataGridViewColPrivs.ReadOnly = true;
+            this.dataGridViewColPrivs.RowHeadersWidth = 51;
+            this.dataGridViewColPrivs.RowTemplate.Height = 24;
+            this.dataGridViewColPrivs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewColPrivs.Size = new System.Drawing.Size(468, 435);
+            this.dataGridViewColPrivs.TabIndex = 2;
+            this.dataGridViewColPrivs.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridViewColPrivs_MouseDown);
+            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -322,35 +351,6 @@ namespace DatabaseAdministration
             this.panel1.Size = new System.Drawing.Size(782, 490);
             this.panel1.TabIndex = 4;
             // 
-            // tabPageColPrivs
-            // 
-            this.tabPageColPrivs.Controls.Add(this.dataGridViewColPrivs);
-            this.tabPageColPrivs.Location = new System.Drawing.Point(4, 25);
-            this.tabPageColPrivs.Name = "tabPageColPrivs";
-            this.tabPageColPrivs.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageColPrivs.Size = new System.Drawing.Size(474, 441);
-            this.tabPageColPrivs.TabIndex = 3;
-            this.tabPageColPrivs.Text = "DBA_COL_PRIVS";
-            this.tabPageColPrivs.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewColPrivs
-            // 
-            this.dataGridViewColPrivs.AllowUserToAddRows = false;
-            this.dataGridViewColPrivs.AllowUserToDeleteRows = false;
-            this.dataGridViewColPrivs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewColPrivs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewColPrivs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewColPrivs.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewColPrivs.MultiSelect = false;
-            this.dataGridViewColPrivs.Name = "dataGridViewColPrivs";
-            this.dataGridViewColPrivs.ReadOnly = true;
-            this.dataGridViewColPrivs.RowHeadersWidth = 51;
-            this.dataGridViewColPrivs.RowTemplate.Height = 24;
-            this.dataGridViewColPrivs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewColPrivs.Size = new System.Drawing.Size(468, 435);
-            this.dataGridViewColPrivs.TabIndex = 2;
-            this.dataGridViewColPrivs.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridViewColPrivs_MouseDown);
-            // 
             // FMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -374,10 +374,10 @@ namespace DatabaseAdministration
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSysPrivs)).EndInit();
             this.tabPageRolePrivs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRolePrivs)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.tabPageColPrivs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewColPrivs)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

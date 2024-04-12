@@ -98,10 +98,7 @@ namespace DatabaseAdministration
                 privs.Click += (s, args) =>
                 {
                     // Handle grant privs click
-                    FGrantPrivs fGrantPrivs = new FGrantPrivs(cellValue);
-                    // Register callback for fGrantPrivs
-                    fGrantPrivs.dataUpdated += mainGridDataUpdated;
-                    fGrantPrivs.ShowDialog();
+
                 };
 
                 ToolStripMenuItem role = new ToolStripMenuItem("Grant role");
@@ -109,18 +106,7 @@ namespace DatabaseAdministration
                 {
 
 
-                    // Handle grant role click------------------------------------------------------------------
-                    MessageBox.Show("Grant role");
-
-
-
-
-
-
-
-
-
-
+                    // Handle grant role click
 
 
                 };

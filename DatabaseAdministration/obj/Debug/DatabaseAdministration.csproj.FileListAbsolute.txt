@@ -32,4 +32,3 @@ C:\Programing_\C#\DatabaseAdministration\DatabaseAdministration\bin\Debug\System
 C:\Programing_\C#\DatabaseAdministration\DatabaseAdministration\bin\Debug\System.ValueTuple.xml
 C:\Programing_\C#\DatabaseAdministration\DatabaseAdministration\obj\Debug\Database.804F253B.Up2Date
 C:\Programing_\C#\DatabaseAdministration\DatabaseAdministration\obj\Debug\DatabaseAdministration.FGrantPrivs.resources
-C:\Programing_\C#\DatabaseAdministration\DatabaseAdministration\obj\Debug\DatabaseAdministration.FTableCols.resources
