@@ -149,5 +149,20 @@ namespace DatabaseAdministration.DataProvider
             string sqlstr = $"GRANT {role} TO {user}";
             return ExecuteNonQuery(sqlstr);
         }
+
+        public bool grantSelect(string schema, string table, string cols, string grantee, bool grantWithOptionChecked)
+        {
+            string view =
+                $"CREATE OR REPLACE VIEW V_{schema}_{table}_{grantee} AS " +
+                $"SELECT {cols} FROM {schema}.{table}";
+            if (!ExecuteNonQuery(view)) { return false; }
+
+            string sqlstr = $"GRANT SELECT ON V_{schema}_{table}_{grantee} TO {grantee}";
+            if (grantWithOptionChecked)
+            {
+                sqlstr += " WITH GRANT OPTION";
+            }
+            return ExecuteNonQuery(sqlstr);
+        }
     }
 }

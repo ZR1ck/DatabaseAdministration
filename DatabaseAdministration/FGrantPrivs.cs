@@ -48,17 +48,19 @@ namespace DatabaseAdministration
             List<string> schemaList = new List<string>();
             schemaList = (from DataRow dr in schemaData.Rows select dr[0].ToString()).ToList();
             schemaCbBox.DataSource = schemaList;
+            schemaCbBox.SelectedIndex = -1;
             columnsCbBox.Enabled = false;
         }
 
         private void privsCbBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             priv = privsCbBox.SelectedItem.ToString();
-            if(priv.Equals("SELECT") || priv.Equals("UPDATE"))
+            if(priv.Equals("UPDATE"))
             {
                 columnsCbBox.Enabled = true;
                 loadColumns();
-            } else
+            } 
+            else
             {
                 columnsCbBox.Enabled = false;
                 column = null;
@@ -73,6 +75,7 @@ namespace DatabaseAdministration
             List<string> tableList = new List<string>();
             tableList = (from DataRow dr in tablesData.Rows select dr[0].ToString()).ToList() ;
             tablesCbBox.DataSource = tableList;
+            tablesCbBox.SelectedIndex = -1;
         }
 
         private void tablesCbBox_SelectionChangeCommitted(object sender, EventArgs e)
@@ -96,7 +99,7 @@ namespace DatabaseAdministration
 
         private void OKBtn_Click(object sender, EventArgs e)
         {
-            if(priv == "SELECT" || priv == "UPDATE")
+            if(priv == "UPDATE")
             {
                 if(priv == null || schema == null || table == null || column == null)
                 {
@@ -110,7 +113,31 @@ namespace DatabaseAdministration
                 {
                     MessageBox.Show("Grant failed");
                 }
-            } else
+            } 
+            else if (priv == "SELECT")
+            {
+                FTableCols fTableCols = new FTableCols(schema, table);
+                DialogResult result = fTableCols.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    List<string> selectedCols = fTableCols.Result;
+                    string cols = string.Join(", ", selectedCols);
+                    if (databaseProvider.grantSelect(schema, table, cols, grantee, withGrantOptionCheck.Checked))
+                    {
+                        MessageBox.Show("Grant success");
+                        onPrivsUpdated(EventArgs.Empty);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Grant failed");
+                    }
+                }
+                else if (result != DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+            else
             {
                 if (priv == null || schema == null || table == null)
                 {
