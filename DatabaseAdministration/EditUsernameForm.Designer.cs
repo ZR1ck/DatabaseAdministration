@@ -83,7 +83,7 @@
             this.MinimizeBox = false;
             this.Name = "EditUsernameForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ModifyForm";
+            this.Text = "Modify form";
             this.ResumeLayout(false);
             this.PerformLayout();
 
