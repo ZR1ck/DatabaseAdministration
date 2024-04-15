@@ -90,6 +90,7 @@ namespace DatabaseAdministration
 
                 // Get cell data (user)
                 string cellValue = dataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                dataGrid.Rows[e.RowIndex].Selected = true;
                 currentChecked = cellValue;
 
                 // ContextMenuStrip
