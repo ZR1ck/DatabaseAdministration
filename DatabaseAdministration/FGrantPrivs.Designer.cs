@@ -36,7 +36,6 @@
             this.OKBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.columnsCbBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.schemaCbBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
@@ -118,23 +117,10 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(355, 72);
+            this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 16);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Columns";
-            // 
-            // columnsCbBox
-            // 
-            this.columnsCbBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.columnsCbBox.FormattingEnabled = true;
-            this.columnsCbBox.Location = new System.Drawing.Point(427, 69);
-            this.columnsCbBox.Name = "columnsCbBox";
-            this.columnsCbBox.Size = new System.Drawing.Size(128, 24);
-            this.columnsCbBox.TabIndex = 4;
-            this.columnsCbBox.SelectionChangeCommitted += new System.EventHandler(this.columnsCbBox_SelectionChangeCommitted);
+            this.label3.Size = new System.Drawing.Size(100, 23);
+            this.label3.TabIndex = 4;
             // 
             // label4
             // 
@@ -163,7 +149,6 @@
             this.ClientSize = new System.Drawing.Size(567, 196);
             this.Controls.Add(this.schemaCbBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.columnsCbBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.OKBtn);
@@ -194,7 +179,6 @@
         private System.Windows.Forms.Button OKBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox columnsCbBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox schemaCbBox;
     }

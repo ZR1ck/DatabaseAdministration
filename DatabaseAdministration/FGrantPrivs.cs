@@ -31,16 +31,16 @@ namespace DatabaseAdministration
             this.grantee = grantee;
         }
 
-        private void loadColumns()
-        {
-            if (table != null)
-            {
-                DataTable columnsData = databaseProvider.getColumnNames(schema, table);
-                List<string> columnList = new List<string>();
-                columnList = (from DataRow dr in columnsData.Rows select dr[0].ToString()).ToList();
-                columnsCbBox.DataSource = columnList;
-            }
-        }
+        //private void loadColumns()
+        //{
+        //    if (table != null)
+        //    {
+        //        DataTable columnsData = databaseProvider.getColumnNames(schema, table);
+        //        List<string> columnList = new List<string>();
+        //        columnList = (from DataRow dr in columnsData.Rows select dr[0].ToString()).ToList();
+        //        columnsCbBox.DataSource = columnList;
+        //    }
+        //}
 
         private void FGrantPrivs_Load(object sender, EventArgs e)
         {
@@ -49,23 +49,23 @@ namespace DatabaseAdministration
             schemaList = (from DataRow dr in schemaData.Rows select dr[0].ToString()).ToList();
             schemaCbBox.DataSource = schemaList;
             schemaCbBox.SelectedIndex = -1;
-            columnsCbBox.Enabled = false;
+            //columnsCbBox.Enabled = false;
         }
 
         private void privsCbBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             priv = privsCbBox.SelectedItem.ToString();
-            if(priv.Equals("UPDATE"))
-            {
-                columnsCbBox.Enabled = true;
-                loadColumns();
-            } 
-            else
-            {
-                columnsCbBox.Enabled = false;
-                column = null;
-                columnsCbBox.DataSource = null;
-            }
+            //if (priv.Equals("UPDATE"))
+            //{
+            //    columnsCbBox.Enabled = true;
+            //    loadColumns();
+            //}
+            //else
+            //{
+            //    columnsCbBox.Enabled = false;
+            //    column = null;
+            //    columnsCbBox.DataSource = null;
+            //}
         }
 
         private void schemaCbBox_SelectionChangeCommitted(object sender, EventArgs e)
@@ -81,16 +81,16 @@ namespace DatabaseAdministration
         private void tablesCbBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             table = tablesCbBox.SelectedItem.ToString();
-            if(columnsCbBox.Enabled)
-            {
-                loadColumns();
-            }
+            //if (columnsCbBox.Enabled)
+            //{
+            //    loadColumns();
+            //}
         }
 
-        private void columnsCbBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            column = columnsCbBox.SelectedItem.ToString();
-        }
+        //private void columnsCbBox_SelectionChangeCommitted(object sender, EventArgs e)
+        //{
+        //    column = columnsCbBox.SelectedItem.ToString();
+        //}
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
@@ -99,38 +99,54 @@ namespace DatabaseAdministration
 
         private void OKBtn_Click(object sender, EventArgs e)
         {
-            if(priv == "UPDATE")
+            //if(priv == "UPDATE")
+            //{
+            //    if(priv == null || schema == null || table == null || column == null)
+            //    {
+            //        MessageBox.Show("There is unselected field");
+            //    }
+            //    else if(databaseProvider.grantPriv(priv, schema, table, column, grantee, withGrantOptionCheck.Checked))
+            //    {
+            //        MessageBox.Show("Grant success");
+            //        onPrivsUpdated(EventArgs.Empty);
+            //    } else
+            //    {
+            //        MessageBox.Show("Grant failed");
+            //    }
+            //} 
+            if (priv == "SELECT" || priv == "UPDATE")
             {
-                if(priv == null || schema == null || table == null || column == null)
+                if (priv == null || schema == null || table == null)
                 {
                     MessageBox.Show("There is unselected field");
+                    return;
                 }
-                else if(databaseProvider.grantPriv(priv, schema, table, column, grantee, withGrantOptionCheck.Checked))
-                {
-                    MessageBox.Show("Grant success");
-                    onPrivsUpdated(EventArgs.Empty);
-                } else
-                {
-                    MessageBox.Show("Grant failed");
-                }
-            } 
-            else if (priv == "SELECT")
-            {
                 FTableCols fTableCols = new FTableCols(schema, table);
                 DialogResult result = fTableCols.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     List<string> selectedCols = fTableCols.Result;
                     string cols = string.Join(", ", selectedCols);
-                    if (databaseProvider.grantSelect(schema, table, cols, grantee, withGrantOptionCheck.Checked))
+                    if (priv == "SELECT")
                     {
-                        MessageBox.Show("Grant success");
-                        onPrivsUpdated(EventArgs.Empty);
+                        if (databaseProvider.grantSelect(schema, table, cols, grantee, withGrantOptionCheck.Checked))
+                        {
+                            MessageBox.Show("Grant success");
+                            onPrivsUpdated(EventArgs.Empty);
+                            return;
+                        }
                     }
-                    else
+                    else if (priv == "UPDATE")
                     {
-                        MessageBox.Show("Grant failed");
+                        if (databaseProvider.grantPriv(priv, schema, table, cols, grantee, withGrantOptionCheck.Checked))
+                        {
+                            MessageBox.Show("Grant success");
+                            onPrivsUpdated(EventArgs.Empty);
+                            return;
+                        }
                     }
+                    MessageBox.Show("Grant failed");
+                    return;
                 }
                 else if (result != DialogResult.Cancel)
                 {
