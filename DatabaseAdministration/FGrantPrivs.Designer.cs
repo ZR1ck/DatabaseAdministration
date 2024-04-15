@@ -73,7 +73,7 @@
             this.label2.Location = new System.Drawing.Point(50, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 16);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Table";
             // 
             // tablesCbBox
@@ -92,7 +92,7 @@
             this.withGrantOptionCheck.Location = new System.Drawing.Point(53, 113);
             this.withGrantOptionCheck.Name = "withGrantOptionCheck";
             this.withGrantOptionCheck.Size = new System.Drawing.Size(132, 20);
-            this.withGrantOptionCheck.TabIndex = 4;
+            this.withGrantOptionCheck.TabIndex = 5;
             this.withGrantOptionCheck.Text = "With Grant Option";
             this.withGrantOptionCheck.UseVisualStyleBackColor = true;
             // 
@@ -101,7 +101,7 @@
             this.OKBtn.Location = new System.Drawing.Point(383, 157);
             this.OKBtn.Name = "OKBtn";
             this.OKBtn.Size = new System.Drawing.Size(68, 27);
-            this.OKBtn.TabIndex = 5;
+            this.OKBtn.TabIndex = 6;
             this.OKBtn.Text = "OK";
             this.OKBtn.UseVisualStyleBackColor = true;
             this.OKBtn.Click += new System.EventHandler(this.OKBtn_Click);
@@ -111,7 +111,7 @@
             this.cancelBtn.Location = new System.Drawing.Point(468, 157);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(87, 27);
-            this.cancelBtn.TabIndex = 6;
+            this.cancelBtn.TabIndex = 7;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
@@ -123,7 +123,7 @@
             this.label3.Location = new System.Drawing.Point(355, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 16);
-            this.label3.TabIndex = 7;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Columns";
             // 
             // columnsCbBox
@@ -133,7 +133,7 @@
             this.columnsCbBox.Location = new System.Drawing.Point(427, 69);
             this.columnsCbBox.Name = "columnsCbBox";
             this.columnsCbBox.Size = new System.Drawing.Size(128, 24);
-            this.columnsCbBox.TabIndex = 8;
+            this.columnsCbBox.TabIndex = 4;
             this.columnsCbBox.SelectionChangeCommitted += new System.EventHandler(this.columnsCbBox_SelectionChangeCommitted);
             // 
             // label4
@@ -143,7 +143,7 @@
             this.label4.Location = new System.Drawing.Point(355, 38);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 16);
-            this.label4.TabIndex = 9;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Schema";
             // 
             // schemaCbBox
@@ -153,7 +153,7 @@
             this.schemaCbBox.Location = new System.Drawing.Point(427, 35);
             this.schemaCbBox.Name = "schemaCbBox";
             this.schemaCbBox.Size = new System.Drawing.Size(128, 24);
-            this.schemaCbBox.TabIndex = 10;
+            this.schemaCbBox.TabIndex = 2;
             this.schemaCbBox.SelectionChangeCommitted += new System.EventHandler(this.schemaCbBox_SelectionChangeCommitted);
             // 
             // FGrantPrivs

@@ -45,12 +45,12 @@ namespace DatabaseAdministration
             this.tabPageColPrivs = new System.Windows.Forms.TabPage();
             this.dataGridViewColPrivs = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDeleteCurrentRole = new System.Windows.Forms.Button();
             this.btnDeleteCurrentUser = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnAddRole = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnDeleteCurrentRole = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
@@ -285,6 +285,18 @@ namespace DatabaseAdministration
             this.panel2.Size = new System.Drawing.Size(193, 490);
             this.panel2.TabIndex = 3;
             // 
+            // btnDeleteCurrentRole
+            // 
+            this.btnDeleteCurrentRole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteCurrentRole.Location = new System.Drawing.Point(3, 250);
+            this.btnDeleteCurrentRole.Name = "btnDeleteCurrentRole";
+            this.btnDeleteCurrentRole.Size = new System.Drawing.Size(184, 46);
+            this.btnDeleteCurrentRole.TabIndex = 5;
+            this.btnDeleteCurrentRole.Text = "Delete Current Role";
+            this.btnDeleteCurrentRole.UseVisualStyleBackColor = true;
+            this.btnDeleteCurrentRole.Click += new System.EventHandler(this.btnDeleteRole_Click);
+            // 
             // btnDeleteCurrentUser
             // 
             this.btnDeleteCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -345,18 +357,6 @@ namespace DatabaseAdministration
             this.panel1.Size = new System.Drawing.Size(782, 490);
             this.panel1.TabIndex = 4;
             // 
-            // btnDeleteCurrentRole
-            // 
-            this.btnDeleteCurrentRole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteCurrentRole.Location = new System.Drawing.Point(3, 250);
-            this.btnDeleteCurrentRole.Name = "btnDeleteCurrentRole";
-            this.btnDeleteCurrentRole.Size = new System.Drawing.Size(184, 46);
-            this.btnDeleteCurrentRole.TabIndex = 5;
-            this.btnDeleteCurrentRole.Text = "Delete Current Role";
-            this.btnDeleteCurrentRole.UseVisualStyleBackColor = true;
-            this.btnDeleteCurrentRole.Click += new System.EventHandler(this.btnDeleteRole_Click);
-            // 
             // FMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -367,7 +367,7 @@ namespace DatabaseAdministration
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "FMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form2";
+            this.Text = "Database Administration";
             this.tabControl.ResumeLayout(false);
             this.tabPageUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).EndInit();
