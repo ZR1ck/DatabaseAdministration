@@ -164,5 +164,19 @@ namespace DatabaseAdministration.DataProvider
             }
             return ExecuteNonQuery(sqlstr);
         }
+
+        public bool revokePrivs(string grantee, string revokeType, string owner = null, string tableName = null)
+        {
+            string query;
+            if (owner != null && tableName != null)
+            {
+                query = $"REVOKE {revokeType} ON {owner}.{tableName} FROM {grantee}";
+            }
+            else
+            {
+                query = $"REVOKE {revokeType} FROM {grantee}";
+            }
+            return ExecuteNonQuery(query);
+        }
     }
 }

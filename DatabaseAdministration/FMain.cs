@@ -107,24 +107,11 @@ namespace DatabaseAdministration
                 ToolStripMenuItem role = new ToolStripMenuItem("Grant role");
                 role.Click += (s, args) =>
                 {
-
-
                     // Handle grant role click
                     FGrantRole fGrantRole = new FGrantRole();
                     fGrantRole.setUser(cellValue);
                     fGrantRole.dataUpdated += mainGridDataUpdated;
                     fGrantRole.ShowDialog();
-
-
-
-
-
-
-
-
-
-
-
 
                 };
 
@@ -174,12 +161,14 @@ namespace DatabaseAdministration
                     }
                     // (select, insert, update, delete)
                     string revoke = dataGrid.Rows[currentMouseOverRow].Cells[revokeType].Value.ToString();
+                    string owner = null;
 
                     // table name (nullable)
                     string tableName = null;
                     try
                     {
                         tableName = dataGrid.Rows[currentMouseOverRow].Cells["TABLE_NAME"].Value.ToString();
+                        owner = dataGrid.Rows[currentMouseOverRow].Cells["OWNER"].Value.ToString();
                     }
                     catch (Exception ex)
                     {
@@ -190,19 +179,16 @@ namespace DatabaseAdministration
                     ToolStripMenuItem privs = new ToolStripMenuItem("Revoke privilege");
                     privs.Click += (s, args) =>
                     {
-
-
-
-
-                        // Handle revoke privs click------------------------------------------------------------------
-                        MessageBox.Show("revoke privilege" + grantee + " " + revoke + " " + tableName);
-
-
-
-
-
-
-
+                        // Handle revoke privs click
+                        if (databaseProvider.revokePrivs(grantee, revoke, owner, tableName))
+                        {
+                            MessageBox.Show("Revoked");
+                            LoadPrivs(this.currentChecked);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Revoke Failed");
+                        }
                     };
                     contextMenu.Items.Add(privs);
                     contextMenu.Show(dataGrid, new Point(e.X, e.Y));
