@@ -126,6 +126,7 @@ namespace DatabaseAdministration
             else if (e.Button == MouseButtons.Left && e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 string cellValue = dataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                currentChecked = cellValue;
                 LoadPrivs(cellValue);
             }
         }
