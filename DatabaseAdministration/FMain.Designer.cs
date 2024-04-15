@@ -45,12 +45,12 @@ namespace DatabaseAdministration
             this.tabPageColPrivs = new System.Windows.Forms.TabPage();
             this.dataGridViewColPrivs = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnDeleteCurrent = new System.Windows.Forms.Button();
-            this.btnHistory = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDeleteCurrentUser = new System.Windows.Forms.Button();
+            this.btnModify = new System.Windows.Forms.Button();
             this.btnAddRole = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDeleteCurrentRole = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
@@ -80,6 +80,7 @@ namespace DatabaseAdministration
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(282, 470);
             this.tabControl.TabIndex = 0;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabPageUser
             // 
@@ -274,9 +275,9 @@ namespace DatabaseAdministration
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.btnDeleteCurrent);
-            this.panel2.Controls.Add(this.btnHistory);
-            this.panel2.Controls.Add(this.btnUpdate);
+            this.panel2.Controls.Add(this.btnDeleteCurrentRole);
+            this.panel2.Controls.Add(this.btnDeleteCurrentUser);
+            this.panel2.Controls.Add(this.btnModify);
             this.panel2.Controls.Add(this.btnAddRole);
             this.panel2.Controls.Add(this.btnAddUser);
             this.panel2.Location = new System.Drawing.Point(800, 12);
@@ -284,38 +285,29 @@ namespace DatabaseAdministration
             this.panel2.Size = new System.Drawing.Size(193, 490);
             this.panel2.TabIndex = 3;
             // 
-            // btnDeleteCurrent
+            // btnDeleteCurrentUser
             // 
-            this.btnDeleteCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnDeleteCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteCurrent.Location = new System.Drawing.Point(3, 250);
-            this.btnDeleteCurrent.Name = "btnDeleteCurrent";
-            this.btnDeleteCurrent.Size = new System.Drawing.Size(184, 46);
-            this.btnDeleteCurrent.TabIndex = 4;
-            this.btnDeleteCurrent.Text = "Delete Current User/Role";
-            this.btnDeleteCurrent.UseVisualStyleBackColor = true;
+            this.btnDeleteCurrentUser.Location = new System.Drawing.Point(3, 198);
+            this.btnDeleteCurrentUser.Name = "btnDeleteCurrentUser";
+            this.btnDeleteCurrentUser.Size = new System.Drawing.Size(184, 46);
+            this.btnDeleteCurrentUser.TabIndex = 4;
+            this.btnDeleteCurrentUser.Text = "Delete Current User";
+            this.btnDeleteCurrentUser.UseVisualStyleBackColor = true;
+            this.btnDeleteCurrentUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
-            // btnHistory
+            // btnModify
             // 
-            this.btnHistory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHistory.Location = new System.Drawing.Point(3, 146);
-            this.btnHistory.Name = "btnHistory";
-            this.btnHistory.Size = new System.Drawing.Size(184, 46);
-            this.btnHistory.TabIndex = 2;
-            this.btnHistory.Text = "History";
-            this.btnHistory.UseVisualStyleBackColor = true;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.Location = new System.Drawing.Point(3, 198);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(184, 46);
-            this.btnUpdate.TabIndex = 3;
-            this.btnUpdate.Text = "Update Current User/Role";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnModify.Location = new System.Drawing.Point(3, 146);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(184, 46);
+            this.btnModify.TabIndex = 3;
+            this.btnModify.Text = "Modify Current";
+            this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // btnAddRole
             // 
@@ -327,6 +319,7 @@ namespace DatabaseAdministration
             this.btnAddRole.TabIndex = 1;
             this.btnAddRole.Text = "Add Role";
             this.btnAddRole.UseVisualStyleBackColor = true;
+            this.btnAddRole.Click += new System.EventHandler(this.btnAddRole_Click);
             // 
             // btnAddUser
             // 
@@ -338,6 +331,7 @@ namespace DatabaseAdministration
             this.btnAddUser.TabIndex = 0;
             this.btnAddUser.Text = "Add User";
             this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // panel1
             // 
@@ -350,6 +344,18 @@ namespace DatabaseAdministration
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(782, 490);
             this.panel1.TabIndex = 4;
+            // 
+            // btnDeleteCurrentRole
+            // 
+            this.btnDeleteCurrentRole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteCurrentRole.Location = new System.Drawing.Point(3, 250);
+            this.btnDeleteCurrentRole.Name = "btnDeleteCurrentRole";
+            this.btnDeleteCurrentRole.Size = new System.Drawing.Size(184, 46);
+            this.btnDeleteCurrentRole.TabIndex = 5;
+            this.btnDeleteCurrentRole.Text = "Delete Current Role";
+            this.btnDeleteCurrentRole.UseVisualStyleBackColor = true;
+            this.btnDeleteCurrentRole.Click += new System.EventHandler(this.btnDeleteRole_Click);
             // 
             // FMain
             // 
@@ -392,9 +398,8 @@ namespace DatabaseAdministration
         private TabPage tabPageSysPrivs;
         private TabPage tabPageRolePrivs;
         private Panel panel2;
-        private Button btnDeleteCurrent;
-        private Button btnHistory;
-        private Button btnUpdate;
+        private Button btnDeleteCurrentUser;
+        private Button btnModify;
         private Button btnAddRole;
         private Button btnAddUser;
         private Panel panel1;
@@ -405,6 +410,7 @@ namespace DatabaseAdministration
         private DataGridView dataGridViewRolePrivs;
         private TabPage tabPageColPrivs;
         private DataGridView dataGridViewColPrivs;
+        private Button btnDeleteCurrentRole;
     }
 
     public class TabButton : UserControl

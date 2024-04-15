@@ -84,6 +84,24 @@
   <ItemGroup>
     <Compile Include="DataProvider\DatabaseProvider.cs" />
     <Compile Include="DataProvider\LoginHelper.cs" />
+    <Compile Include="EditUsernameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditUsernameForm.Designer.cs">
+      <DependentUpon>EditUsernameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FAddRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FAddRole.Designer.cs">
+      <DependentUpon>FAddRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FAddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FAddUser.Designer.cs">
+      <DependentUpon>FAddUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="FGrantRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +134,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EditUsernameForm.resx">
+      <DependentUpon>EditUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FAddRole.resx">
+      <DependentUpon>FAddRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FAddUser.resx">
+      <DependentUpon>FAddUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FGrantRole.resx">
       <DependentUpon>FGrantRole.cs</DependentUpon>
     </EmbeddedResource>

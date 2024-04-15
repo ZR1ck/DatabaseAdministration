@@ -178,5 +178,69 @@ namespace DatabaseAdministration.DataProvider
             }
             return ExecuteNonQuery(query);
         }
+
+        public bool UpdateUsername(string oldUsername, string newUsername)
+        {
+            using (OracleConnection connection = new OracleConnection(LoginHelper.getInstance().ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Tạo câu lệnh SQL để cập nhật tên người dùng trong bảng người dùng của bạn
+                    string sql = $"UPDATE DBA_USERS SET USERNAME = '{newUsername}' WHERE USERNAME = '{oldUsername}'";
+
+                    // Tạo đối tượng Command
+                    using (OracleCommand command = new OracleCommand(sql, connection))
+                    {
+                        // Thêm tham số cho câu lệnh SQL
+                        //command.Parameters.Add(new OracleParameter("newUsername", newUsername));
+                        //command.Parameters.Add(new OracleParameter("oldUsername", oldUsername));
+
+                        // Thực hiện câu lệnh SQL
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Kiểm tra xem có dòng nào bị ảnh hưởng không
+                        if (rowsAffected > 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý các ngoại lệ nếu cần
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        public bool UpdateRolename(string oldName, string newName)
+        {
+            using (OracleConnection connection = new OracleConnection(LoginHelper.getInstance().ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string sql = $"UPDATE DBA_ROLES SET ROLE = '{newName}' WHERE ROLE = '{oldName}'";
+                    using (OracleCommand command = new OracleCommand(sql, connection))
+                    {
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                    return false;
+                }
+            }
+            return false;
+        }
     }
 }
