@@ -165,9 +165,16 @@ namespace DatabaseAdministration.DataProvider
             return ExecuteNonQuery(sqlstr);
         }
 
-        public bool revokePrivs(string grantee, string revokeType, string owner = null, string tableName = null)
+        public bool revokePrivs(string grantee, string revokeType, string owner = null, string tableName = null, string type = null)
         {
             string query;
+            // Drop view
+            if (type != null && type.ToUpper() == "VIEW")
+            {
+                query = $"DROP VIEW {tableName}";
+                return ExecuteNonQuery (query);
+            }
+            // revoke if not view
             if (owner != null && tableName != null)
             {
                 query = $"REVOKE {revokeType} ON {owner}.{tableName} FROM {grantee}";

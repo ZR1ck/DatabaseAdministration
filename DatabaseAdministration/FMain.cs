@@ -165,6 +165,7 @@ namespace DatabaseAdministration
                     // (select, insert, update, delete)
                     string revoke = dataGrid.Rows[currentMouseOverRow].Cells[revokeType].Value.ToString();
                     string owner = null;
+                    string type = null;
 
                     // table name (nullable)
                     string tableName = null;
@@ -172,6 +173,7 @@ namespace DatabaseAdministration
                     {
                         tableName = dataGrid.Rows[currentMouseOverRow].Cells["TABLE_NAME"].Value.ToString();
                         owner = dataGrid.Rows[currentMouseOverRow].Cells["OWNER"].Value.ToString();
+                        type = dataGrid.Rows[currentMouseOverRow].Cells["TYPE"].Value.ToString();
                     }
                     catch (Exception ex)
                     {
@@ -183,7 +185,7 @@ namespace DatabaseAdministration
                     privs.Click += (s, args) =>
                     {
                         // Handle revoke privs click
-                        if (databaseProvider.revokePrivs(grantee, revoke, owner, tableName))
+                        if (databaseProvider.revokePrivs(grantee, revoke, owner, tableName, type))
                         {
                             MessageBox.Show("Revoked");
                             LoadPrivs(this.currentChecked);

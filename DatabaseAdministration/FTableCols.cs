@@ -26,7 +26,7 @@ namespace DatabaseAdministration
         private void btnOK_Click(object sender, EventArgs e)
         {
             Result = getCols();
-            if (Result != null )
+            if (Result != null && Result.Count > 0)
             {
                 this.DialogResult = DialogResult.OK;
                 this.Close();
