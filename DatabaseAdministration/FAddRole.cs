@@ -23,27 +23,24 @@ namespace DatabaseAdministration
         private void button1_Click(object sender, EventArgs e)
         {
             string rolenameInput = textBox1.Text;
-            string connectionString = LoginHelper.getInstance().ConnectionString;
-            try
+
+            if (rolenameInput.Length == 0)
             {
-                using (OracleConnection connection = new OracleConnection(connectionString))
-                {
-                    connection.Open();
-
-                    string sql = "CREATE ROLE " + rolenameInput;
-                    using (OracleCommand command = new OracleCommand(sql, connection))
-                    {
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Role created successfully!");
-                        onUpdated(EventArgs.Empty);
-                    }
-
-                    this.DialogResult = DialogResult.OK;
-                }
+                MessageBox.Show("Empty input", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
-            catch (Exception ex)
+
+            if (DatabaseProvider.getInstance().addRole(rolenameInput))
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Role created successfully!");
+                onUpdated(EventArgs.Empty);
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("Cannot create role", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

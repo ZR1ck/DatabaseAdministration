@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
@@ -188,6 +189,7 @@ namespace DatabaseAdministration.DataProvider
 
         public bool UpdateUsername(string oldUsername, string newUsername)
         {
+            if (!verify(newUsername)) { return false; }
             using (OracleConnection connection = new OracleConnection(LoginHelper.getInstance().ConnectionString))
             {
                 try
@@ -226,6 +228,7 @@ namespace DatabaseAdministration.DataProvider
 
         public bool UpdateRolename(string oldName, string newName)
         {
+            if (!verify(newName)) return false;
             using (OracleConnection connection = new OracleConnection(LoginHelper.getInstance().ConnectionString))
             {
                 try
@@ -248,6 +251,35 @@ namespace DatabaseAdministration.DataProvider
                 }
             }
             return false;
+        }
+
+        public int addUser(string username, string password)
+        {
+            if (!verify(username)) return 1; // invalid username
+            if (!verify(password)) return 2; // invalid password
+
+            string sql = "CREATE USER " + username + " IDENTIFIED BY " + password;
+
+            if (ExecuteNonQuery(sql))
+            {
+                return 0;
+            }
+            else return 3; // exec error
+        }
+
+        public bool addRole(string rolenameInput)
+        {
+            if (!verify(rolenameInput)) return false;
+
+            string sql = "CREATE ROLE " + rolenameInput;
+
+            return ExecuteNonQuery(sql);
+        }
+
+        private bool verify(string input)
+        {
+            Regex regex = new Regex("^[a-zA-Z0-9]+$");
+            return regex.IsMatch(input);
         }
     }
 }

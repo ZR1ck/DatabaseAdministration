@@ -25,43 +25,40 @@ namespace DatabaseAdministration
         {
             string usernameInput = textBox1.Text;
             string passwordInput = textBox2.Text;
-            string connectionString = LoginHelper.getInstance().ConnectionString;
 
             if (usernameInput.Length == 0)
             {
                 MessageBox.Show("Username must not be left empty", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
-            else if (passwordInput.Length == 0)
+            if (passwordInput.Length == 0)
             {
                 MessageBox.Show("Password must not be left empty", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
-            else
+            int i = DatabaseProvider.getInstance().addUser(usernameInput, passwordInput);
+            switch (i)
             {
-                try
-                {
-                    using (OracleConnection connection = new OracleConnection(connectionString))
-                    {
-                        connection.Open();
-
-                        string sql = "CREATE USER " + usernameInput + " IDENTIFIED BY " + passwordInput;
-                        using (OracleCommand command = new OracleCommand(sql, connection))
-                        {
-                            command.ExecuteNonQuery();
-                            MessageBox.Show("User created successfully!");
-                            onUpdated(EventArgs.Empty);
-                        }
-
-                        this.DialogResult = DialogResult.OK;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
+                case 0:
+                    MessageBox.Show("User created successfully!");
+                    onUpdated(EventArgs.Empty);
+                    this.DialogResult = DialogResult.OK;
+                    break;
+                case 1:
+                    MessageBox.Show("Username only contains valid characters (a - z, A - Z) and numbers (0 - 9)", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    break;
+                case 2:
+                    MessageBox.Show("Password only contains valid characters (a - z, A - Z) and numbers (0 - 9)", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    break;
+                case 3:
+                    MessageBox.Show("Cannot create user", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    break;
             }
-
         }
 
         protected virtual void onUpdated(EventArgs eventArgs)

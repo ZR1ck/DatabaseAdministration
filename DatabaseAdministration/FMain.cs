@@ -20,13 +20,18 @@ namespace DatabaseAdministration
         public FMain()
         {
             InitializeComponent();
-            LoadUsersAndRoles();
+            LoadUsers();
+            LoadRoles();
         }
-
-        private void LoadUsersAndRoles()
+        private void LoadUsers()
         {
             dataGridViewUser.DataSource = databaseProvider.getUsers();
+            dataGridViewUser.Sort(dataGridViewUser.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+        }
+        private void LoadRoles()
+        {
             dataGridViewRole.DataSource = databaseProvider.getRole();
+            dataGridViewRole.Sort(dataGridViewRole.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
         }
 
         private void LoadPrivs(string grantee)
@@ -204,14 +209,14 @@ namespace DatabaseAdministration
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             FAddUser AddUser = new FAddUser();
-            AddUser.updateUserTab += mainUsersAndRolesUpdated;
+            AddUser.updateUserTab += mainUsersUpdated;
             AddUser.ShowDialog();
         }
 
         private void btnAddRole_Click(object sender, EventArgs e)
         {
             FAddRole AddRole = new FAddRole();
-            AddRole.updateRoleTab += mainUsersAndRolesUpdated;
+            AddRole.updateRoleTab += mainRolesUpdated;
             AddRole.ShowDialog();
         }
 
@@ -357,9 +362,13 @@ namespace DatabaseAdministration
             }
         }
 
-        private void mainUsersAndRolesUpdated(object sender, EventArgs e)
+        private void mainRolesUpdated(object sender, EventArgs e)
         {
-            LoadUsersAndRoles();
+            LoadRoles();
+        }
+        private void mainUsersUpdated(object sender, EventArgs e)
+        {
+            LoadUsers();
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
