@@ -91,6 +91,8 @@ begin
             return 'MAGV = ''' || sys_context('userenv', 'session_user') || '''';
         elsif (USERROLE = 'GIAOVU' OR USERROLE = 'TRGKHOA') THEN 
             return '';
+        ELSIF (USERROLE = 'SV') THEN
+            RETURN 'MASV = ''' || sys_context('userenv', 'session_user') || '''';
         end if;
     end if;
     return '1 = 0';
@@ -121,7 +123,7 @@ Grant update(DIEMTH, DIEMQT, DIEMCK, DIEMTK) on QLDL.DANGKY to GV;
 --DROP VIEW QLDL.v_GV;
 --DROP VIEW QLDL.v2_GV;
 
-SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE = 'NV004';
+SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE = 'SV001';
 
 
 
