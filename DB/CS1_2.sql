@@ -6,11 +6,16 @@ CREATE OR REPLACE FUNCTION VPD_NHANSU (
 )
 return varchar2
 as
+    userrole varchar2(100);
 begin
     if sys_context('userenv','isdba') = 'true' then
         return '1 = 1';
     else 
-        return 'MANV = ''' || sys_context('userenv', 'session_user') || '''';
+        select GRANTED_ROLE into userrole from DBA_ROLE_PRIVS where GRANTEE = '' || SYS_CONTEXT ('USERENV', 'SESSION_USER')  || '';
+        if (userrole = 'TRGKHOA') then return '';
+        else
+            return 'MANV = ''' || sys_context('userenv', 'session_user') || '''';
+        end if;
     end if;
 end;
 
@@ -84,7 +89,7 @@ begin
         select GRANTED_ROLE into userrole from DBA_ROLE_PRIVS where GRANTEE = '' || SYS_CONTEXT ('USERENV', 'SESSION_USER')  || '';
         if (USERROLE = 'GV') THEN
             return 'MAGV = ''' || sys_context('userenv', 'session_user') || '''';
-        elsif (USERROLE = 'GIAOVU') THEN 
+        elsif (USERROLE = 'GIAOVU' OR USERROLE = 'TRGKHOA') THEN 
             return '';
         end if;
     end if;
