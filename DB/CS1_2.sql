@@ -1,23 +1,6 @@
 -- CS#1
-
-Create or replace view QLDL.v_NhanVien as
-Select *
-From QLDL.NHANSU;
---Where MANV = SYS_CONTEXT ('userenv', 'session_user');
-
-Create or replace view QLDL.v2_NhanVien as
-Select SDT
-From QLDL.NHANSU
-Where MANV = SYS_CONTEXT ('userenv', 'session_user');
-
-Grant select on QLDL.NHANSU to NVCB;
-Grant update(SDT) on QLDL.NHANSU to NVCB;
-Grant select on QLDL.SINHVIEN to NVCB;
-Grant select on QLDL.DONVI to NVCB;
-Grant select on QLDL.HOCPHAN to NVCB;
-Grant select on QLDL.KHMO to NVCB;
-
-CREATE OR REPLACE FUNCTION select_nhansu (
+-- NVCB XEM DU LIEU CHINH MINH, CHINH SUA SDT
+CREATE OR REPLACE FUNCTION VPD_NHANSU (
     p_schema varchar2, 
     p_object varchar2
 )
@@ -35,73 +18,105 @@ end;
 BEGIN dbms_rls.add_policy 
 (object_schema =>'QLDL',
 object_name => 'NHANSU',
-policy_name => 'POLICY_SELECT_NHANSU',
-policy_function => 'select_nhansu',
+policy_name => 'POLICY_NHANSU',
+policy_function => 'VPD_NHANSU',
 statement_types => 'SELECT, UPDATE',
 UPDATE_CHECK => true
 );
 END;
 /
 
+GRANT SELECT ON QLDL.NHANSU TO NVCB;
+GRANT UPDATE (SDT) ON QLDL.NHANSU TO NVCB;
+
+-- XEM THONG TIN TAT CA SINHVIEN, DONVI, HOCPHAN, KHMO
+GRANT SELECT ON QLDL.SINHVIEN TO NVCB;
+GRANT SELECT ON QLDL.DONVI TO NVCB;
+GRANT SELECT ON QLDL.HOCPHAN TO NVCB;
+GRANT SELECT ON QLDL.KHMO TO NVCB;
+
 --BEGIN dbms_rls.drop_policy 
 --(object_schema =>'QLDL',
 --object_name => 'NHANSU',
---policy_name => 'POLICY_SELECT_NHANSU'
+--policy_name => 'VPD_NHANSU'
 --);
 --END;
+--DROP FUNCTION VPD_NHANSU;
 
-        
+
 -- CS#2 
+-- GIANG VIEN NHU MOT NGUOI DUNG CO VAI TRO NVCB
+GRANT NVCB TO GV;
 
+-- XEM NHU LIEU LIEN QUAN DEN MINH TREN PHANCONG
 Create or replace view QLDL.v_GV as
 Select *
 From QLDL.PHANCONG
 Where MAGV = SYS_CONTEXT ('userenv', 'session_user');
 
+Grant select on QLDL.v_GV to GV;
+
+
+
+-- XEM DU LIEU TREN DANGKY LIEN QUAN DEN CAC LOP GV DANG GIANG DAY
 Create or replace view QLDL.v2_GV as
 Select *
 From QLDL.DANGKY
 Where MAGV = SYS_CONTEXT ('userenv', 'session_user');
 
-CREATE OR REPLACE FUNCTION update_giangvien_dangki (
+Grant select on QLDL.v2_GV to GV;
+
+
+
+-- CAP NHAT CAC TRUONG LIEN QUAN DEN DIEM SO TRONG DANGKY CAC SINH VIEN CO THAM GIA LOP
+-- MA GIANG VIEN DUOC PHAN CONG GIANG DAY
+CREATE OR REPLACE FUNCTION VPD_DANGKY (  -- DUNG CHO SELECT, UPDATE
     p_schema varchar2, 
     p_object varchar2
 )
 return varchar2
 as
+    userrole varchar2(100);
 begin
     if sys_context('userenv','isdba') = 'true' then
         return '1 = 1';
     else 
-        return 'MAGV = ''' || sys_context('userenv', 'session_user') || '''';
+        select GRANTED_ROLE into userrole from DBA_ROLE_PRIVS where GRANTEE = '' || SYS_CONTEXT ('USERENV', 'SESSION_USER')  || '';
+        if (USERROLE = 'GV') THEN
+            return 'MAGV = ''' || sys_context('userenv', 'session_user') || '''';
+        elsif (USERROLE = 'GIAOVU') THEN 
+            return '';
+        end if;
     end if;
+    return '1 = 0';
 end;
-
+/
 BEGIN dbms_rls.add_policy 
 (object_schema =>'QLDL',
 object_name => 'DANGKY',
-policy_name => 'POLICY_UPDATE_DANGKI',
-policy_function => 'update_giangvien_dangki',
+policy_name => 'POLICY_DANGKY',
+policy_function => 'VPD_DANGKY',
 statement_types => 'SELECT, UPDATE',
 UPDATE_CHECK => true
 );
 END;
+/
 
---BEGIN dbms_rls.drop_policy 
---(object_schema =>'QLDL',
---object_name => 'DANGKY',
---policy_name => 'POLICY_UPDATE_DANGKI'
---);
---END;
-
-
-Grant NVCB to GV;
-Grant select on QLDL.v_GV to GV;
-Grant select on QLDL.v2_GV to GV;
 grant select on QLDL.DANGKY to GV;
 Grant update(DIEMTH, DIEMQT, DIEMCK, DIEMTK) on QLDL.DANGKY to GV;
 
 
+--BEGIN dbms_rls.drop_policy 
+--(object_schema =>'QLDL',
+--object_name => 'DANGKY',
+--policy_name => 'POLICY_DANGKY'
+--);
+--END;
+
+--DROP VIEW QLDL.v_GV;
+--DROP VIEW QLDL.v2_GV;
+
+SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE = 'NV004';
 
 
 
