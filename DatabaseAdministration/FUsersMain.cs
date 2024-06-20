@@ -12,10 +12,42 @@ namespace DatabaseAdministration
 {
     public partial class FUsersMain : Form
     {
+        private int role;
         public FUsersMain(int role)
         {
             InitializeComponent();
-            this.label1.Text = role.ToString();
+            this.role = role;
+            switch (role)
+            {
+                case 1: // SV
+                    tabPageTTNhanSu.Parent = null;
+                    tabPageSinhVien.Parent = null;
+                    tabPageDonVi.Parent = null;
+                    tabPageNhanSu.Parent = null;
+                    tabPagePhanCong.Parent = null;
+                    break;
+                case 2: // NVCB
+                    tabPageSinhVien.Parent = null;
+                    tabPagePhanCong.Parent = null;
+                    tabPageNhanSu.Parent = null;
+                    tabPageDangKy.Parent = null;
+                    break;
+                case 3: // GIAOVU
+                    tabPageSinhVien.Parent = null;
+                    tabPageNhanSu.Parent = null;
+                    break;
+                case 4: // GV
+                    tabPageTTSinhVien.Parent = null;
+                    tabPageNhanSu.Parent = null;
+                    break;
+                case 5: // TRGDV
+                    tabPageTTSinhVien.Parent = null;
+                    tabPageNhanSu.Parent = null;
+                    break;
+                case 6: // TRGKHOA
+                    tabPageTTSinhVien.Parent = null;
+                    break;
+            }
         }
     }
 }
