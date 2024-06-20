@@ -281,5 +281,11 @@ namespace DatabaseAdministration.DataProvider
             Regex regex = new Regex("^[a-zA-Z0-9]+$");
             return regex.IsMatch(input);
         }
+
+        public DataTable getCurrentUserRole()
+        {
+            string query = "SELECT * FROM SESSION_ROLES";
+            return ExecuteQuery(query);
+        }
     }
 }

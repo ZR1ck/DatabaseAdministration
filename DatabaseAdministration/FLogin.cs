@@ -16,6 +16,7 @@ namespace DatabaseAdministration
         public FLogin()
         {
             InitializeComponent();
+            comboBoxRole.SelectedIndex = 0;
         }
 
         private void BtnOK_Click(object sender, EventArgs e)
@@ -24,6 +25,7 @@ namespace DatabaseAdministration
             string serviceName = TxtServiceName.Text;
             string password = TxtPassword.Text;
             string username = TxtUsername.Text;
+            int role = comboBoxRole.SelectedIndex;
 
             if (string.IsNullOrEmpty(hostName) || string.IsNullOrEmpty(serviceName) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
@@ -32,16 +34,33 @@ namespace DatabaseAdministration
             }
 
             LoginHelper helper = LoginHelper.getInstance();
-            if (helper.connectionCheck(hostName, serviceName, username, password))
+            int connStatus = helper.connectionCheck(hostName, serviceName, username, password, role);
+            if (connStatus == LoginHelper.OK)
             {
                 this.Hide();
-                FMain fMain = new FMain();
-                fMain.ShowDialog();
+                if (role == 0)
+                {
+                    FMain fMain = new FMain();
+                    fMain.ShowDialog();
+                }
+                else
+                {
+                    FUsersMain fUsersMain = new FUsersMain(role);
+                    fUsersMain.ShowDialog();
+                }
                 this.Show();
             }
-            else
+            else if (connStatus == LoginHelper.INVALID_INFO)
             {
                 MessageBox.Show("Invalid username or password.");
+            }
+            else if (connStatus == LoginHelper.INVALID_ROLE)
+            {
+                MessageBox.Show("Invalid role.");
+            }
+            else if (connStatus == LoginHelper.ERROR)
+            {
+                MessageBox.Show("Something went wrong :(.");
             }
         }
 
