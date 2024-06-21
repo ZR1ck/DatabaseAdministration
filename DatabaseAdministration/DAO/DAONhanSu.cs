@@ -27,5 +27,22 @@ namespace DatabaseAdministration.DAO
         {
             return DatabaseProvider.getInstance().updateSDTNhanSuCaNhan(sdt);
         }
+
+        public static DataTable getDataTableNhanSu()
+        {
+            return DatabaseProvider.getInstance().getNhanSu();
+        }
+        public static int updateNhanSu(NhanSu ns)
+        {
+            return DatabaseProvider.getInstance().updateNhanSu(ns);
+        }
+        public static bool deleteNhanSu(string id)
+        {
+            return DatabaseProvider.getInstance().deleteNhanSu(id);
+        }
+        public static int insertNhanSu(NhanSu ns)
+        {
+            return DatabaseProvider.getInstance().insertNhanSu(ns);
+        }
     }
 }

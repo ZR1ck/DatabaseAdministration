@@ -102,26 +102,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewTBSinhVien = new System.Windows.Forms.DataGridView();
             this.tabPageNhanSu = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.btnNSAdd = new System.Windows.Forms.Button();
+            this.btnNSDelete = new System.Windows.Forms.Button();
+            this.btnNSUpdate = new System.Windows.Forms.Button();
+            this.txtBoxNSMaDV = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtBoxNSVaiTro = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtBoxNSDT = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtBoxNSPhuCap = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtBoxNSPhai = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtBoxNSHoTen = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtBoxNSMaNV = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewNhanSu = new System.Windows.Forms.DataGridView();
             this.tabPagePhanCong = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -182,13 +181,17 @@
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.tabPageDangKy = new System.Windows.Forms.TabPage();
             this.btnAcptAdd = new System.Windows.Forms.Button();
+            this.dateTimePickerNSNgSinh = new System.Windows.Forms.DateTimePicker();
+            this.btnNSAcptAdd = new System.Windows.Forms.Button();
+            this.btnNSCancel = new System.Windows.Forms.Button();
+            this.btnNSAcptUpdate = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageTTNhanSu.SuspendLayout();
             this.tabPageTTSinhVien.SuspendLayout();
             this.tabPageSinhVien.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTBSinhVien)).BeginInit();
             this.tabPageNhanSu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNhanSu)).BeginInit();
             this.tabPagePhanCong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPageDonVi.SuspendLayout();
@@ -1007,26 +1010,29 @@
             // 
             // tabPageNhanSu
             // 
-            this.tabPageNhanSu.Controls.Add(this.button1);
-            this.tabPageNhanSu.Controls.Add(this.button2);
-            this.tabPageNhanSu.Controls.Add(this.button3);
-            this.tabPageNhanSu.Controls.Add(this.textBox3);
+            this.tabPageNhanSu.Controls.Add(this.btnNSAcptUpdate);
+            this.tabPageNhanSu.Controls.Add(this.btnNSCancel);
+            this.tabPageNhanSu.Controls.Add(this.btnNSAcptAdd);
+            this.tabPageNhanSu.Controls.Add(this.dateTimePickerNSNgSinh);
+            this.tabPageNhanSu.Controls.Add(this.btnNSAdd);
+            this.tabPageNhanSu.Controls.Add(this.btnNSDelete);
+            this.tabPageNhanSu.Controls.Add(this.btnNSUpdate);
+            this.tabPageNhanSu.Controls.Add(this.txtBoxNSMaDV);
             this.tabPageNhanSu.Controls.Add(this.label13);
-            this.tabPageNhanSu.Controls.Add(this.textBox4);
+            this.tabPageNhanSu.Controls.Add(this.txtBoxNSVaiTro);
             this.tabPageNhanSu.Controls.Add(this.label14);
-            this.tabPageNhanSu.Controls.Add(this.textBox5);
+            this.tabPageNhanSu.Controls.Add(this.txtBoxNSDT);
             this.tabPageNhanSu.Controls.Add(this.label15);
-            this.tabPageNhanSu.Controls.Add(this.textBox6);
+            this.tabPageNhanSu.Controls.Add(this.txtBoxNSPhuCap);
             this.tabPageNhanSu.Controls.Add(this.label16);
-            this.tabPageNhanSu.Controls.Add(this.textBox7);
             this.tabPageNhanSu.Controls.Add(this.label17);
-            this.tabPageNhanSu.Controls.Add(this.textBox8);
+            this.tabPageNhanSu.Controls.Add(this.txtBoxNSPhai);
             this.tabPageNhanSu.Controls.Add(this.label18);
-            this.tabPageNhanSu.Controls.Add(this.textBox9);
+            this.tabPageNhanSu.Controls.Add(this.txtBoxNSHoTen);
             this.tabPageNhanSu.Controls.Add(this.label19);
-            this.tabPageNhanSu.Controls.Add(this.textBox10);
+            this.tabPageNhanSu.Controls.Add(this.txtBoxNSMaNV);
             this.tabPageNhanSu.Controls.Add(this.label20);
-            this.tabPageNhanSu.Controls.Add(this.dataGridView1);
+            this.tabPageNhanSu.Controls.Add(this.dataGridViewNhanSu);
             this.tabPageNhanSu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.tabPageNhanSu.Location = new System.Drawing.Point(4, 25);
             this.tabPageNhanSu.Name = "tabPageNhanSu";
@@ -1035,41 +1041,44 @@
             this.tabPageNhanSu.Text = "Nhân sự";
             this.tabPageNhanSu.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnNSAdd
             // 
-            this.button1.Location = new System.Drawing.Point(1046, 545);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 34);
-            this.button1.TabIndex = 46;
-            this.button1.Text = "Hủy";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNSAdd.Location = new System.Drawing.Point(967, 484);
+            this.btnNSAdd.Name = "btnNSAdd";
+            this.btnNSAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnNSAdd.TabIndex = 46;
+            this.btnNSAdd.Text = "Thêm";
+            this.btnNSAdd.UseVisualStyleBackColor = true;
+            this.btnNSAdd.Click += new System.EventHandler(this.btnNSAdd_Click);
             // 
-            // button2
+            // btnNSDelete
             // 
-            this.button2.Location = new System.Drawing.Point(886, 545);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 34);
-            this.button2.TabIndex = 45;
-            this.button2.Text = "Xong";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnNSDelete.Location = new System.Drawing.Point(1048, 484);
+            this.btnNSDelete.Name = "btnNSDelete";
+            this.btnNSDelete.Size = new System.Drawing.Size(75, 34);
+            this.btnNSDelete.TabIndex = 45;
+            this.btnNSDelete.Text = "Xóa";
+            this.btnNSDelete.UseVisualStyleBackColor = true;
+            this.btnNSDelete.Click += new System.EventHandler(this.btnNSDelete_Click);
             // 
-            // button3
+            // btnNSUpdate
             // 
-            this.button3.Location = new System.Drawing.Point(966, 545);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 34);
-            this.button3.TabIndex = 44;
-            this.button3.Text = "Sửa";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnNSUpdate.Location = new System.Drawing.Point(886, 484);
+            this.btnNSUpdate.Name = "btnNSUpdate";
+            this.btnNSUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnNSUpdate.TabIndex = 44;
+            this.btnNSUpdate.Text = "Sửa";
+            this.btnNSUpdate.UseVisualStyleBackColor = true;
+            this.btnNSUpdate.Click += new System.EventHandler(this.btnNSUpdate_Click);
             // 
-            // textBox3
+            // txtBoxNSMaDV
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox3.Location = new System.Drawing.Point(878, 396);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(264, 25);
-            this.textBox3.TabIndex = 41;
+            this.txtBoxNSMaDV.Enabled = false;
+            this.txtBoxNSMaDV.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxNSMaDV.Location = new System.Drawing.Point(878, 396);
+            this.txtBoxNSMaDV.Name = "txtBoxNSMaDV";
+            this.txtBoxNSMaDV.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxNSMaDV.TabIndex = 41;
             // 
             // label13
             // 
@@ -1081,14 +1090,14 @@
             this.label13.TabIndex = 40;
             this.label13.Text = "Mã đơn vị";
             // 
-            // textBox4
+            // txtBoxNSVaiTro
             // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox4.Location = new System.Drawing.Point(878, 343);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(264, 25);
-            this.textBox4.TabIndex = 39;
+            this.txtBoxNSVaiTro.Enabled = false;
+            this.txtBoxNSVaiTro.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxNSVaiTro.Location = new System.Drawing.Point(878, 343);
+            this.txtBoxNSVaiTro.Name = "txtBoxNSVaiTro";
+            this.txtBoxNSVaiTro.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxNSVaiTro.TabIndex = 39;
             // 
             // label14
             // 
@@ -1100,14 +1109,14 @@
             this.label14.TabIndex = 38;
             this.label14.Text = "Vai trò";
             // 
-            // textBox5
+            // txtBoxNSDT
             // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox5.Location = new System.Drawing.Point(878, 290);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(264, 25);
-            this.textBox5.TabIndex = 37;
+            this.txtBoxNSDT.Enabled = false;
+            this.txtBoxNSDT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxNSDT.Location = new System.Drawing.Point(878, 290);
+            this.txtBoxNSDT.Name = "txtBoxNSDT";
+            this.txtBoxNSDT.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxNSDT.TabIndex = 37;
             // 
             // label15
             // 
@@ -1119,14 +1128,14 @@
             this.label15.TabIndex = 36;
             this.label15.Text = "Điện thoại";
             // 
-            // textBox6
+            // txtBoxNSPhuCap
             // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox6.Location = new System.Drawing.Point(878, 237);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(264, 25);
-            this.textBox6.TabIndex = 35;
+            this.txtBoxNSPhuCap.Enabled = false;
+            this.txtBoxNSPhuCap.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxNSPhuCap.Location = new System.Drawing.Point(878, 237);
+            this.txtBoxNSPhuCap.Name = "txtBoxNSPhuCap";
+            this.txtBoxNSPhuCap.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxNSPhuCap.TabIndex = 35;
             // 
             // label16
             // 
@@ -1138,15 +1147,6 @@
             this.label16.TabIndex = 34;
             this.label16.Text = "Phụ cấp";
             // 
-            // textBox7
-            // 
-            this.textBox7.Enabled = false;
-            this.textBox7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox7.Location = new System.Drawing.Point(878, 184);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(264, 25);
-            this.textBox7.TabIndex = 33;
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -1157,14 +1157,14 @@
             this.label17.TabIndex = 32;
             this.label17.Text = "Ngày sinh";
             // 
-            // textBox8
+            // txtBoxNSPhai
             // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox8.Location = new System.Drawing.Point(878, 131);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(264, 25);
-            this.textBox8.TabIndex = 31;
+            this.txtBoxNSPhai.Enabled = false;
+            this.txtBoxNSPhai.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxNSPhai.Location = new System.Drawing.Point(878, 131);
+            this.txtBoxNSPhai.Name = "txtBoxNSPhai";
+            this.txtBoxNSPhai.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxNSPhai.TabIndex = 31;
             // 
             // label18
             // 
@@ -1176,14 +1176,14 @@
             this.label18.TabIndex = 30;
             this.label18.Text = "Phái";
             // 
-            // textBox9
+            // txtBoxNSHoTen
             // 
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox9.Location = new System.Drawing.Point(878, 78);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(264, 25);
-            this.textBox9.TabIndex = 29;
+            this.txtBoxNSHoTen.Enabled = false;
+            this.txtBoxNSHoTen.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxNSHoTen.Location = new System.Drawing.Point(878, 78);
+            this.txtBoxNSHoTen.Name = "txtBoxNSHoTen";
+            this.txtBoxNSHoTen.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxNSHoTen.TabIndex = 29;
             // 
             // label19
             // 
@@ -1195,14 +1195,14 @@
             this.label19.TabIndex = 28;
             this.label19.Text = "Họ tên";
             // 
-            // textBox10
+            // txtBoxNSMaNV
             // 
-            this.textBox10.Enabled = false;
-            this.textBox10.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox10.Location = new System.Drawing.Point(878, 25);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(264, 25);
-            this.textBox10.TabIndex = 27;
+            this.txtBoxNSMaNV.Enabled = false;
+            this.txtBoxNSMaNV.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxNSMaNV.Location = new System.Drawing.Point(878, 25);
+            this.txtBoxNSMaNV.Name = "txtBoxNSMaNV";
+            this.txtBoxNSMaNV.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxNSMaNV.TabIndex = 27;
             // 
             // label20
             // 
@@ -1214,20 +1214,21 @@
             this.label20.TabIndex = 26;
             this.label20.Text = "Mã nhân viên";
             // 
-            // dataGridView1
+            // dataGridViewNhanSu
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(852, 597);
-            this.dataGridView1.TabIndex = 25;
+            this.dataGridViewNhanSu.AllowUserToAddRows = false;
+            this.dataGridViewNhanSu.AllowUserToDeleteRows = false;
+            this.dataGridViewNhanSu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewNhanSu.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewNhanSu.MultiSelect = false;
+            this.dataGridViewNhanSu.Name = "dataGridViewNhanSu";
+            this.dataGridViewNhanSu.ReadOnly = true;
+            this.dataGridViewNhanSu.RowHeadersWidth = 51;
+            this.dataGridViewNhanSu.RowTemplate.Height = 24;
+            this.dataGridViewNhanSu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewNhanSu.Size = new System.Drawing.Size(852, 597);
+            this.dataGridViewNhanSu.TabIndex = 25;
+            this.dataGridViewNhanSu.SelectionChanged += new System.EventHandler(this.dataGridViewNhanSu_SelectionChanged);
             // 
             // tabPagePhanCong
             // 
@@ -1873,6 +1874,49 @@
             this.btnAcptAdd.Visible = false;
             this.btnAcptAdd.Click += new System.EventHandler(this.btnAcptAdd_Click);
             // 
+            // dateTimePickerNSNgSinh
+            // 
+            this.dateTimePickerNSNgSinh.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePickerNSNgSinh.Enabled = false;
+            this.dateTimePickerNSNgSinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerNSNgSinh.Location = new System.Drawing.Point(878, 185);
+            this.dateTimePickerNSNgSinh.Name = "dateTimePickerNSNgSinh";
+            this.dateTimePickerNSNgSinh.Size = new System.Drawing.Size(264, 27);
+            this.dateTimePickerNSNgSinh.TabIndex = 47;
+            // 
+            // btnNSAcptAdd
+            // 
+            this.btnNSAcptAdd.Location = new System.Drawing.Point(886, 484);
+            this.btnNSAcptAdd.Name = "btnNSAcptAdd";
+            this.btnNSAcptAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnNSAcptAdd.TabIndex = 48;
+            this.btnNSAcptAdd.Text = "Xong";
+            this.btnNSAcptAdd.UseVisualStyleBackColor = true;
+            this.btnNSAcptAdd.Visible = false;
+            this.btnNSAcptAdd.Click += new System.EventHandler(this.btnNSAcptAdd_Click);
+            // 
+            // btnNSCancel
+            // 
+            this.btnNSCancel.Location = new System.Drawing.Point(1048, 484);
+            this.btnNSCancel.Name = "btnNSCancel";
+            this.btnNSCancel.Size = new System.Drawing.Size(75, 34);
+            this.btnNSCancel.TabIndex = 49;
+            this.btnNSCancel.Text = "Hủy";
+            this.btnNSCancel.UseVisualStyleBackColor = true;
+            this.btnNSCancel.Visible = false;
+            this.btnNSCancel.Click += new System.EventHandler(this.btnNSCancel_Click);
+            // 
+            // btnNSAcptUpdate
+            // 
+            this.btnNSAcptUpdate.Location = new System.Drawing.Point(886, 484);
+            this.btnNSAcptUpdate.Name = "btnNSAcptUpdate";
+            this.btnNSAcptUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnNSAcptUpdate.TabIndex = 50;
+            this.btnNSAcptUpdate.Text = "Xong";
+            this.btnNSAcptUpdate.UseVisualStyleBackColor = true;
+            this.btnNSAcptUpdate.Visible = false;
+            this.btnNSAcptUpdate.Click += new System.EventHandler(this.btnNSAcptUpdate_Click);
+            // 
             // FUsersMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1894,7 +1938,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTBSinhVien)).EndInit();
             this.tabPageNhanSu.ResumeLayout(false);
             this.tabPageNhanSu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNhanSu)).EndInit();
             this.tabPagePhanCong.ResumeLayout(false);
             this.tabPagePhanCong.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -2025,26 +2069,25 @@
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.TabPage tabPageNhanSu;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button btnNSAdd;
+        private System.Windows.Forms.Button btnNSDelete;
+        private System.Windows.Forms.Button btnNSUpdate;
+        private System.Windows.Forms.TextBox txtBoxNSMaDV;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtBoxNSVaiTro;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtBoxNSDT;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtBoxNSPhuCap;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtBoxNSPhai;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtBoxNSHoTen;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txtBoxNSMaNV;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewNhanSu;
         private System.Windows.Forms.TabPage tabPagePhanCong;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
@@ -2067,5 +2110,9 @@
         private System.Windows.Forms.Button btnAddSV;
         private System.Windows.Forms.DateTimePicker dateTimePickerNgSinhSV;
         private System.Windows.Forms.Button btnAcptAdd;
+        private System.Windows.Forms.DateTimePicker dateTimePickerNSNgSinh;
+        private System.Windows.Forms.Button btnNSCancel;
+        private System.Windows.Forms.Button btnNSAcptAdd;
+        private System.Windows.Forms.Button btnNSAcptUpdate;
     }
 }

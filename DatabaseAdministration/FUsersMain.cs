@@ -72,12 +72,39 @@ namespace DatabaseAdministration
                     break;
                 case 6: // TRGKHOA
                     tabPageTTSinhVien.Parent = null;
+                    tabPageTTNhanSu.Parent = null;
 
                     loadDataGridViewTBSinhVien();
+                    loadDataGridViewNhanSu();
                     break;
             }
         }
 
+        // Sự kiện dổi tab
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            TabPage selectedTab = tabControl.SelectedTab;
+
+            if (selectedTab == tabPageSinhVien)
+            {
+                if (dataGridViewTBSinhVien.Rows.Count > 0)
+                {
+                    dataGridViewTBSinhVien.Focus();
+                    dataGridViewTBSinhVien.Rows[0].Selected = true;
+                    dataGridViewTBSinhVien_SelectionChanged(sender, null);
+                }
+            }
+            else if (selectedTab == tabPageNhanSu)
+            {
+                if (dataGridViewNhanSu.Rows.Count > 0)
+                {
+                    dataGridViewNhanSu.Focus();
+                    dataGridViewNhanSu.Rows[0].Selected = true;
+                    dataGridViewNhanSu_SelectionChanged(sender, null);
+                }
+            }
+        }
         // hàm lấy thông tin cá nhân của người dùng hiện tại
         private bool loadTTCN()
         {
@@ -105,7 +132,6 @@ namespace DatabaseAdministration
             txtBoxTTCNSDT.Enabled = true;
             tempVal = savePrevTxtBox(new List<TextBox> { txtBoxTTCNSDT });
         }
-
         private void btnCancelTTCN_Click(object sender, EventArgs e)
         {
             btnAcceptTTCN.Visible = false;
@@ -115,7 +141,6 @@ namespace DatabaseAdministration
             loadTxtBoxes(tempVal, new List<TextBox> { txtBoxTTCNSDT });
             tempVal.Clear();
         }
-
         private void btnAcceptTTCN_Click(object sender, EventArgs e)
         {
             txtBoxTTCNSDT.Enabled = false;
@@ -187,7 +212,6 @@ namespace DatabaseAdministration
             btnCancelUpdateSinhVien.Visible = true;
             btnAddSV.Visible = false;
         }
-
         private void btnAcptUpdateSinhVien_Click(object sender, EventArgs e)
         {
             dataGridViewTBSinhVien.Enabled = true;
@@ -241,7 +265,6 @@ namespace DatabaseAdministration
             btnCancelUpdateSinhVien.Visible = false;
             btnAddSV.Visible = true;
         }
-
         private void btnCancelUpdateSinhVien_Click(object sender, EventArgs e)
         {
             dataGridViewTBSinhVien.Enabled = true;
@@ -267,7 +290,6 @@ namespace DatabaseAdministration
             btnCancelUpdateSinhVien.Visible = false;
             btnAddSV.Visible = true;
         }
-
         private void btnAddSV_Click(object sender, EventArgs e)
         {
             dataGridViewTBSinhVien.Enabled = false;
@@ -357,7 +379,6 @@ namespace DatabaseAdministration
             btnCancelUpdateSinhVien.Visible = false;
             btnAddSV.Visible = true;
         }
-
         // hàm lấy thông tin cá nhân của sinh viên hiện tại
         private bool loadTTCNSV()
         {
@@ -378,7 +399,6 @@ namespace DatabaseAdministration
             }
             else return false;
         }
-
         private void btnTTCNSVAcpt_Click(object sender, EventArgs e)
         {
             btnTTCNSVAcpt.Visible = false;
@@ -396,7 +416,6 @@ namespace DatabaseAdministration
                 MessageBox.Show("Failed.");
             }
         }
-
         private void btnTTCNSVUpdate_Click(object sender, EventArgs e)
         {
             btnTTCNSVAcpt.Visible = true;
@@ -407,7 +426,6 @@ namespace DatabaseAdministration
             tempVal.Add(txtBoxTTCNSVSoDT.Text);
             tempVal.Add(txtBoxTTCNSVDiachi.Text);
         }
-
         private void btnTTCNSVCancel_Click(object sender, EventArgs e)
         {
             btnTTCNSVAcpt.Visible = false;
@@ -419,7 +437,6 @@ namespace DatabaseAdministration
             txtBoxTTCNSVDiachi.Text = tempVal[1];
             tempVal.Clear();
         }
-
         private List<string> savePrevTxtBox(List<TextBox> txtboxes)
         {
             List<string> res = new List<string>();
@@ -436,22 +453,242 @@ namespace DatabaseAdministration
                 output[i].Text = s[i];
             }
         }
-        // Sự kiện dổi tab
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void loadDataGridViewNhanSu()
         {
-            TabControl tabControl = sender as TabControl;
-            TabPage selectedTab = tabControl.SelectedTab;
-
-            if (selectedTab == tabPageSinhVien) {
-                if (dataGridViewTBSinhVien.Rows.Count > 0)
+            dataGridViewNhanSu.DataSource = NhanSu.getDataTableNhanSu();
+            dataGridViewNhanSu.ClearSelection();
+            dataGridViewNhanSu.Sort(dataGridViewNhanSu.Columns["MANV"], ListSortDirection.Ascending);
+            dataGridViewNhanSu.Rows[0].Selected = true;
+        }
+        private void dataGridViewNhanSu_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!dataGridViewNhanSu.Focused) { return; }
+            if (dataGridViewNhanSu.Rows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewNhanSu.SelectedRows[0];
+                if (selectedRow != null)
                 {
-                    bool r = dataGridViewTBSinhVien.Focus();
-                    dataGridViewTBSinhVien.Rows[0].Selected = true;
-                    dataGridViewTBSinhVien_SelectionChanged(sender, null);
+                    txtBoxNSMaNV.Text = selectedRow.Cells["MANV"].Value.ToString();
+                    txtBoxNSHoTen.Text = selectedRow.Cells["HOTEN"].Value.ToString();
+                    DateTime ngSinh = Convert.ToDateTime(selectedRow.Cells["NGSINH"].Value);
+                    dateTimePickerNSNgSinh.Value = ngSinh;
+                    txtBoxNSPhai.Text = selectedRow.Cells["PHAI"].Value.ToString();
+                    txtBoxNSPhuCap.Text = selectedRow.Cells["PHUCAP"].Value.ToString();
+                    txtBoxNSDT.Text = selectedRow.Cells["SDT"].Value.ToString();
+                    txtBoxNSVaiTro.Text = selectedRow.Cells["VAITRO"].Value.ToString();
+                    txtBoxNSMaDV.Text = selectedRow.Cells["MADV"].Value.ToString();
                 }
             }
         }
 
+        private void btnNSUpdate_Click(object sender, EventArgs e)
+        {
+            dataGridViewNhanSu.Enabled = false;
+            txtBoxNSMaNV.Enabled = true;
+            txtBoxNSHoTen.Enabled = true;
+            txtBoxNSPhai.Enabled = true;
+            dateTimePickerNSNgSinh.Enabled = true;
+            txtBoxNSPhuCap.Enabled = true;
+            txtBoxNSDT.Enabled = true;
+            txtBoxNSVaiTro.Enabled = true;
+            txtBoxNSMaDV.Enabled = true;
 
+            tempVal = savePrevTxtBox(new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+                txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV});
+            tempdate = dateTimePickerNSNgSinh.Value;
+
+            btnNSUpdate.Visible = false;
+            btnNSAdd.Visible = false;
+            btnNSDelete.Visible = false;
+            btnNSAcptUpdate.Visible = true;
+            btnNSCancel.Visible = true;
+        }
+
+        private void btnNSAdd_Click(object sender, EventArgs e)
+        {
+            dataGridViewNhanSu.Enabled = false;
+            txtBoxNSMaNV.Enabled = true;
+            txtBoxNSHoTen.Enabled = true;
+            txtBoxNSPhai.Enabled = true;
+            dateTimePickerNSNgSinh.Enabled = true;
+            txtBoxNSPhuCap.Enabled = true;
+            txtBoxNSDT.Enabled = true;
+            txtBoxNSVaiTro.Enabled = true;
+            txtBoxNSMaDV.Enabled = true;
+
+            tempVal = savePrevTxtBox(new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+                txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV});
+            tempdate = dateTimePickerNSNgSinh.Value;
+
+            txtBoxNSMaNV.Text = "";
+            txtBoxNSHoTen.Text = "";
+            txtBoxNSPhai.Text = "";
+            dateTimePickerNSNgSinh.Text = "";
+            txtBoxNSPhuCap.Text = "";
+            txtBoxNSDT.Text = "";
+            txtBoxNSVaiTro.Text = "";
+            txtBoxNSMaDV.Text = "";
+
+            btnNSUpdate.Visible = false;
+            btnNSAdd.Visible = false;
+            btnNSDelete.Visible = false;
+            btnNSAcptAdd.Visible = true;
+            btnNSCancel.Visible = true;
+        }
+
+        private void btnNSDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"Xóa nhân viên {txtBoxNSMaNV.Text}?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (NhanSu.deleteNhanSu(txtBoxNSMaNV.Text))
+                {
+                    MessageBox.Show("Deleted.");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong.");
+                }
+            }
+            loadDataGridViewNhanSu();
+        }
+
+        private void btnNSAcptAdd_Click(object sender, EventArgs e)
+        {
+            dataGridViewNhanSu.Enabled = true;
+            txtBoxNSMaNV.Enabled = false;
+            txtBoxNSHoTen.Enabled = false;
+            txtBoxNSPhai.Enabled = false;
+            dateTimePickerNSNgSinh.Enabled = false;
+            txtBoxNSPhuCap.Enabled = false;
+            txtBoxNSDT.Enabled = false;
+            txtBoxNSVaiTro.Enabled = false;
+            txtBoxNSMaDV.Enabled = false;
+
+            int res = NhanSu.insertNhanSu(new NhanSu(txtBoxNSMaNV.Text, txtBoxNSHoTen.Text, txtBoxNSPhai.Text,
+                dateTimePickerNSNgSinh.Value.ToString("dd-MM-yyyy"), txtBoxNSDT.Text, txtBoxNSVaiTro.Text, txtBoxNSMaDV.Text,
+                int.Parse(txtBoxNSPhuCap.Text)));
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loadDataGridViewNhanSu();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                loadTxtBoxes(tempVal, new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+                txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV });
+            }
+            else
+            {
+                tempdate = DateTime.MinValue;
+                tempVal.Clear();
+            }
+
+
+            btnNSUpdate.Visible = true;
+            btnNSAdd.Visible = true;
+            btnNSDelete.Visible = true;
+            btnNSAcptUpdate.Visible = false;
+            btnNSCancel.Visible = false;
+            btnNSAcptUpdate.Visible = false;
+            btnNSAcptAdd.Visible = false;
+
+        }
+
+        private void btnNSAcptUpdate_Click(object sender, EventArgs e)
+        {
+            dataGridViewNhanSu.Enabled = true;
+            txtBoxNSMaNV.Enabled = false;
+            txtBoxNSHoTen.Enabled = false;
+            txtBoxNSPhai.Enabled = false;
+            dateTimePickerNSNgSinh.Enabled = false;
+            txtBoxNSPhuCap.Enabled = false;
+            txtBoxNSDT.Enabled = false;
+            txtBoxNSVaiTro.Enabled = false;
+            txtBoxNSMaDV.Enabled = false;
+
+            int res = NhanSu.updateNhanSu(new NhanSu(txtBoxNSMaNV.Text, txtBoxNSHoTen.Text, txtBoxNSPhai.Text,
+                dateTimePickerNSNgSinh.Value.ToString("dd-MM-yyyy"), txtBoxNSDT.Text, txtBoxNSVaiTro.Text, txtBoxNSMaDV.Text,
+                int.Parse(txtBoxNSPhuCap.Text)));
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                loadTxtBoxes(tempVal, new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+                txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV });
+            }
+            else
+            {
+                tempdate = DateTime.MinValue;
+                tempVal.Clear();
+            }
+
+
+            btnNSUpdate.Visible = true;
+            btnNSAdd.Visible = true;
+            btnNSDelete.Visible = true;
+            btnNSAcptUpdate.Visible = false;
+            btnNSCancel.Visible = false;
+            btnNSAcptUpdate.Visible = false;
+            btnNSAcptAdd.Visible = false;
+        }
+
+        private void btnNSCancel_Click(object sender, EventArgs e)
+        {
+            dataGridViewNhanSu.Enabled = true;
+            txtBoxNSMaNV.Enabled = false;
+            txtBoxNSHoTen.Enabled = false;
+            txtBoxNSPhai.Enabled = false;
+            dateTimePickerNSNgSinh.Enabled = false;
+            txtBoxNSPhuCap.Enabled = false;
+            txtBoxNSDT.Enabled = false;
+            txtBoxNSVaiTro.Enabled = false;
+            txtBoxNSMaDV.Enabled = false;
+
+            loadTxtBoxes(tempVal, new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+                txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV });
+
+            dateTimePickerNSNgSinh.Value = tempdate;
+            tempdate = DateTime.MinValue;
+            tempVal.Clear();
+
+            btnNSUpdate.Visible = true;
+            btnNSAdd.Visible = true;
+            btnNSDelete.Visible = true;
+            btnNSAcptUpdate.Visible = false;
+            btnNSCancel.Visible = false;
+            btnNSAcptUpdate.Visible = false;
+            btnNSAcptAdd.Visible = false;
+        }
     }
 }

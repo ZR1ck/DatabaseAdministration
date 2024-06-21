@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -95,7 +96,7 @@ namespace DatabaseAdministration.DataProvider
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         Console.WriteLine("Oracle Error " + ex.Errors[i].Number + ": " + ex.Errors[i].Message);
-                        if (ex.Errors[i].Number == UNIQUE_CONSTRAINT_VIOLATED) // Lỗi sai mật khẩu/tên đăng nhập
+                        if (ex.Errors[i].Number == UNIQUE_CONSTRAINT_VIOLATED)
                         {
                             return UNIQUE_CONSTRAINT_VIOLATED;
                         }
@@ -364,8 +365,34 @@ namespace DatabaseAdministration.DataProvider
         public int insertSV(SinhVien sv)
         {
             string query = $"INSERT INTO QLDL.SINHVIEN VALUES ('{sv.maSV}', '{sv.hoTen}', '{sv.phai}', TO_DATE('{sv.ngaySinh}', 'dd-MM-yyyy'), " +
-                $"'{sv.diaChi}', '{sv.DT}', '{sv.maCT}', '{sv.maNganh}', '{sv.soTCTL}', '{sv.diemTBTL}')";
+                $"'{sv.diaChi}', '{sv.DT}', '{sv.maCT}', '{sv.maNganh}', {sv.soTCTL}, {sv.diemTBTL})";
 
+            return ExecuteQueryUpdated(query);
+        }
+
+        public int updateNhanSu(NhanSu ns)
+        {
+            string query = $"UPDATE QLDL.NHANSU SET " +
+                $"MANV = '{ns.maNV}', HOTEN = '{ns.hoten}', PHAI = '{ns.phai}', " +
+                $"NGSINH = TO_DATE('{ns.ngaySinh}','dd-MM-yyyy'), " +
+                $"PHUCAP = '{ns.phuCap}', SDT = '{ns.SDT}', VAITRO = '{ns.vaiTro}', " +
+                $"MADV = '{ns.maDV}' " +
+                $"WHERE MANV = '{ns.maNV}'";
+            return ExecuteQueryUpdated(query);
+        }
+
+        public bool deleteNhanSu(string id)
+        {
+            string query = $"DELETE QLDL.NHANSU WHERE MANV = '{id}'";
+            return ExecuteNonQuery(query);
+        }
+
+        public int insertNhanSu(NhanSu ns)
+        {
+            string query = $"INSERT INTO QLDL.NHANSU VALUES (" +
+                $"'{ns.maNV}', '{ns.hoten}', '{ns.phai}', TO_DATE('{ns.ngaySinh}', 'dd-MM-yyyy'), {ns.phuCap}, " +
+                $"'{ns.SDT}', '{ns.vaiTro}', '{ns.maDV}'" +
+                $")";
             return ExecuteQueryUpdated(query);
         }
     }

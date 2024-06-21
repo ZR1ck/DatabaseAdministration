@@ -63,5 +63,23 @@ namespace DatabaseAdministration.DTO
         {
             return DAONhanSu.updateSDT(sdt);
         }
+
+        public static DataTable getDataTableNhanSu()
+        {
+            return DAONhanSu.getDataTableNhanSu();
+        }
+
+        public static int updateNhanSu(NhanSu ns)
+        {
+            return DAONhanSu.updateNhanSu(ns);
+        }
+        public static bool deleteNhanSu(string id)
+        {
+            return DAONhanSu.deleteNhanSu(id);
+        }
+        public static int insertNhanSu(NhanSu ns)
+        {
+            return DAONhanSu.insertNhanSu(ns);
+        }
     }
 }
