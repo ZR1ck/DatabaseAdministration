@@ -37,7 +37,8 @@ namespace DatabaseAdministration.DTO
             this.maNV = (string)dataRow["MANV"];
             this.hoten = (string)dataRow["HOTEN"];
             this.phai = (string)dataRow["PHAI"];
-            this.ngaySinh = (string)dataRow["NGSINH"].ToString();
+            DateTime ngSinh = Convert.ToDateTime(dataRow["NGSINH"]);
+            this.ngaySinh = ngSinh.ToString("dd/MM/yyyy");
             this.SDT = (string)dataRow["SDT"];
             this.vaiTro = (string)dataRow["VAITRO"];
             this.maDV = (string)dataRow["MADV"];

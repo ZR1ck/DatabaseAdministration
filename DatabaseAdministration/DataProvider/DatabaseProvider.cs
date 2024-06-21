@@ -296,10 +296,20 @@ namespace DatabaseAdministration.DataProvider
 
         public bool updateSDTNhanSuCaNhan(string sdt)
         {
-            string query = $"UPDATE QLDL.NHANSU SET SDT = {sdt}";
+            string query = $"UPDATE QLDL.NHANSU SET SDT = '{sdt}'";
             return ExecuteNonQuery(query);
         }
 
+        public DataTable getSinhVien()
+        {
+            string query = "SELECT * FROM QLDL.SINHVIEN";
+            return ExecuteQuery(query);
+        }
 
+        public bool svUpdateTTCN(string sdt, string diachi)
+        {
+            string query = $"UPDATE QLDL.SINHVIEN SET SDT = '{sdt}', DCHI = '{diachi}'";
+            return ExecuteNonQuery(query);
+        }
     }
 }

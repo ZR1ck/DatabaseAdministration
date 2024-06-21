@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\DAONhanSu.cs" />
+    <Compile Include="DAO\DAOSinhVien.cs" />
     <Compile Include="DataProvider\DatabaseProvider.cs" />
     <Compile Include="DataProvider\LoginHelper.cs" />
     <Compile Include="DTO\DangKy.cs" />
