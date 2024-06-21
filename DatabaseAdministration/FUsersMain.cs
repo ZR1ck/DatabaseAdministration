@@ -1,4 +1,5 @@
-﻿using DatabaseAdministration.DTO;
+﻿using DatabaseAdministration.DataProvider;
+using DatabaseAdministration.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,8 @@ namespace DatabaseAdministration
     {
         private int role;
         private List<string> tempVal = new List<string>();
+        private DateTime tempdate = DateTime.MinValue;
+
         public FUsersMain(int role)
         {
             InitializeComponent();
@@ -46,6 +49,9 @@ namespace DatabaseAdministration
 
                     loadTTCN();
                     loadDataGridViewTBSinhVien();
+
+                    btnUpdateSinhVien.Visible = true;
+                    btnAddSV.Visible = true;
 
                     break;
                 case 4: // GV
@@ -97,7 +103,7 @@ namespace DatabaseAdministration
             btnCancelTTCN.Visible = true;
             btnUpdateTTCN.Visible = false;
             txtBoxTTCNSDT.Enabled = true;
-            tempVal.Add(txtBoxTTCNSDT.Text);
+            tempVal = savePrevTxtBox(new List<TextBox> { txtBoxTTCNSDT });
         }
 
         private void btnCancelTTCN_Click(object sender, EventArgs e)
@@ -106,7 +112,7 @@ namespace DatabaseAdministration
             btnCancelTTCN.Visible = false;
             btnUpdateTTCN.Visible = true;
             txtBoxTTCNSDT.Enabled = false;
-            txtBoxTTCNSDT.Text = tempVal[0];
+            loadTxtBoxes(tempVal, new List<TextBox> { txtBoxTTCNSDT });
             tempVal.Clear();
         }
 
@@ -116,7 +122,7 @@ namespace DatabaseAdministration
             btnAcceptTTCN.Visible = false;
             btnCancelTTCN.Visible = false;
             btnUpdateTTCN.Visible = true;
-            tempVal.Clear();
+
             if (NhanSu.updateSDT(txtBoxTTCNSDT.Text))
             {
                 MessageBox.Show("Done.");
@@ -124,13 +130,16 @@ namespace DatabaseAdministration
             else
             {
                 MessageBox.Show("Failed.");
+                loadTxtBoxes(tempVal, new List<TextBox> { txtBoxTTCNSDT });
             }
+            tempVal.Clear();
         }
         // hàm xử lí datagridview tab sinh viên
         private void loadDataGridViewTBSinhVien()
         {
             dataGridViewTBSinhVien.DataSource = SinhVien.getDataTableSinhVien();
             dataGridViewTBSinhVien.ClearSelection();
+            dataGridViewTBSinhVien.Sort(dataGridViewTBSinhVien.Columns["MASV"], ListSortDirection.Ascending);
         }
         private void dataGridViewTBSinhVien_SelectionChanged(object sender, EventArgs e)
         {
@@ -143,7 +152,7 @@ namespace DatabaseAdministration
                     txtBoxMaSV.Text = selectedRow.Cells["MASV"].Value.ToString();
                     txtBoxHoTenSV.Text = selectedRow.Cells["HOTEN"].Value.ToString();
                     DateTime ngSinh = Convert.ToDateTime(selectedRow.Cells["NGSINH"].Value);
-                    txtBoxNgSinhSV.Text = ngSinh.ToString("dd/MM/yyyy");
+                    dateTimePickerNgSinhSV.Value = ngSinh;
                     txtBoxPhaiSV.Text = selectedRow.Cells["PHAI"].Value.ToString();
                     txtBoxDCSV.Text = selectedRow.Cells["DCHI"].Value.ToString();
                     txtBoxDTSV.Text = selectedRow.Cells["SDT"].Value.ToString();
@@ -154,7 +163,202 @@ namespace DatabaseAdministration
                 }
             }
         }
+        // các hàm xử lí sự kiện nút trong tab sinh viên
+        private void btnUpdateSinhVien_Click(object sender, EventArgs e)
+        {
+            dataGridViewTBSinhVien.Enabled = false;
+            txtBoxMaSV.Enabled = true;
+            txtBoxHoTenSV.Enabled = true;
+            txtBoxPhaiSV.Enabled = true;
+            dateTimePickerNgSinhSV.Enabled = true;
+            txtBoxDCSV.Enabled = true;
+            txtBoxDTSV.Enabled = true;
+            txtBoxMaCTSV.Enabled = true;
+            txtBoxMaNganhSV.Enabled = true;
+            txtBoxTCTLSV.Enabled = true;
+            txtBoxTBTLSV.Enabled = true;
 
+            tempVal = savePrevTxtBox(new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+                txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV});
+            tempdate = dateTimePickerNgSinhSV.Value;
+
+            btnUpdateSinhVien.Visible = false;
+            btnAcptUpdateSinhVien.Visible = true;
+            btnCancelUpdateSinhVien.Visible = true;
+            btnAddSV.Visible = false;
+        }
+
+        private void btnAcptUpdateSinhVien_Click(object sender, EventArgs e)
+        {
+            dataGridViewTBSinhVien.Enabled = true;
+            txtBoxMaSV.Enabled = false;
+            txtBoxHoTenSV.Enabled = false;
+            txtBoxPhaiSV.Enabled = false;
+            dateTimePickerNgSinhSV.Enabled = false;
+            txtBoxDCSV.Enabled = false;
+            txtBoxDTSV.Enabled = false;
+            txtBoxMaCTSV.Enabled = false;
+            txtBoxMaNganhSV.Enabled = false;
+            txtBoxTCTLSV.Enabled = false;
+            txtBoxTBTLSV.Enabled = false;
+
+            int res = SinhVien.updateSV(new SinhVien(txtBoxMaSV.Text, txtBoxHoTenSV.Text, txtBoxPhaiSV.Text,
+                dateTimePickerNgSinhSV.Value.ToString("dd-MM-yyyy"), txtBoxDCSV.Text, txtBoxDTSV.Text, txtBoxMaCTSV.Text, txtBoxMaNganhSV.Text,
+                int.Parse(txtBoxTCTLSV.Text), double.Parse(txtBoxTBTLSV.Text)));
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                loadTxtBoxes(tempVal, new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+                txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV });
+                dateTimePickerNgSinhSV.Value = tempdate;
+            }
+            else
+            {
+                tempdate = DateTime.MinValue;
+                tempVal.Clear();
+            }
+
+
+            btnUpdateSinhVien.Visible = true;
+            btnAcptUpdateSinhVien.Visible = false;
+            btnCancelUpdateSinhVien.Visible = false;
+            btnAddSV.Visible = true;
+        }
+
+        private void btnCancelUpdateSinhVien_Click(object sender, EventArgs e)
+        {
+            dataGridViewTBSinhVien.Enabled = true;
+            txtBoxMaSV.Enabled = false;
+            txtBoxHoTenSV.Enabled = false;
+            txtBoxPhaiSV.Enabled = false;
+            dateTimePickerNgSinhSV.Enabled = false;
+            txtBoxDCSV.Enabled = false;  
+            txtBoxDTSV.Enabled = false;
+            txtBoxMaCTSV.Enabled = false;
+            txtBoxMaNganhSV.Enabled = false;
+            txtBoxTCTLSV.Enabled = false;
+            txtBoxTBTLSV.Enabled = false;
+
+            loadTxtBoxes(tempVal, new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+                txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV });
+            dateTimePickerNgSinhSV.Value = tempdate;
+            tempdate = DateTime.MinValue;
+            tempVal.Clear(); 
+
+            btnUpdateSinhVien.Visible = true;
+            btnAcptUpdateSinhVien.Visible = false;
+            btnCancelUpdateSinhVien.Visible = false;
+            btnAddSV.Visible = true;
+        }
+
+        private void btnAddSV_Click(object sender, EventArgs e)
+        {
+            dataGridViewTBSinhVien.Enabled = false;
+            txtBoxMaSV.Enabled = true;
+            txtBoxHoTenSV.Enabled = true;
+            txtBoxPhaiSV.Enabled = true;
+            dateTimePickerNgSinhSV.Enabled = true;
+            txtBoxDCSV.Enabled = true;
+            txtBoxDTSV.Enabled = true;
+            txtBoxMaCTSV.Enabled = true;
+            txtBoxMaNganhSV.Enabled = true;
+            txtBoxTCTLSV.Enabled = true;
+            txtBoxTBTLSV.Enabled = true;
+
+            tempVal = savePrevTxtBox(new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+                txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV});
+            tempdate = dateTimePickerNgSinhSV.Value;
+
+            txtBoxMaSV.Text = "";
+            txtBoxHoTenSV.Text = "";
+            txtBoxPhaiSV.Text = "";
+            dateTimePickerNgSinhSV.Text = "";
+            txtBoxDCSV.Text = "";
+            txtBoxDTSV.Text = "";
+            txtBoxMaCTSV.Text = "";
+            txtBoxMaNganhSV.Text = "";
+            txtBoxTCTLSV.Text = "";
+            txtBoxTBTLSV.Text = "";
+            dateTimePickerNgSinhSV.Value = DateTime.Now;
+
+            btnAddSV.Visible = false;
+            btnAcptAdd.Visible = true;
+            btnCancelUpdateSinhVien.Visible = true;
+            btnUpdateSinhVien.Visible = false;
+        }
+        private void btnAcptAdd_Click(object sender, EventArgs e)
+        {
+            dataGridViewTBSinhVien.Enabled = true;
+            txtBoxMaSV.Enabled = false;
+            txtBoxHoTenSV.Enabled = false;
+            txtBoxPhaiSV.Enabled = false;
+            dateTimePickerNgSinhSV.Enabled = false;
+            txtBoxDCSV.Enabled = false;
+            txtBoxDTSV.Enabled = false;
+            txtBoxMaCTSV.Enabled = false;
+            txtBoxMaNganhSV.Enabled = false;
+            txtBoxTCTLSV.Enabled = false;
+            txtBoxTBTLSV.Enabled = false;
+
+            int res = SinhVien.insertSV(new SinhVien(txtBoxMaSV.Text, txtBoxHoTenSV.Text, txtBoxPhaiSV.Text,
+                dateTimePickerNgSinhSV.Value.ToString("dd-MM-yyyy"), txtBoxDCSV.Text, txtBoxDTSV.Text, txtBoxMaCTSV.Text, txtBoxMaNganhSV.Text,
+                int.Parse(txtBoxTCTLSV.Text), double.Parse(txtBoxTBTLSV.Text)));
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loadDataGridViewTBSinhVien();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                loadTxtBoxes(tempVal, new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+                txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV });
+                dateTimePickerNgSinhSV.Value = tempdate;
+            }
+            else
+            {
+                tempdate = DateTime.MinValue;
+                tempVal.Clear();
+            }
+
+
+            btnUpdateSinhVien.Visible = true;
+            btnAcptAdd.Visible = false;
+            btnCancelUpdateSinhVien.Visible = false;
+            btnAddSV.Visible = true;
+        }
+
+        // hàm lấy thông tin cá nhân của sinh viên hiện tại
         private bool loadTTCNSV()
         {
             SinhVien ttcn = SinhVien.getCurrentSV();
@@ -215,5 +419,39 @@ namespace DatabaseAdministration
             txtBoxTTCNSVDiachi.Text = tempVal[1];
             tempVal.Clear();
         }
+
+        private List<string> savePrevTxtBox(List<TextBox> txtboxes)
+        {
+            List<string> res = new List<string>();
+            for (int i = 0; i < txtboxes.Count; i++)
+            {
+                res.Add(txtboxes[i].Text);
+            }
+            return res;
+        }
+        private void loadTxtBoxes(List<string> s, List<TextBox> output)
+        {
+            for (int i = 0; i < s.Count; i++)
+            {
+                output[i].Text = s[i];
+            }
+        }
+        // Sự kiện dổi tab
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            TabPage selectedTab = tabControl.SelectedTab;
+
+            if (selectedTab == tabPageSinhVien) {
+                if (dataGridViewTBSinhVien.Rows.Count > 0)
+                {
+                    bool r = dataGridViewTBSinhVien.Focus();
+                    dataGridViewTBSinhVien.Rows[0].Selected = true;
+                    dataGridViewTBSinhVien_SelectionChanged(sender, null);
+                }
+            }
+        }
+
+
     }
 }

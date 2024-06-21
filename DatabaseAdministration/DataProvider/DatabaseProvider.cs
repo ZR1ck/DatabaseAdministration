@@ -1,4 +1,5 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using DatabaseAdministration.DTO;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,6 +17,10 @@ namespace DatabaseAdministration.DataProvider
     {
         private static DatabaseProvider instance = null;
         private DatabaseProvider() { }
+        public const int UNIQUE_CONSTRAINT_VIOLATED = 1;
+        public const int INTEGRITY_CONSTRAINT_VIOLATED = 2291;
+        public const int SUCCESS = 0;
+        public const int UNIDENTIFIED_ERROR = -1;
 
         public static DatabaseProvider getInstance()
         {
@@ -68,6 +73,38 @@ namespace DatabaseAdministration.DataProvider
                 {
                     Console.WriteLine(ex.Message);
                     return false;
+                }
+            }
+        }
+        public int ExecuteQueryUpdated(string query)
+        {
+            using (OracleConnection connection = new OracleConnection(LoginHelper.getInstance().ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (OracleCommand command = new OracleCommand(query, connection))
+                    {
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                        return 0;
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    for (int i = 0; i < ex.Errors.Count; i++)
+                    {
+                        Console.WriteLine("Oracle Error " + ex.Errors[i].Number + ": " + ex.Errors[i].Message);
+                        if (ex.Errors[i].Number == UNIQUE_CONSTRAINT_VIOLATED) // Lỗi sai mật khẩu/tên đăng nhập
+                        {
+                            return UNIQUE_CONSTRAINT_VIOLATED;
+                        }
+                        else if (ex.Errors[i].Number == INTEGRITY_CONSTRAINT_VIOLATED)
+                        {
+                            return INTEGRITY_CONSTRAINT_VIOLATED;
+                        }
+                    }
+                    return UNIDENTIFIED_ERROR;
                 }
             }
         }
@@ -310,6 +347,26 @@ namespace DatabaseAdministration.DataProvider
         {
             string query = $"UPDATE QLDL.SINHVIEN SET SDT = '{sdt}', DCHI = '{diachi}'";
             return ExecuteNonQuery(query);
+        }
+
+        public int updateSV(SinhVien sv)
+        {
+            string query = $"UPDATE QLDL.SINHVIEN SET " +
+                $"MASV = '{sv.maSV}', HOTEN = '{sv.hoTen}', PHAI = '{sv.phai}', " +
+                $"NGSINH = TO_DATE('{sv.ngaySinh}','dd-MM-yyyy'), " +
+                $"DCHI = '{sv.diaChi}', SDT = '{sv.DT}', MACT = '{sv.maCT}', " +
+                $"MANGANH = '{sv.maNganh}', SOTCTL = '{sv.soTCTL}', DTBTL = '{sv.diemTBTL}'" +
+                $"WHERE MASV = '{sv.maSV}'";
+            
+            return ExecuteQueryUpdated(query);
+        }
+
+        public int insertSV(SinhVien sv)
+        {
+            string query = $"INSERT INTO QLDL.SINHVIEN VALUES ('{sv.maSV}', '{sv.hoTen}', '{sv.phai}', TO_DATE('{sv.ngaySinh}', 'dd-MM-yyyy'), " +
+                $"'{sv.diaChi}', '{sv.DT}', '{sv.maCT}', '{sv.maNganh}', '{sv.soTCTL}', '{sv.diemTBTL}')";
+
+            return ExecuteQueryUpdated(query);
         }
     }
 }

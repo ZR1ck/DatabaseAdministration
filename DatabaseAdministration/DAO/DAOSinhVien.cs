@@ -32,9 +32,14 @@ namespace DatabaseAdministration.DAO
         {
             return DatabaseProvider.getInstance().svUpdateTTCN(sdt, diachi);
         }
-        public static bool updateSV(string sdt)
+        public static int updateSV(SinhVien sv)
         {
-            return false;
+            return DatabaseProvider.getInstance().updateSV(sv);
+        }
+
+        public static int insertSV(SinhVien sv)
+        {
+            return DatabaseProvider.getInstance().insertSV(sv);
         }
     }
 }

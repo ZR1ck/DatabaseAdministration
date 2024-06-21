@@ -10,10 +10,18 @@ namespace DatabaseAdministration.DTO
 {
     internal class SinhVien
     {
-        public string maSV, hoTen, phai, ngaySinh, diaChi, DT, maCT, maNganh;
-        public int soTCTL, diemTBTL;
+        public string maSV { get; set; }
+        public string hoTen { get; set; }
+        public string phai { get; set; }
+        public string ngaySinh { get; set; }
+        public string diaChi { get; set; }
+        public string DT { get; set; }
+        public string maCT { get; set; }
+        public string maNganh { get; set; }
+        public int soTCTL { get; set; }
+        public double diemTBTL { get; set; }
 
-        public SinhVien(string maSV, string hoTen, string phai, string ngaySinh, string diaChi, string dT, string maCT, string maNganh, int soTCTL, int diemTBTL)
+    public SinhVien(string maSV, string hoTen, string phai, string ngaySinh, string diaChi, string dT, string maCT, string maNganh, int soTCTL, double diemTBTL)
         {
             this.maSV = maSV;
             this.hoTen = hoTen;
@@ -39,7 +47,7 @@ namespace DatabaseAdministration.DTO
             this.maCT = (string)row["MACT"];
             this.maNganh = (string)row["MANGANH"];
             this.soTCTL = Convert.ToInt32(row["SOTCTL"]);
-            this.diemTBTL = Convert.ToInt32(row["DTBTL"]);
+            this.diemTBTL = Convert.ToDouble(row["DTBTL"]);
         }
 
         public static List<SinhVien> getListSinhVien()
@@ -64,6 +72,16 @@ namespace DatabaseAdministration.DTO
         public static bool svUpdateTTCN(string sdt, string diachi)
         {
             return DAOSinhVien.svUpdateTTCN(sdt, diachi);
+        }
+
+        public static int updateSV(SinhVien sv)
+        {
+            return DAOSinhVien.updateSV(sv);
+        }
+
+        public static int insertSV(SinhVien sv) 
+        {
+            return DAOSinhVien.insertSV(sv);
         }
     }
 }
