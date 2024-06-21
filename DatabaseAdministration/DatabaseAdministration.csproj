@@ -110,8 +110,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\DAONhanSu.cs" />
     <Compile Include="DataProvider\DatabaseProvider.cs" />
     <Compile Include="DataProvider\LoginHelper.cs" />
+    <Compile Include="DTO\DangKy.cs" />
+    <Compile Include="DTO\DonVi.cs" />
+    <Compile Include="DTO\HocPhan.cs" />
+    <Compile Include="DTO\KHMo.cs" />
+    <Compile Include="DTO\NhanSu.cs" />
+    <Compile Include="DTO\PhanCong.cs" />
+    <Compile Include="DTO\SinhVien.cs" />
     <Compile Include="EditUsernameForm.cs">
       <SubType>Form</SubType>
     </Compile>

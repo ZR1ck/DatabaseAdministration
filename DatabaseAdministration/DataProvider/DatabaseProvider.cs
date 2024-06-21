@@ -287,5 +287,19 @@ namespace DatabaseAdministration.DataProvider
             string query = "SELECT * FROM SESSION_ROLES";
             return ExecuteQuery(query);
         }
+
+        public DataTable getNhanSu()
+        {
+            string query = "SELECT * FROM QLDL.NHANSU";
+            return ExecuteQuery(query);
+        }
+
+        public bool updateSDTNhanSuCaNhan(string sdt)
+        {
+            string query = $"UPDATE QLDL.NHANSU SET SDT = {sdt}";
+            return ExecuteNonQuery(query);
+        }
+
+
     }
 }

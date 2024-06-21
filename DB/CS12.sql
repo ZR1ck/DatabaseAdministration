@@ -87,7 +87,7 @@ begin
         return '1 = 1';
     else 
         select GRANTED_ROLE into userrole from DBA_ROLE_PRIVS where GRANTEE = '' || SYS_CONTEXT ('USERENV', 'SESSION_USER')  || '';
-        if (USERROLE = 'GV') THEN
+        if (USERROLE = 'GV' OR USERROLE = 'TRGDV') THEN
             return 'MAGV = ''' || sys_context('userenv', 'session_user') || '''';
         elsif (USERROLE = 'GIAOVU' OR USERROLE = 'TRGKHOA') THEN 
             return '';
@@ -124,6 +124,8 @@ Grant update(DIEMTH, DIEMQT, DIEMCK, DIEMTK) on QLDL.DANGKY to GV;
 --DROP VIEW QLDL.v2_GV;
 
 --SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE = 'SV001';
+
+select GRANTED_ROLE from DBA_ROLE_PRIVS where GRANTEE = 'NV002'
 
 
 
