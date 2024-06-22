@@ -54,13 +54,8 @@ GRANT SELECT ON QLDL.KHMO TO NVCB;
 GRANT NVCB TO GV;
 
 -- XEM NHU LIEU LIEN QUAN DEN MINH TREN PHANCONG
-Create or replace view QLDL.v_GV as
-Select *
-From QLDL.PHANCONG
-Where MAGV = SYS_CONTEXT ('userenv', 'session_user');
-
-Grant select on QLDL.v_GV to GV;
-
+-- XEM VPD_PHANCONG
+Grant select on QLDL.PHANCONG to GV;
 
 
 -- XEM DU LIEU TREN DANGKY LIEN QUAN DEN CAC LOP GV DANG GIANG DAY

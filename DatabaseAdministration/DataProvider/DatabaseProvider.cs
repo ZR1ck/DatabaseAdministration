@@ -22,6 +22,7 @@ namespace DatabaseAdministration.DataProvider
         public const int INTEGRITY_CONSTRAINT_VIOLATED = 2291;
         public const int SUCCESS = 0;
         public const int UNIDENTIFIED_ERROR = -1;
+        public const int NO_ROWSAFFECTED = -2;
 
         public static DatabaseProvider getInstance()
         {
@@ -86,8 +87,9 @@ namespace DatabaseAdministration.DataProvider
                     connection.Open();
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
-                        command.ExecuteNonQuery();
+                        int rowsAffected = command.ExecuteNonQuery();
                         connection.Close();
+                        if (rowsAffected == 0) return NO_ROWSAFFECTED;
                         return 0;
                     }
                 }
@@ -393,6 +395,34 @@ namespace DatabaseAdministration.DataProvider
                 $"'{ns.maNV}', '{ns.hoten}', '{ns.phai}', TO_DATE('{ns.ngaySinh}', 'dd-MM-yyyy'), {ns.phuCap}, " +
                 $"'{ns.SDT}', '{ns.vaiTro}', '{ns.maDV}'" +
                 $")";
+            return ExecuteQueryUpdated(query);
+        }
+
+        public DataTable getDataTablePhanCong()
+        {
+            string query = "SELECT * FROM QLDL.PHANCONG";
+            return ExecuteQuery(query);
+        }
+
+        public int updatePhanCong(PhanCong pc, PhanCong oldPc)
+        {
+            string query = $"UPDATE QLDL.PHANCONG " +
+                $"SET MAGV = '{pc.maGV}', MAHP = '{pc.maHP}', HK = '{pc.HK}', NAM = {pc.nam}, MACT = '{pc.maCT}' " +
+                $"WHERE MAGV = '{oldPc.maGV}' AND MAHP = '{oldPc.maHP}' AND HK = '{oldPc.HK}' AND NAM = {oldPc.nam} AND MACT = '{oldPc.maCT}'";
+            return ExecuteQueryUpdated(query);
+        }
+
+        public int deletePhanCong(PhanCong pc)
+        {
+            string query = $"DELETE QLDL.PHANCONG " +
+                $"WHERE MAGV = '{pc.maGV}' AND MAHP = '{pc.maHP}' AND HK = '{pc.HK}'AND NAM = {pc.nam} AND MACT = '{pc.maCT}' ";
+            return ExecuteQueryUpdated(query);
+        }
+
+        public int insertPhanCong(PhanCong pc)
+        {
+            string query = $"INSERT INTO QLDL.PHANCONG VALUES (" +
+                $"'{pc.maGV}', '{pc.maHP}', '{pc.HK}', {pc.nam}, '{pc.maCT}')";
             return ExecuteQueryUpdated(query);
         }
     }

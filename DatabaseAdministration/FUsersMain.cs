@@ -1,5 +1,6 @@
 ﻿using DatabaseAdministration.DataProvider;
 using DatabaseAdministration.DTO;
+using DatabaseAdministration.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +19,7 @@ namespace DatabaseAdministration
         private int role;
         private List<string> tempVal = new List<string>();
         private DateTime tempdate = DateTime.MinValue;
+        private PhanCong tempPc = null;
 
         public FUsersMain(int role)
         {
@@ -49,9 +52,12 @@ namespace DatabaseAdministration
 
                     loadTTCN();
                     loadDataGridViewTBSinhVien();
+                    loaddataGridViewPhanCong();
 
                     btnUpdateSinhVien.Visible = true;
                     btnAddSV.Visible = true;
+
+                    btnPCUpdate.Enabled = true;
 
                     break;
                 case 4: // GV
@@ -60,6 +66,7 @@ namespace DatabaseAdministration
 
                     loadTTCN();
                     loadDataGridViewTBSinhVien();
+                    loaddataGridViewPhanCong();
 
                     break;
                 case 5: // TRGDV
@@ -68,6 +75,11 @@ namespace DatabaseAdministration
 
                     loadTTCN();
                     loadDataGridViewTBSinhVien();
+                    loaddataGridViewPhanCong();
+
+                    btnPCAdd.Enabled = true;
+                    btnPCDelete.Enabled = true;
+                    btnPCUpdate.Enabled = true;
 
                     break;
                 case 6: // TRGKHOA
@@ -76,6 +88,12 @@ namespace DatabaseAdministration
 
                     loadDataGridViewTBSinhVien();
                     loadDataGridViewNhanSu();
+                    loaddataGridViewPhanCong();
+
+                    btnPCAdd.Enabled = true;
+                    btnPCDelete.Enabled = true;
+                    btnPCUpdate.Enabled = true;
+
                     break;
             }
         }
@@ -104,6 +122,15 @@ namespace DatabaseAdministration
                     dataGridViewNhanSu_SelectionChanged(sender, null);
                 }
             }
+            else if (selectedTab == tabPagePhanCong)
+            {
+                if (dataGridViewPhanCong.Rows.Count > 0)
+                {
+                    dataGridViewPhanCong.Focus();
+                    dataGridViewPhanCong.Rows[0].Selected = true;
+                    dataGridViewPhanCong_SelectionChanged(sender, null);
+                }
+            }
         }
         // hàm lấy thông tin cá nhân của người dùng hiện tại
         private bool loadTTCN()
@@ -130,7 +157,7 @@ namespace DatabaseAdministration
             btnCancelTTCN.Visible = true;
             btnUpdateTTCN.Visible = false;
             txtBoxTTCNSDT.Enabled = true;
-            tempVal = savePrevTxtBox(new List<TextBox> { txtBoxTTCNSDT });
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxTTCNSDT });
         }
         private void btnCancelTTCN_Click(object sender, EventArgs e)
         {
@@ -138,7 +165,7 @@ namespace DatabaseAdministration
             btnCancelTTCN.Visible = false;
             btnUpdateTTCN.Visible = true;
             txtBoxTTCNSDT.Enabled = false;
-            loadTxtBoxes(tempVal, new List<TextBox> { txtBoxTTCNSDT });
+            Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxTTCNSDT });
             tempVal.Clear();
         }
         private void btnAcceptTTCN_Click(object sender, EventArgs e)
@@ -151,15 +178,16 @@ namespace DatabaseAdministration
             if (NhanSu.updateSDT(txtBoxTTCNSDT.Text))
             {
                 MessageBox.Show("Done.");
+                loadTTCN();
             }
             else
             {
                 MessageBox.Show("Failed.");
-                loadTxtBoxes(tempVal, new List<TextBox> { txtBoxTTCNSDT });
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxTTCNSDT });
             }
             tempVal.Clear();
         }
-        // hàm xử lí datagridview tab sinh viên
+        // hàm xử lí datagridview và xử lí sự kiện nút tab sinh viên
         private void loadDataGridViewTBSinhVien()
         {
             dataGridViewTBSinhVien.DataSource = SinhVien.getDataTableSinhVien();
@@ -188,7 +216,6 @@ namespace DatabaseAdministration
                 }
             }
         }
-        // các hàm xử lí sự kiện nút trong tab sinh viên
         private void btnUpdateSinhVien_Click(object sender, EventArgs e)
         {
             dataGridViewTBSinhVien.Enabled = false;
@@ -203,7 +230,7 @@ namespace DatabaseAdministration
             txtBoxTCTLSV.Enabled = true;
             txtBoxTBTLSV.Enabled = true;
 
-            tempVal = savePrevTxtBox(new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
                 txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV});
             tempdate = dateTimePickerNgSinhSV.Value;
 
@@ -214,6 +241,19 @@ namespace DatabaseAdministration
         }
         private void btnAcptUpdateSinhVien_Click(object sender, EventArgs e)
         {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+                txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+                txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
             dataGridViewTBSinhVien.Enabled = true;
             txtBoxMaSV.Enabled = false;
             txtBoxHoTenSV.Enabled = false;
@@ -232,6 +272,7 @@ namespace DatabaseAdministration
             if (res == 0)
             {
                 MessageBox.Show("Done.");
+                loadDataGridViewTBSinhVien();
             }
             else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
             {
@@ -242,6 +283,10 @@ namespace DatabaseAdministration
             {
                 MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
             }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
             else
             {
                 MessageBox.Show("Something went wrong.");
@@ -249,7 +294,7 @@ namespace DatabaseAdministration
 
             if (res != 0)
             {
-                loadTxtBoxes(tempVal, new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
                 txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV });
                 dateTimePickerNgSinhSV.Value = tempdate;
             }
@@ -279,7 +324,7 @@ namespace DatabaseAdministration
             txtBoxTCTLSV.Enabled = false;
             txtBoxTBTLSV.Enabled = false;
 
-            loadTxtBoxes(tempVal, new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+            Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
                 txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV });
             dateTimePickerNgSinhSV.Value = tempdate;
             tempdate = DateTime.MinValue;
@@ -304,7 +349,7 @@ namespace DatabaseAdministration
             txtBoxTCTLSV.Enabled = true;
             txtBoxTBTLSV.Enabled = true;
 
-            tempVal = savePrevTxtBox(new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
                 txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV});
             tempdate = dateTimePickerNgSinhSV.Value;
 
@@ -327,6 +372,19 @@ namespace DatabaseAdministration
         }
         private void btnAcptAdd_Click(object sender, EventArgs e)
         {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+                txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+                txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
             dataGridViewTBSinhVien.Enabled = true;
             txtBoxMaSV.Enabled = false;
             txtBoxHoTenSV.Enabled = false;
@@ -363,7 +421,7 @@ namespace DatabaseAdministration
 
             if (res != 0)
             {
-                loadTxtBoxes(tempVal, new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxMaSV, txtBoxHoTenSV, txtBoxPhaiSV,
                 txtBoxDCSV, txtBoxDTSV, txtBoxMaCTSV, txtBoxMaNganhSV, txtBoxTCTLSV, txtBoxTBTLSV });
                 dateTimePickerNgSinhSV.Value = tempdate;
             }
@@ -410,6 +468,7 @@ namespace DatabaseAdministration
             if (SinhVien.svUpdateTTCN(txtBoxTTCNSVSoDT.Text, txtBoxTTCNSVDiachi.Text))
             {
                 MessageBox.Show("Done.");
+                loadTTCNSV();
             }
             else
             {
@@ -437,22 +496,7 @@ namespace DatabaseAdministration
             txtBoxTTCNSVDiachi.Text = tempVal[1];
             tempVal.Clear();
         }
-        private List<string> savePrevTxtBox(List<TextBox> txtboxes)
-        {
-            List<string> res = new List<string>();
-            for (int i = 0; i < txtboxes.Count; i++)
-            {
-                res.Add(txtboxes[i].Text);
-            }
-            return res;
-        }
-        private void loadTxtBoxes(List<string> s, List<TextBox> output)
-        {
-            for (int i = 0; i < s.Count; i++)
-            {
-                output[i].Text = s[i];
-            }
-        }
+        // hàm xử lí datagridview và xử lí sự kiện nút tab nhân sự
         private void loadDataGridViewNhanSu()
         {
             dataGridViewNhanSu.DataSource = NhanSu.getDataTableNhanSu();
@@ -480,7 +524,6 @@ namespace DatabaseAdministration
                 }
             }
         }
-
         private void btnNSUpdate_Click(object sender, EventArgs e)
         {
             dataGridViewNhanSu.Enabled = false;
@@ -493,7 +536,7 @@ namespace DatabaseAdministration
             txtBoxNSVaiTro.Enabled = true;
             txtBoxNSMaDV.Enabled = true;
 
-            tempVal = savePrevTxtBox(new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
                 txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV});
             tempdate = dateTimePickerNSNgSinh.Value;
 
@@ -503,7 +546,6 @@ namespace DatabaseAdministration
             btnNSAcptUpdate.Visible = true;
             btnNSCancel.Visible = true;
         }
-
         private void btnNSAdd_Click(object sender, EventArgs e)
         {
             dataGridViewNhanSu.Enabled = false;
@@ -516,7 +558,7 @@ namespace DatabaseAdministration
             txtBoxNSVaiTro.Enabled = true;
             txtBoxNSMaDV.Enabled = true;
 
-            tempVal = savePrevTxtBox(new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
                 txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV});
             tempdate = dateTimePickerNSNgSinh.Value;
 
@@ -535,7 +577,6 @@ namespace DatabaseAdministration
             btnNSAcptAdd.Visible = true;
             btnNSCancel.Visible = true;
         }
-
         private void btnNSDelete_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show($"Xóa nhân viên {txtBoxNSMaNV.Text}?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -552,9 +593,21 @@ namespace DatabaseAdministration
             }
             loadDataGridViewNhanSu();
         }
-
         private void btnNSAcptAdd_Click(object sender, EventArgs e)
         {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+                txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+                txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
             dataGridViewNhanSu.Enabled = true;
             txtBoxNSMaNV.Enabled = false;
             txtBoxNSHoTen.Enabled = false;
@@ -582,6 +635,10 @@ namespace DatabaseAdministration
             {
                 MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
             }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
             else
             {
                 MessageBox.Show("Something went wrong.");
@@ -589,7 +646,7 @@ namespace DatabaseAdministration
 
             if (res != 0)
             {
-                loadTxtBoxes(tempVal, new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
                 txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV });
             }
             else
@@ -608,9 +665,21 @@ namespace DatabaseAdministration
             btnNSAcptAdd.Visible = false;
 
         }
-
         private void btnNSAcptUpdate_Click(object sender, EventArgs e)
         {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+                txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+                txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
             dataGridViewNhanSu.Enabled = true;
             txtBoxNSMaNV.Enabled = false;
             txtBoxNSHoTen.Enabled = false;
@@ -627,6 +696,7 @@ namespace DatabaseAdministration
             if (res == 0)
             {
                 MessageBox.Show("Done.");
+                loadDataGridViewNhanSu();
             }
             else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
             {
@@ -637,6 +707,10 @@ namespace DatabaseAdministration
             {
                 MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
             }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
             else
             {
                 MessageBox.Show("Something went wrong.");
@@ -644,7 +718,7 @@ namespace DatabaseAdministration
 
             if (res != 0)
             {
-                loadTxtBoxes(tempVal, new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
                 txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV });
             }
             else
@@ -662,7 +736,6 @@ namespace DatabaseAdministration
             btnNSAcptUpdate.Visible = false;
             btnNSAcptAdd.Visible = false;
         }
-
         private void btnNSCancel_Click(object sender, EventArgs e)
         {
             dataGridViewNhanSu.Enabled = true;
@@ -675,7 +748,7 @@ namespace DatabaseAdministration
             txtBoxNSVaiTro.Enabled = false;
             txtBoxNSMaDV.Enabled = false;
 
-            loadTxtBoxes(tempVal, new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
+            Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxNSMaNV, txtBoxNSHoTen, txtBoxNSPhai,
                 txtBoxNSPhuCap, txtBoxNSDT, txtBoxNSVaiTro, txtBoxNSMaDV });
 
             dateTimePickerNSNgSinh.Value = tempdate;
@@ -689,6 +762,253 @@ namespace DatabaseAdministration
             btnNSCancel.Visible = false;
             btnNSAcptUpdate.Visible = false;
             btnNSAcptAdd.Visible = false;
+        }
+        // hàm xử lí datagridview và xử lí sự kiện nút tab phân công
+        private void loaddataGridViewPhanCong()
+        {
+            dataGridViewPhanCong.DataSource = PhanCong.getDataTablePhanCong();
+            dataGridViewPhanCong.ClearSelection();
+            dataGridViewPhanCong.Sort(dataGridViewPhanCong.Columns["MAHP"], ListSortDirection.Ascending);
+            if(dataGridViewPhanCong.Rows.Count > 0) dataGridViewPhanCong.Rows[0].Selected = true;
+        }
+        private void dataGridViewPhanCong_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!dataGridViewPhanCong.Focused) { return; }
+            if (dataGridViewPhanCong.Rows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewPhanCong.SelectedRows[0];
+                if (selectedRow != null)
+                {
+                    txtBoxPCMaGV.Text = selectedRow.Cells["MAGV"].Value.ToString();
+                    txtBoxPCMaHP.Text = selectedRow.Cells["MAHP"].Value.ToString();
+                    txtBoxPCHocKi.Text = selectedRow.Cells["HK"].Value.ToString();
+                    txtBoxPCNam.Text = selectedRow.Cells["NAM"].Value.ToString();
+                    txtBoxPCMaCT.Text = selectedRow.Cells["MACT"].Value.ToString();
+                }
+            }
+        }
+        private void btnPCUpdate_Click(object sender, EventArgs e)
+        {
+            dataGridViewPhanCong.Enabled = false;
+            txtBoxPCMaGV.Enabled = true;
+            txtBoxPCMaHP.Enabled = true;
+            txtBoxPCHocKi.Enabled = true;
+            txtBoxPCNam.Enabled = true;
+            txtBoxPCMaCT.Enabled = true;
+
+            tempPc = new PhanCong(txtBoxPCMaGV.Text, txtBoxPCMaHP.Text, txtBoxPCHocKi.Text,
+                txtBoxPCMaCT.Text, int.Parse(txtBoxPCNam.Text));
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxPCMaGV, txtBoxPCMaHP, txtBoxPCHocKi,
+                txtBoxPCNam, txtBoxPCMaCT});
+
+            btnPCAcptUpdate.Visible = true;
+            btnPCCancel.Visible = true;
+
+            btnPCUpdate.Visible = false;
+            btnPCAdd.Visible = false;
+            btnPCDelete.Visible = false;
+        }
+        private void btnPCAdd_Click(object sender, EventArgs e)
+        {
+
+            dataGridViewPhanCong.Enabled = false;
+            txtBoxPCMaGV.Enabled = true;
+            txtBoxPCMaHP.Enabled = true;
+            txtBoxPCHocKi.Enabled = true;
+            txtBoxPCNam.Enabled = true;
+            txtBoxPCMaCT.Enabled = true;
+
+            tempPc = new PhanCong(txtBoxPCMaGV.Text, txtBoxPCMaHP.Text, txtBoxPCHocKi.Text,
+                txtBoxPCMaCT.Text, int.Parse(txtBoxPCNam.Text));
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxPCMaGV, txtBoxPCMaHP, txtBoxPCHocKi,
+                txtBoxPCNam, txtBoxPCMaCT});
+
+            txtBoxPCMaGV.Text = "";
+            txtBoxPCMaHP.Text = "";
+            txtBoxPCHocKi.Text = "";
+            txtBoxPCNam.Text = "";
+            txtBoxPCMaCT.Text = "";
+
+            btnPCAcptAdd.Visible = true;
+            btnPCCancel.Visible = true;
+
+            btnPCUpdate.Visible = false;
+            btnPCAdd.Visible = false;
+            btnPCDelete.Visible = false;
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"Xóa Phân công đã chọn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                int res = PhanCong.deletePhanCong(new PhanCong(txtBoxPCMaGV.Text, txtBoxPCMaHP.Text, txtBoxPCHocKi.Text,
+                txtBoxPCMaCT.Text, int.Parse(txtBoxPCNam.Text)));
+                if (res == 0)
+                {
+                    MessageBox.Show("Deleted.");
+                    loaddataGridViewPhanCong();
+                }
+                else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+                {
+                    MessageBox.Show("NO_ROWSAFFECTED.");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong.");
+                }
+            }
+        }
+        private void btnPCAcptAdd_Click(object sender, EventArgs e)
+        {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxPCMaGV, txtBoxPCMaHP, txtBoxPCHocKi,
+                txtBoxPCNam, txtBoxPCMaCT }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxPCMaGV, txtBoxPCMaHP, txtBoxPCHocKi,
+                txtBoxPCNam, txtBoxPCMaCT }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
+            dataGridViewPhanCong.Enabled = true;
+            txtBoxPCMaGV.Enabled = false;
+            txtBoxPCMaHP.Enabled = false;
+            txtBoxPCHocKi.Enabled = false;
+            txtBoxPCNam.Enabled = false;
+            txtBoxPCMaCT.Enabled = false;
+
+            int res = PhanCong.insertPhanCong(new PhanCong(txtBoxPCMaGV.Text, txtBoxPCMaHP.Text, txtBoxPCHocKi.Text,
+                txtBoxPCMaCT.Text, int.Parse(txtBoxPCNam.Text)));
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loaddataGridViewPhanCong();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxPCMaGV, txtBoxPCMaHP, txtBoxPCHocKi,
+                    txtBoxPCNam, txtBoxPCMaCT});
+            }
+            else
+            {
+                tempVal.Clear();
+                tempPc = null;
+            }
+
+            btnPCAcptAdd.Visible = false;
+            btnPCCancel.Visible = false;
+
+            btnPCUpdate.Visible = true;
+            btnPCAdd.Visible = true;
+            btnPCDelete.Visible = true;
+        }
+        private void btnPCAcptUpdate_Click(object sender, EventArgs e)
+        {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxPCMaGV, txtBoxPCMaHP, txtBoxPCHocKi,
+                txtBoxPCNam, txtBoxPCMaCT }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxPCMaGV, txtBoxPCMaHP, txtBoxPCHocKi,
+                txtBoxPCNam, txtBoxPCMaCT }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
+            dataGridViewPhanCong.Enabled = true;
+            txtBoxPCMaGV.Enabled = false;
+            txtBoxPCMaHP.Enabled = false;
+            txtBoxPCHocKi.Enabled = false;
+            txtBoxPCNam.Enabled = false;
+            txtBoxPCMaCT.Enabled = false;
+
+            int res = PhanCong.updatePhanCong(new PhanCong(txtBoxPCMaGV.Text, txtBoxPCMaHP.Text, txtBoxPCHocKi.Text,
+                txtBoxPCMaCT.Text, int.Parse(txtBoxPCNam.Text)), tempPc);
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loaddataGridViewPhanCong();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxPCMaGV, txtBoxPCMaHP, txtBoxPCHocKi,
+                    txtBoxPCNam, txtBoxPCMaCT});
+            }
+            else
+            {
+                tempVal.Clear();
+                tempPc = null;
+            }
+
+            btnPCAcptUpdate.Visible = false;
+            btnPCCancel.Visible = false;
+
+            btnPCUpdate.Visible = true;
+            btnPCAdd.Visible = true;
+            btnPCDelete.Visible = true;
+        }
+        private void btnPCCancel_Click(object sender, EventArgs e)
+        {
+            dataGridViewPhanCong.Enabled = true;
+            txtBoxPCMaGV.Enabled = false;
+            txtBoxPCMaHP.Enabled = false;
+            txtBoxPCHocKi.Enabled = false;
+            txtBoxPCNam.Enabled = false;
+            txtBoxPCMaCT.Enabled = false;
+
+            Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxPCMaGV, txtBoxPCMaHP, txtBoxPCHocKi,
+                    txtBoxPCNam, txtBoxPCMaCT});
+            tempVal.Clear();
+            tempPc = null;
+
+            btnPCAcptUpdate.Visible = false;
+            btnPCCancel.Visible = false;
+
+            btnPCUpdate.Visible = true;
+            btnPCAdd.Visible = true;
+            btnPCDelete.Visible = true;
+
         }
     }
 }

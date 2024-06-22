@@ -76,6 +76,7 @@
             this.label78 = new System.Windows.Forms.Label();
             this.label79 = new System.Windows.Forms.Label();
             this.tabPageSinhVien = new System.Windows.Forms.TabPage();
+            this.btnAcptAdd = new System.Windows.Forms.Button();
             this.dateTimePickerNgSinhSV = new System.Windows.Forms.DateTimePicker();
             this.btnAddSV = new System.Windows.Forms.Button();
             this.txtBoxTBTLSV = new System.Windows.Forms.TextBox();
@@ -102,6 +103,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewTBSinhVien = new System.Windows.Forms.DataGridView();
             this.tabPageNhanSu = new System.Windows.Forms.TabPage();
+            this.btnNSAcptUpdate = new System.Windows.Forms.Button();
+            this.btnNSCancel = new System.Windows.Forms.Button();
+            this.btnNSAcptAdd = new System.Windows.Forms.Button();
+            this.dateTimePickerNSNgSinh = new System.Windows.Forms.DateTimePicker();
             this.btnNSAdd = new System.Windows.Forms.Button();
             this.btnNSDelete = new System.Windows.Forms.Button();
             this.btnNSUpdate = new System.Windows.Forms.Button();
@@ -122,20 +127,23 @@
             this.label20 = new System.Windows.Forms.Label();
             this.dataGridViewNhanSu = new System.Windows.Forms.DataGridView();
             this.tabPagePhanCong = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.btnPCCancel = new System.Windows.Forms.Button();
+            this.btnPCAcptAdd = new System.Windows.Forms.Button();
+            this.btnPCAcptUpdate = new System.Windows.Forms.Button();
+            this.btnPCDelete = new System.Windows.Forms.Button();
+            this.btnPCUpdate = new System.Windows.Forms.Button();
+            this.btnPCAdd = new System.Windows.Forms.Button();
+            this.txtBoxPCMaCT = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.txtBoxPCNam = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.txtBoxPCHocKi = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.txtBoxPCMaHP = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.txtBoxPCMaGV = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewPhanCong = new System.Windows.Forms.DataGridView();
             this.tabPageDonVi = new System.Windows.Forms.TabPage();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -180,11 +188,6 @@
             this.label60 = new System.Windows.Forms.Label();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.tabPageDangKy = new System.Windows.Forms.TabPage();
-            this.btnAcptAdd = new System.Windows.Forms.Button();
-            this.dateTimePickerNSNgSinh = new System.Windows.Forms.DateTimePicker();
-            this.btnNSAcptAdd = new System.Windows.Forms.Button();
-            this.btnNSCancel = new System.Windows.Forms.Button();
-            this.btnNSAcptUpdate = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageTTNhanSu.SuspendLayout();
             this.tabPageTTSinhVien.SuspendLayout();
@@ -193,7 +196,7 @@
             this.tabPageNhanSu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNhanSu)).BeginInit();
             this.tabPagePhanCong.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPhanCong)).BeginInit();
             this.tabPageDonVi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabPageHocPhan.SuspendLayout();
@@ -757,6 +760,17 @@
             this.tabPageSinhVien.Text = "Sinh viên";
             this.tabPageSinhVien.UseVisualStyleBackColor = true;
             // 
+            // btnAcptAdd
+            // 
+            this.btnAcptAdd.Location = new System.Drawing.Point(885, 545);
+            this.btnAcptAdd.Name = "btnAcptAdd";
+            this.btnAcptAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnAcptAdd.TabIndex = 27;
+            this.btnAcptAdd.Text = "Thêm";
+            this.btnAcptAdd.UseVisualStyleBackColor = true;
+            this.btnAcptAdd.Visible = false;
+            this.btnAcptAdd.Click += new System.EventHandler(this.btnAcptAdd_Click);
+            // 
             // dateTimePickerNgSinhSV
             // 
             this.dateTimePickerNgSinhSV.CustomFormat = "dd-MM-yyyy";
@@ -1041,6 +1055,49 @@
             this.tabPageNhanSu.Text = "Nhân sự";
             this.tabPageNhanSu.UseVisualStyleBackColor = true;
             // 
+            // btnNSAcptUpdate
+            // 
+            this.btnNSAcptUpdate.Location = new System.Drawing.Point(886, 484);
+            this.btnNSAcptUpdate.Name = "btnNSAcptUpdate";
+            this.btnNSAcptUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnNSAcptUpdate.TabIndex = 50;
+            this.btnNSAcptUpdate.Text = "Xong";
+            this.btnNSAcptUpdate.UseVisualStyleBackColor = true;
+            this.btnNSAcptUpdate.Visible = false;
+            this.btnNSAcptUpdate.Click += new System.EventHandler(this.btnNSAcptUpdate_Click);
+            // 
+            // btnNSCancel
+            // 
+            this.btnNSCancel.Location = new System.Drawing.Point(1048, 484);
+            this.btnNSCancel.Name = "btnNSCancel";
+            this.btnNSCancel.Size = new System.Drawing.Size(75, 34);
+            this.btnNSCancel.TabIndex = 49;
+            this.btnNSCancel.Text = "Hủy";
+            this.btnNSCancel.UseVisualStyleBackColor = true;
+            this.btnNSCancel.Visible = false;
+            this.btnNSCancel.Click += new System.EventHandler(this.btnNSCancel_Click);
+            // 
+            // btnNSAcptAdd
+            // 
+            this.btnNSAcptAdd.Location = new System.Drawing.Point(886, 484);
+            this.btnNSAcptAdd.Name = "btnNSAcptAdd";
+            this.btnNSAcptAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnNSAcptAdd.TabIndex = 48;
+            this.btnNSAcptAdd.Text = "Xong";
+            this.btnNSAcptAdd.UseVisualStyleBackColor = true;
+            this.btnNSAcptAdd.Visible = false;
+            this.btnNSAcptAdd.Click += new System.EventHandler(this.btnNSAcptAdd_Click);
+            // 
+            // dateTimePickerNSNgSinh
+            // 
+            this.dateTimePickerNSNgSinh.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePickerNSNgSinh.Enabled = false;
+            this.dateTimePickerNSNgSinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerNSNgSinh.Location = new System.Drawing.Point(878, 185);
+            this.dateTimePickerNSNgSinh.Name = "dateTimePickerNSNgSinh";
+            this.dateTimePickerNSNgSinh.Size = new System.Drawing.Size(264, 27);
+            this.dateTimePickerNSNgSinh.TabIndex = 47;
+            // 
             // btnNSAdd
             // 
             this.btnNSAdd.Location = new System.Drawing.Point(967, 484);
@@ -1232,20 +1289,23 @@
             // 
             // tabPagePhanCong
             // 
-            this.tabPagePhanCong.Controls.Add(this.button4);
-            this.tabPagePhanCong.Controls.Add(this.button5);
-            this.tabPagePhanCong.Controls.Add(this.button6);
-            this.tabPagePhanCong.Controls.Add(this.textBox16);
+            this.tabPagePhanCong.Controls.Add(this.btnPCCancel);
+            this.tabPagePhanCong.Controls.Add(this.btnPCAcptAdd);
+            this.tabPagePhanCong.Controls.Add(this.btnPCAcptUpdate);
+            this.tabPagePhanCong.Controls.Add(this.btnPCDelete);
+            this.tabPagePhanCong.Controls.Add(this.btnPCUpdate);
+            this.tabPagePhanCong.Controls.Add(this.btnPCAdd);
+            this.tabPagePhanCong.Controls.Add(this.txtBoxPCMaCT);
             this.tabPagePhanCong.Controls.Add(this.label26);
-            this.tabPagePhanCong.Controls.Add(this.textBox17);
+            this.tabPagePhanCong.Controls.Add(this.txtBoxPCNam);
             this.tabPagePhanCong.Controls.Add(this.label27);
-            this.tabPagePhanCong.Controls.Add(this.textBox18);
+            this.tabPagePhanCong.Controls.Add(this.txtBoxPCHocKi);
             this.tabPagePhanCong.Controls.Add(this.label28);
-            this.tabPagePhanCong.Controls.Add(this.textBox19);
+            this.tabPagePhanCong.Controls.Add(this.txtBoxPCMaHP);
             this.tabPagePhanCong.Controls.Add(this.label29);
-            this.tabPagePhanCong.Controls.Add(this.textBox20);
+            this.tabPagePhanCong.Controls.Add(this.txtBoxPCMaGV);
             this.tabPagePhanCong.Controls.Add(this.label30);
-            this.tabPagePhanCong.Controls.Add(this.dataGridView2);
+            this.tabPagePhanCong.Controls.Add(this.dataGridViewPhanCong);
             this.tabPagePhanCong.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.tabPagePhanCong.Location = new System.Drawing.Point(4, 25);
             this.tabPagePhanCong.Name = "tabPagePhanCong";
@@ -1254,41 +1314,80 @@
             this.tabPagePhanCong.Text = "Phân công";
             this.tabPagePhanCong.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnPCCancel
             // 
-            this.button4.Location = new System.Drawing.Point(1046, 545);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 34);
-            this.button4.TabIndex = 46;
-            this.button4.Text = "Hủy";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnPCCancel.Location = new System.Drawing.Point(1048, 483);
+            this.btnPCCancel.Name = "btnPCCancel";
+            this.btnPCCancel.Size = new System.Drawing.Size(75, 34);
+            this.btnPCCancel.TabIndex = 49;
+            this.btnPCCancel.Text = "Hủy";
+            this.btnPCCancel.UseVisualStyleBackColor = true;
+            this.btnPCCancel.Visible = false;
+            this.btnPCCancel.Click += new System.EventHandler(this.btnPCCancel_Click);
             // 
-            // button5
+            // btnPCAcptAdd
             // 
-            this.button5.Location = new System.Drawing.Point(886, 545);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 34);
-            this.button5.TabIndex = 45;
-            this.button5.Text = "Xong";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnPCAcptAdd.Location = new System.Drawing.Point(888, 483);
+            this.btnPCAcptAdd.Name = "btnPCAcptAdd";
+            this.btnPCAcptAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnPCAcptAdd.TabIndex = 48;
+            this.btnPCAcptAdd.Text = "Thêm";
+            this.btnPCAcptAdd.UseVisualStyleBackColor = true;
+            this.btnPCAcptAdd.Visible = false;
+            this.btnPCAcptAdd.Click += new System.EventHandler(this.btnPCAcptAdd_Click);
             // 
-            // button6
+            // btnPCAcptUpdate
             // 
-            this.button6.Location = new System.Drawing.Point(966, 545);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 34);
-            this.button6.TabIndex = 44;
-            this.button6.Text = "Sửa";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnPCAcptUpdate.Location = new System.Drawing.Point(887, 483);
+            this.btnPCAcptUpdate.Name = "btnPCAcptUpdate";
+            this.btnPCAcptUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnPCAcptUpdate.TabIndex = 47;
+            this.btnPCAcptUpdate.Text = "Xong";
+            this.btnPCAcptUpdate.UseVisualStyleBackColor = true;
+            this.btnPCAcptUpdate.Visible = false;
+            this.btnPCAcptUpdate.Click += new System.EventHandler(this.btnPCAcptUpdate_Click);
             // 
-            // textBox16
+            // btnPCDelete
             // 
-            this.textBox16.Enabled = false;
-            this.textBox16.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox16.Location = new System.Drawing.Point(878, 237);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(264, 25);
-            this.textBox16.TabIndex = 35;
+            this.btnPCDelete.Enabled = false;
+            this.btnPCDelete.Location = new System.Drawing.Point(1048, 483);
+            this.btnPCDelete.Name = "btnPCDelete";
+            this.btnPCDelete.Size = new System.Drawing.Size(75, 34);
+            this.btnPCDelete.TabIndex = 46;
+            this.btnPCDelete.Text = "Xóa";
+            this.btnPCDelete.UseVisualStyleBackColor = true;
+            this.btnPCDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnPCUpdate
+            // 
+            this.btnPCUpdate.Enabled = false;
+            this.btnPCUpdate.Location = new System.Drawing.Point(888, 483);
+            this.btnPCUpdate.Name = "btnPCUpdate";
+            this.btnPCUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnPCUpdate.TabIndex = 45;
+            this.btnPCUpdate.Text = "Sửa";
+            this.btnPCUpdate.UseVisualStyleBackColor = true;
+            this.btnPCUpdate.Click += new System.EventHandler(this.btnPCUpdate_Click);
+            // 
+            // btnPCAdd
+            // 
+            this.btnPCAdd.Enabled = false;
+            this.btnPCAdd.Location = new System.Drawing.Point(968, 483);
+            this.btnPCAdd.Name = "btnPCAdd";
+            this.btnPCAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnPCAdd.TabIndex = 44;
+            this.btnPCAdd.Text = "Thêm";
+            this.btnPCAdd.UseVisualStyleBackColor = true;
+            this.btnPCAdd.Click += new System.EventHandler(this.btnPCAdd_Click);
+            // 
+            // txtBoxPCMaCT
+            // 
+            this.txtBoxPCMaCT.Enabled = false;
+            this.txtBoxPCMaCT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxPCMaCT.Location = new System.Drawing.Point(878, 237);
+            this.txtBoxPCMaCT.Name = "txtBoxPCMaCT";
+            this.txtBoxPCMaCT.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxPCMaCT.TabIndex = 35;
             // 
             // label26
             // 
@@ -1300,14 +1399,14 @@
             this.label26.TabIndex = 34;
             this.label26.Text = "Mã chương trình";
             // 
-            // textBox17
+            // txtBoxPCNam
             // 
-            this.textBox17.Enabled = false;
-            this.textBox17.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox17.Location = new System.Drawing.Point(878, 184);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(264, 25);
-            this.textBox17.TabIndex = 33;
+            this.txtBoxPCNam.Enabled = false;
+            this.txtBoxPCNam.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxPCNam.Location = new System.Drawing.Point(878, 184);
+            this.txtBoxPCNam.Name = "txtBoxPCNam";
+            this.txtBoxPCNam.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxPCNam.TabIndex = 33;
             // 
             // label27
             // 
@@ -1319,14 +1418,14 @@
             this.label27.TabIndex = 32;
             this.label27.Text = "Năm";
             // 
-            // textBox18
+            // txtBoxPCHocKi
             // 
-            this.textBox18.Enabled = false;
-            this.textBox18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox18.Location = new System.Drawing.Point(878, 131);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(264, 25);
-            this.textBox18.TabIndex = 31;
+            this.txtBoxPCHocKi.Enabled = false;
+            this.txtBoxPCHocKi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxPCHocKi.Location = new System.Drawing.Point(878, 131);
+            this.txtBoxPCHocKi.Name = "txtBoxPCHocKi";
+            this.txtBoxPCHocKi.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxPCHocKi.TabIndex = 31;
             // 
             // label28
             // 
@@ -1338,14 +1437,14 @@
             this.label28.TabIndex = 30;
             this.label28.Text = "Học kì";
             // 
-            // textBox19
+            // txtBoxPCMaHP
             // 
-            this.textBox19.Enabled = false;
-            this.textBox19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox19.Location = new System.Drawing.Point(878, 78);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(264, 25);
-            this.textBox19.TabIndex = 29;
+            this.txtBoxPCMaHP.Enabled = false;
+            this.txtBoxPCMaHP.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxPCMaHP.Location = new System.Drawing.Point(878, 78);
+            this.txtBoxPCMaHP.Name = "txtBoxPCMaHP";
+            this.txtBoxPCMaHP.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxPCMaHP.TabIndex = 29;
             // 
             // label29
             // 
@@ -1357,14 +1456,14 @@
             this.label29.TabIndex = 28;
             this.label29.Text = "Mã học phần";
             // 
-            // textBox20
+            // txtBoxPCMaGV
             // 
-            this.textBox20.Enabled = false;
-            this.textBox20.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox20.Location = new System.Drawing.Point(878, 25);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(264, 25);
-            this.textBox20.TabIndex = 27;
+            this.txtBoxPCMaGV.Enabled = false;
+            this.txtBoxPCMaGV.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxPCMaGV.Location = new System.Drawing.Point(878, 25);
+            this.txtBoxPCMaGV.Name = "txtBoxPCMaGV";
+            this.txtBoxPCMaGV.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxPCMaGV.TabIndex = 27;
             // 
             // label30
             // 
@@ -1376,20 +1475,21 @@
             this.label30.TabIndex = 26;
             this.label30.Text = "Mã giáo viên";
             // 
-            // dataGridView2
+            // dataGridViewPhanCong
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(852, 597);
-            this.dataGridView2.TabIndex = 25;
+            this.dataGridViewPhanCong.AllowUserToAddRows = false;
+            this.dataGridViewPhanCong.AllowUserToDeleteRows = false;
+            this.dataGridViewPhanCong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPhanCong.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewPhanCong.MultiSelect = false;
+            this.dataGridViewPhanCong.Name = "dataGridViewPhanCong";
+            this.dataGridViewPhanCong.ReadOnly = true;
+            this.dataGridViewPhanCong.RowHeadersWidth = 51;
+            this.dataGridViewPhanCong.RowTemplate.Height = 24;
+            this.dataGridViewPhanCong.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewPhanCong.Size = new System.Drawing.Size(852, 597);
+            this.dataGridViewPhanCong.TabIndex = 25;
+            this.dataGridViewPhanCong.SelectionChanged += new System.EventHandler(this.dataGridViewPhanCong_SelectionChanged);
             // 
             // tabPageDonVi
             // 
@@ -1863,60 +1963,6 @@
             this.tabPageDangKy.Text = "Đăng ký";
             this.tabPageDangKy.UseVisualStyleBackColor = true;
             // 
-            // btnAcptAdd
-            // 
-            this.btnAcptAdd.Location = new System.Drawing.Point(885, 545);
-            this.btnAcptAdd.Name = "btnAcptAdd";
-            this.btnAcptAdd.Size = new System.Drawing.Size(75, 34);
-            this.btnAcptAdd.TabIndex = 27;
-            this.btnAcptAdd.Text = "Thêm";
-            this.btnAcptAdd.UseVisualStyleBackColor = true;
-            this.btnAcptAdd.Visible = false;
-            this.btnAcptAdd.Click += new System.EventHandler(this.btnAcptAdd_Click);
-            // 
-            // dateTimePickerNSNgSinh
-            // 
-            this.dateTimePickerNSNgSinh.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePickerNSNgSinh.Enabled = false;
-            this.dateTimePickerNSNgSinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerNSNgSinh.Location = new System.Drawing.Point(878, 185);
-            this.dateTimePickerNSNgSinh.Name = "dateTimePickerNSNgSinh";
-            this.dateTimePickerNSNgSinh.Size = new System.Drawing.Size(264, 27);
-            this.dateTimePickerNSNgSinh.TabIndex = 47;
-            // 
-            // btnNSAcptAdd
-            // 
-            this.btnNSAcptAdd.Location = new System.Drawing.Point(886, 484);
-            this.btnNSAcptAdd.Name = "btnNSAcptAdd";
-            this.btnNSAcptAdd.Size = new System.Drawing.Size(75, 34);
-            this.btnNSAcptAdd.TabIndex = 48;
-            this.btnNSAcptAdd.Text = "Xong";
-            this.btnNSAcptAdd.UseVisualStyleBackColor = true;
-            this.btnNSAcptAdd.Visible = false;
-            this.btnNSAcptAdd.Click += new System.EventHandler(this.btnNSAcptAdd_Click);
-            // 
-            // btnNSCancel
-            // 
-            this.btnNSCancel.Location = new System.Drawing.Point(1048, 484);
-            this.btnNSCancel.Name = "btnNSCancel";
-            this.btnNSCancel.Size = new System.Drawing.Size(75, 34);
-            this.btnNSCancel.TabIndex = 49;
-            this.btnNSCancel.Text = "Hủy";
-            this.btnNSCancel.UseVisualStyleBackColor = true;
-            this.btnNSCancel.Visible = false;
-            this.btnNSCancel.Click += new System.EventHandler(this.btnNSCancel_Click);
-            // 
-            // btnNSAcptUpdate
-            // 
-            this.btnNSAcptUpdate.Location = new System.Drawing.Point(886, 484);
-            this.btnNSAcptUpdate.Name = "btnNSAcptUpdate";
-            this.btnNSAcptUpdate.Size = new System.Drawing.Size(75, 34);
-            this.btnNSAcptUpdate.TabIndex = 50;
-            this.btnNSAcptUpdate.Text = "Xong";
-            this.btnNSAcptUpdate.UseVisualStyleBackColor = true;
-            this.btnNSAcptUpdate.Visible = false;
-            this.btnNSAcptUpdate.Click += new System.EventHandler(this.btnNSAcptUpdate_Click);
-            // 
             // FUsersMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1941,7 +1987,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNhanSu)).EndInit();
             this.tabPagePhanCong.ResumeLayout(false);
             this.tabPagePhanCong.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPhanCong)).EndInit();
             this.tabPageDonVi.ResumeLayout(false);
             this.tabPageDonVi.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
@@ -2089,20 +2135,20 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.DataGridView dataGridViewNhanSu;
         private System.Windows.Forms.TabPage tabPagePhanCong;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.Button btnPCDelete;
+        private System.Windows.Forms.Button btnPCUpdate;
+        private System.Windows.Forms.Button btnPCAdd;
+        private System.Windows.Forms.TextBox txtBoxPCMaCT;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.TextBox txtBoxPCNam;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.TextBox txtBoxPCHocKi;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox txtBoxPCMaHP;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.TextBox txtBoxPCMaGV;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridViewPhanCong;
         private System.Windows.Forms.TextBox txtBoxTTCNSVDiemTBTL;
         private System.Windows.Forms.TextBox txtBoxTTCNSVSoTCTL;
         private System.Windows.Forms.Label label11;
@@ -2114,5 +2160,8 @@
         private System.Windows.Forms.Button btnNSCancel;
         private System.Windows.Forms.Button btnNSAcptAdd;
         private System.Windows.Forms.Button btnNSAcptUpdate;
+        private System.Windows.Forms.Button btnPCAcptAdd;
+        private System.Windows.Forms.Button btnPCAcptUpdate;
+        private System.Windows.Forms.Button btnPCCancel;
     }
 }
