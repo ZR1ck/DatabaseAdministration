@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace DatabaseAdministration.DataProvider
 {
@@ -23,6 +24,7 @@ namespace DatabaseAdministration.DataProvider
         public const int SUCCESS = 0;
         public const int UNIDENTIFIED_ERROR = -1;
         public const int NO_ROWSAFFECTED = -2;
+        public const int POLICY_WITH_CHECK_OPTION_VIOLATION = 28115;
 
         public static DatabaseProvider getInstance()
         {
@@ -105,6 +107,10 @@ namespace DatabaseAdministration.DataProvider
                         else if (ex.Errors[i].Number == INTEGRITY_CONSTRAINT_VIOLATED)
                         {
                             return INTEGRITY_CONSTRAINT_VIOLATED;
+                        }
+                        else if (ex.Errors[i].Number == POLICY_WITH_CHECK_OPTION_VIOLATION)
+                        {
+                            return POLICY_WITH_CHECK_OPTION_VIOLATION;
                         }
                     }
                     return UNIDENTIFIED_ERROR;
@@ -445,16 +451,19 @@ namespace DatabaseAdministration.DataProvider
             string query = $"INSERT INTO QLDL.DONVI VALUES ('{dv.maDV}', '{dv.tenDV}', '{dv.trgDV}')";
             return ExecuteQueryUpdated(query);
         }
+
         public DataTable getDataTableKHMo()
         {
             string query = "SELECT * FROM QLDL.KHMO";
             return ExecuteQuery(query);
         }
+
         public DataTable getDataTableKHMoSV()
         {
             string query = "SELECT * FROM QLDL.V_SV_KHMO";
             return ExecuteQuery(query);
         }
+
         public int updateKHMo(KHMo kh, KHMo old)
         {
             string query = $"UPDATE QLDL.KHMO SET " +
@@ -462,9 +471,49 @@ namespace DatabaseAdministration.DataProvider
                 $"WHERE MAHP = '{old.maHP}' AND HK = '{old.HK}' AND NAM = {old.nam} AND MACT = '{old.maCT}' ";
             return ExecuteQueryUpdated(query);
         }
+
         public int insertKHMo(KHMo kh)
         {
             string query = $"INSERT INTO QLDL.KHMO VALUES ('{kh.maHP}','{kh.HK}', {kh.nam}, '{kh.maCT}') ";
+            return ExecuteQueryUpdated(query);
+        }
+
+        public DataTable getDataTableDangki()
+        {
+            string query = $"SELECT * FROM QLDL.DANGKY";
+            return ExecuteQuery(query);
+        }
+
+        public int updateDangKy(DangKy dk)
+        {
+            string query = $"UPDATE QLDL.DANGKY " +
+                $"SET DIEMTH = {dk.diemTH}, DIEMQT = {dk.diemQT}, DIEMCK = {dk.diemCK}, DIEMTK = {dk.diemTK} " +
+                $"WHERE MASV = '{dk.maSV}' AND MAGV = '{dk.maGV}' AND MAHP = '{dk.maHP}' AND HK = '{dk.HK}' " +
+                $"AND NAM = '{dk.nam}' AND MACT = '{dk.maCT}' ";
+            return ExecuteQueryUpdated(query);
+        }
+
+        public int deleteDangKy(DangKy dk)
+        {
+            string query = $"DELETE QLDL.DANGKY " +
+                $"WHERE MASV = '{dk.maSV}' AND MAGV = '{dk.maGV}' AND MAHP = '{dk.maHP}' AND HK = '{dk.HK}' " +
+                $"AND NAM = '{dk.nam}' AND MACT = '{dk.maCT}' ";
+            return ExecuteQueryUpdated(query);
+        }
+
+        public int insertDangKy(DangKy dk)
+        {
+            string diemTH, diemQT, diemCK, diemTK;
+            diemTH = dk.diemTH != 0 ? dk.diemTH.ToString() : "NULL";
+            diemQT = dk.diemQT != 0 ? dk.diemQT.ToString() : "NULL";
+            diemCK = dk.diemCK != 0 ? dk.diemCK.ToString() : "NULL";
+            diemTK = dk.diemTK != 0 ? dk.diemTK.ToString() : "NULL";
+
+            string query = $"INSERT INTO QLDL.DANGKY VALUES (" +
+                $"'{dk.maSV}', '{dk.maGV}', '{dk.maHP}', '{dk.HK}', {dk.nam}, '{dk.maCT}'," +
+                $" {diemTH}, {diemQT}, {diemCK}, {diemTK}" +
+                $")";
+
             return ExecuteQueryUpdated(query);
         }
     }

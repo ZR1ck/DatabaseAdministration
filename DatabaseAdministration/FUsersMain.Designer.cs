@@ -145,6 +145,9 @@
             this.label30 = new System.Windows.Forms.Label();
             this.dataGridViewPhanCong = new System.Windows.Forms.DataGridView();
             this.tabPageDonVi = new System.Windows.Forms.TabPage();
+            this.btnDVCancel = new System.Windows.Forms.Button();
+            this.btnDVAcptAdd = new System.Windows.Forms.Button();
+            this.btnDVAcptUpdate = new System.Windows.Forms.Button();
             this.btnDVUpdate = new System.Windows.Forms.Button();
             this.btnDVAdd = new System.Windows.Forms.Button();
             this.txtBoxDVTrgDV = new System.Windows.Forms.TextBox();
@@ -174,6 +177,8 @@
             this.label50 = new System.Windows.Forms.Label();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.tabPageKHMo = new System.Windows.Forms.TabPage();
+            this.btnKHCancel = new System.Windows.Forms.Button();
+            this.btnKHAcptAdd = new System.Windows.Forms.Button();
             this.btnKHAdd = new System.Windows.Forms.Button();
             this.btnKHUpdate = new System.Windows.Forms.Button();
             this.btnKHAcptUpdate = new System.Windows.Forms.Button();
@@ -187,11 +192,33 @@
             this.label60 = new System.Windows.Forms.Label();
             this.dataGridViewKHMo = new System.Windows.Forms.DataGridView();
             this.tabPageDangKy = new System.Windows.Forms.TabPage();
-            this.btnDVAcptUpdate = new System.Windows.Forms.Button();
-            this.btnDVAcptAdd = new System.Windows.Forms.Button();
-            this.btnDVCancel = new System.Windows.Forms.Button();
-            this.btnKHAcptAdd = new System.Windows.Forms.Button();
-            this.btnKHCancel = new System.Windows.Forms.Button();
+            this.btnDKDelete = new System.Windows.Forms.Button();
+            this.btnDKCancel = new System.Windows.Forms.Button();
+            this.btnDKAcptAdd = new System.Windows.Forms.Button();
+            this.btnDKAdd = new System.Windows.Forms.Button();
+            this.btnDKUpdate = new System.Windows.Forms.Button();
+            this.btnDKAcptUpdate = new System.Windows.Forms.Button();
+            this.txtBoxDKDiemTK = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.txtBoxDKDiemCK = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtBoxDKDiemQT = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtBoxDKDiemTH = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.txtBoxDKMaCT = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txtBoxDKNam = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtBoxDKHK = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtBoxDKMaHP = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtBoxDKMaGV = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtBoxDKMaSV = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.dataGridViewDangki = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPageTTNhanSu.SuspendLayout();
             this.tabPageTTSinhVien.SuspendLayout();
@@ -207,6 +234,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.tabPageKHMo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKHMo)).BeginInit();
+            this.tabPageDangKy.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDangki)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1518,6 +1547,39 @@
             this.tabPageDonVi.Text = "Đơn vị";
             this.tabPageDonVi.UseVisualStyleBackColor = true;
             // 
+            // btnDVCancel
+            // 
+            this.btnDVCancel.Location = new System.Drawing.Point(1049, 483);
+            this.btnDVCancel.Name = "btnDVCancel";
+            this.btnDVCancel.Size = new System.Drawing.Size(75, 34);
+            this.btnDVCancel.TabIndex = 49;
+            this.btnDVCancel.Text = "Hủy";
+            this.btnDVCancel.UseVisualStyleBackColor = true;
+            this.btnDVCancel.Visible = false;
+            this.btnDVCancel.Click += new System.EventHandler(this.btnDVCancel_Click);
+            // 
+            // btnDVAcptAdd
+            // 
+            this.btnDVAcptAdd.Location = new System.Drawing.Point(889, 483);
+            this.btnDVAcptAdd.Name = "btnDVAcptAdd";
+            this.btnDVAcptAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnDVAcptAdd.TabIndex = 48;
+            this.btnDVAcptAdd.Text = "Thêm";
+            this.btnDVAcptAdd.UseVisualStyleBackColor = true;
+            this.btnDVAcptAdd.Visible = false;
+            this.btnDVAcptAdd.Click += new System.EventHandler(this.btnDVAcptAdd_Click);
+            // 
+            // btnDVAcptUpdate
+            // 
+            this.btnDVAcptUpdate.Location = new System.Drawing.Point(889, 483);
+            this.btnDVAcptUpdate.Name = "btnDVAcptUpdate";
+            this.btnDVAcptUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnDVAcptUpdate.TabIndex = 47;
+            this.btnDVAcptUpdate.Text = "Xong";
+            this.btnDVAcptUpdate.UseVisualStyleBackColor = true;
+            this.btnDVAcptUpdate.Visible = false;
+            this.btnDVAcptUpdate.Click += new System.EventHandler(this.btnDVAcptUpdate_Click);
+            // 
             // btnDVUpdate
             // 
             this.btnDVUpdate.Location = new System.Drawing.Point(889, 483);
@@ -1841,6 +1903,28 @@
             this.tabPageKHMo.Text = "Khóa học mở";
             this.tabPageKHMo.UseVisualStyleBackColor = true;
             // 
+            // btnKHCancel
+            // 
+            this.btnKHCancel.Location = new System.Drawing.Point(1050, 482);
+            this.btnKHCancel.Name = "btnKHCancel";
+            this.btnKHCancel.Size = new System.Drawing.Size(75, 34);
+            this.btnKHCancel.TabIndex = 48;
+            this.btnKHCancel.Text = "Hủy";
+            this.btnKHCancel.UseVisualStyleBackColor = true;
+            this.btnKHCancel.Visible = false;
+            this.btnKHCancel.Click += new System.EventHandler(this.btnKHCancel_Click);
+            // 
+            // btnKHAcptAdd
+            // 
+            this.btnKHAcptAdd.Location = new System.Drawing.Point(890, 482);
+            this.btnKHAcptAdd.Name = "btnKHAcptAdd";
+            this.btnKHAcptAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnKHAcptAdd.TabIndex = 47;
+            this.btnKHAcptAdd.Text = "Thêm";
+            this.btnKHAcptAdd.UseVisualStyleBackColor = true;
+            this.btnKHAcptAdd.Visible = false;
+            this.btnKHAcptAdd.Click += new System.EventHandler(this.btnKHAcptAdd_Click);
+            // 
             // btnKHAdd
             // 
             this.btnKHAdd.Location = new System.Drawing.Point(1050, 482);
@@ -1969,6 +2053,33 @@
             // 
             // tabPageDangKy
             // 
+            this.tabPageDangKy.Controls.Add(this.btnDKDelete);
+            this.tabPageDangKy.Controls.Add(this.btnDKCancel);
+            this.tabPageDangKy.Controls.Add(this.btnDKAcptAdd);
+            this.tabPageDangKy.Controls.Add(this.btnDKAdd);
+            this.tabPageDangKy.Controls.Add(this.btnDKUpdate);
+            this.tabPageDangKy.Controls.Add(this.btnDKAcptUpdate);
+            this.tabPageDangKy.Controls.Add(this.txtBoxDKDiemTK);
+            this.tabPageDangKy.Controls.Add(this.label34);
+            this.tabPageDangKy.Controls.Add(this.txtBoxDKDiemCK);
+            this.tabPageDangKy.Controls.Add(this.label35);
+            this.tabPageDangKy.Controls.Add(this.txtBoxDKDiemQT);
+            this.tabPageDangKy.Controls.Add(this.label25);
+            this.tabPageDangKy.Controls.Add(this.txtBoxDKDiemTH);
+            this.tabPageDangKy.Controls.Add(this.label31);
+            this.tabPageDangKy.Controls.Add(this.txtBoxDKMaCT);
+            this.tabPageDangKy.Controls.Add(this.label32);
+            this.tabPageDangKy.Controls.Add(this.txtBoxDKNam);
+            this.tabPageDangKy.Controls.Add(this.label33);
+            this.tabPageDangKy.Controls.Add(this.txtBoxDKHK);
+            this.tabPageDangKy.Controls.Add(this.label21);
+            this.tabPageDangKy.Controls.Add(this.txtBoxDKMaHP);
+            this.tabPageDangKy.Controls.Add(this.label22);
+            this.tabPageDangKy.Controls.Add(this.txtBoxDKMaGV);
+            this.tabPageDangKy.Controls.Add(this.label23);
+            this.tabPageDangKy.Controls.Add(this.txtBoxDKMaSV);
+            this.tabPageDangKy.Controls.Add(this.label24);
+            this.tabPageDangKy.Controls.Add(this.dataGridViewDangki);
             this.tabPageDangKy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.tabPageDangKy.Location = new System.Drawing.Point(4, 25);
             this.tabPageDangKy.Name = "tabPageDangKy";
@@ -1977,60 +2088,277 @@
             this.tabPageDangKy.Text = "Đăng ký";
             this.tabPageDangKy.UseVisualStyleBackColor = true;
             // 
-            // btnDVAcptUpdate
+            // btnDKDelete
             // 
-            this.btnDVAcptUpdate.Location = new System.Drawing.Point(889, 483);
-            this.btnDVAcptUpdate.Name = "btnDVAcptUpdate";
-            this.btnDVAcptUpdate.Size = new System.Drawing.Size(75, 34);
-            this.btnDVAcptUpdate.TabIndex = 47;
-            this.btnDVAcptUpdate.Text = "Xong";
-            this.btnDVAcptUpdate.UseVisualStyleBackColor = true;
-            this.btnDVAcptUpdate.Visible = false;
-            this.btnDVAcptUpdate.Click += new System.EventHandler(this.btnDVAcptUpdate_Click);
+            this.btnDKDelete.Location = new System.Drawing.Point(1050, 548);
+            this.btnDKDelete.Name = "btnDKDelete";
+            this.btnDKDelete.Size = new System.Drawing.Size(75, 34);
+            this.btnDKDelete.TabIndex = 60;
+            this.btnDKDelete.Text = "Xóa";
+            this.btnDKDelete.UseVisualStyleBackColor = true;
+            this.btnDKDelete.Visible = false;
+            this.btnDKDelete.Click += new System.EventHandler(this.btnDKDelete_Click);
             // 
-            // btnDVAcptAdd
+            // btnDKCancel
             // 
-            this.btnDVAcptAdd.Location = new System.Drawing.Point(889, 483);
-            this.btnDVAcptAdd.Name = "btnDVAcptAdd";
-            this.btnDVAcptAdd.Size = new System.Drawing.Size(75, 34);
-            this.btnDVAcptAdd.TabIndex = 48;
-            this.btnDVAcptAdd.Text = "Thêm";
-            this.btnDVAcptAdd.UseVisualStyleBackColor = true;
-            this.btnDVAcptAdd.Visible = false;
-            this.btnDVAcptAdd.Click += new System.EventHandler(this.btnDVAcptAdd_Click);
+            this.btnDKCancel.Location = new System.Drawing.Point(1050, 548);
+            this.btnDKCancel.Name = "btnDKCancel";
+            this.btnDKCancel.Size = new System.Drawing.Size(75, 34);
+            this.btnDKCancel.TabIndex = 59;
+            this.btnDKCancel.Text = "Hủy";
+            this.btnDKCancel.UseVisualStyleBackColor = true;
+            this.btnDKCancel.Visible = false;
+            this.btnDKCancel.Click += new System.EventHandler(this.btnDKCancel_Click);
             // 
-            // btnDVCancel
+            // btnDKAcptAdd
             // 
-            this.btnDVCancel.Location = new System.Drawing.Point(1049, 483);
-            this.btnDVCancel.Name = "btnDVCancel";
-            this.btnDVCancel.Size = new System.Drawing.Size(75, 34);
-            this.btnDVCancel.TabIndex = 49;
-            this.btnDVCancel.Text = "Hủy";
-            this.btnDVCancel.UseVisualStyleBackColor = true;
-            this.btnDVCancel.Visible = false;
-            this.btnDVCancel.Click += new System.EventHandler(this.btnDVCancel_Click);
+            this.btnDKAcptAdd.Location = new System.Drawing.Point(888, 548);
+            this.btnDKAcptAdd.Name = "btnDKAcptAdd";
+            this.btnDKAcptAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnDKAcptAdd.TabIndex = 58;
+            this.btnDKAcptAdd.Text = "Thêm";
+            this.btnDKAcptAdd.UseVisualStyleBackColor = true;
+            this.btnDKAcptAdd.Visible = false;
+            this.btnDKAcptAdd.Click += new System.EventHandler(this.btnDKAcptAdd_Click);
             // 
-            // btnKHAcptAdd
+            // btnDKAdd
             // 
-            this.btnKHAcptAdd.Location = new System.Drawing.Point(890, 482);
-            this.btnKHAcptAdd.Name = "btnKHAcptAdd";
-            this.btnKHAcptAdd.Size = new System.Drawing.Size(75, 34);
-            this.btnKHAcptAdd.TabIndex = 47;
-            this.btnKHAcptAdd.Text = "Thêm";
-            this.btnKHAcptAdd.UseVisualStyleBackColor = true;
-            this.btnKHAcptAdd.Visible = false;
-            this.btnKHAcptAdd.Click += new System.EventHandler(this.btnKHAcptAdd_Click);
+            this.btnDKAdd.Location = new System.Drawing.Point(888, 548);
+            this.btnDKAdd.Name = "btnDKAdd";
+            this.btnDKAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnDKAdd.TabIndex = 57;
+            this.btnDKAdd.Text = "Thêm";
+            this.btnDKAdd.UseVisualStyleBackColor = true;
+            this.btnDKAdd.Visible = false;
+            this.btnDKAdd.Click += new System.EventHandler(this.btnDKAdd_Click);
             // 
-            // btnKHCancel
+            // btnDKUpdate
             // 
-            this.btnKHCancel.Location = new System.Drawing.Point(1050, 482);
-            this.btnKHCancel.Name = "btnKHCancel";
-            this.btnKHCancel.Size = new System.Drawing.Size(75, 34);
-            this.btnKHCancel.TabIndex = 48;
-            this.btnKHCancel.Text = "Hủy";
-            this.btnKHCancel.UseVisualStyleBackColor = true;
-            this.btnKHCancel.Visible = false;
-            this.btnKHCancel.Click += new System.EventHandler(this.btnKHCancel_Click);
+            this.btnDKUpdate.Location = new System.Drawing.Point(969, 548);
+            this.btnDKUpdate.Name = "btnDKUpdate";
+            this.btnDKUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnDKUpdate.TabIndex = 56;
+            this.btnDKUpdate.Text = "Sửa";
+            this.btnDKUpdate.UseVisualStyleBackColor = true;
+            this.btnDKUpdate.Visible = false;
+            this.btnDKUpdate.Click += new System.EventHandler(this.btnDKUpdate_Click);
+            // 
+            // btnDKAcptUpdate
+            // 
+            this.btnDKAcptUpdate.Location = new System.Drawing.Point(888, 548);
+            this.btnDKAcptUpdate.Name = "btnDKAcptUpdate";
+            this.btnDKAcptUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnDKAcptUpdate.TabIndex = 55;
+            this.btnDKAcptUpdate.Text = "Xong";
+            this.btnDKAcptUpdate.UseVisualStyleBackColor = true;
+            this.btnDKAcptUpdate.Visible = false;
+            this.btnDKAcptUpdate.Click += new System.EventHandler(this.btnDKAcptUpdate_Click);
+            // 
+            // txtBoxDKDiemTK
+            // 
+            this.txtBoxDKDiemTK.Enabled = false;
+            this.txtBoxDKDiemTK.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDKDiemTK.Location = new System.Drawing.Point(878, 506);
+            this.txtBoxDKDiemTK.Name = "txtBoxDKDiemTK";
+            this.txtBoxDKDiemTK.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDKDiemTK.TabIndex = 54;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label34.Location = new System.Drawing.Point(857, 484);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(95, 16);
+            this.label34.TabIndex = 53;
+            this.label34.Text = "Điểm tổng kết";
+            // 
+            // txtBoxDKDiemCK
+            // 
+            this.txtBoxDKDiemCK.Enabled = false;
+            this.txtBoxDKDiemCK.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDKDiemCK.Location = new System.Drawing.Point(878, 453);
+            this.txtBoxDKDiemCK.Name = "txtBoxDKDiemCK";
+            this.txtBoxDKDiemCK.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDKDiemCK.TabIndex = 52;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label35.Location = new System.Drawing.Point(857, 431);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(62, 16);
+            this.label35.TabIndex = 51;
+            this.label35.Text = "Điểm CK";
+            // 
+            // txtBoxDKDiemQT
+            // 
+            this.txtBoxDKDiemQT.Enabled = false;
+            this.txtBoxDKDiemQT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDKDiemQT.Location = new System.Drawing.Point(878, 400);
+            this.txtBoxDKDiemQT.Name = "txtBoxDKDiemQT";
+            this.txtBoxDKDiemQT.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDKDiemQT.TabIndex = 50;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label25.Location = new System.Drawing.Point(857, 378);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(62, 16);
+            this.label25.TabIndex = 49;
+            this.label25.Text = "Điểm QT";
+            // 
+            // txtBoxDKDiemTH
+            // 
+            this.txtBoxDKDiemTH.Enabled = false;
+            this.txtBoxDKDiemTH.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDKDiemTH.Location = new System.Drawing.Point(878, 347);
+            this.txtBoxDKDiemTH.Name = "txtBoxDKDiemTH";
+            this.txtBoxDKDiemTH.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDKDiemTH.TabIndex = 48;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label31.Location = new System.Drawing.Point(857, 325);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(61, 16);
+            this.label31.TabIndex = 47;
+            this.label31.Text = "Điểm TH";
+            // 
+            // txtBoxDKMaCT
+            // 
+            this.txtBoxDKMaCT.Enabled = false;
+            this.txtBoxDKMaCT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDKMaCT.Location = new System.Drawing.Point(878, 294);
+            this.txtBoxDKMaCT.Name = "txtBoxDKMaCT";
+            this.txtBoxDKMaCT.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDKMaCT.TabIndex = 46;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label32.Location = new System.Drawing.Point(857, 272);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(47, 16);
+            this.label32.TabIndex = 45;
+            this.label32.Text = "Mã CT";
+            // 
+            // txtBoxDKNam
+            // 
+            this.txtBoxDKNam.Enabled = false;
+            this.txtBoxDKNam.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDKNam.Location = new System.Drawing.Point(878, 241);
+            this.txtBoxDKNam.Name = "txtBoxDKNam";
+            this.txtBoxDKNam.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDKNam.TabIndex = 44;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label33.Location = new System.Drawing.Point(857, 219);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(36, 16);
+            this.label33.TabIndex = 43;
+            this.label33.Text = "Năm";
+            // 
+            // txtBoxDKHK
+            // 
+            this.txtBoxDKHK.Enabled = false;
+            this.txtBoxDKHK.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDKHK.Location = new System.Drawing.Point(878, 184);
+            this.txtBoxDKHK.Name = "txtBoxDKHK";
+            this.txtBoxDKHK.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDKHK.TabIndex = 42;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label21.Location = new System.Drawing.Point(857, 162);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(46, 16);
+            this.label21.TabIndex = 41;
+            this.label21.Text = "Học kì";
+            // 
+            // txtBoxDKMaHP
+            // 
+            this.txtBoxDKMaHP.Enabled = false;
+            this.txtBoxDKMaHP.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDKMaHP.Location = new System.Drawing.Point(878, 131);
+            this.txtBoxDKMaHP.Name = "txtBoxDKMaHP";
+            this.txtBoxDKMaHP.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDKMaHP.TabIndex = 40;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label22.Location = new System.Drawing.Point(857, 109);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(48, 16);
+            this.label22.TabIndex = 39;
+            this.label22.Text = "Mã HP";
+            // 
+            // txtBoxDKMaGV
+            // 
+            this.txtBoxDKMaGV.Enabled = false;
+            this.txtBoxDKMaGV.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDKMaGV.Location = new System.Drawing.Point(878, 78);
+            this.txtBoxDKMaGV.Name = "txtBoxDKMaGV";
+            this.txtBoxDKMaGV.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDKMaGV.TabIndex = 38;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label23.Location = new System.Drawing.Point(857, 56);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(49, 16);
+            this.label23.TabIndex = 37;
+            this.label23.Text = "Mã GV";
+            // 
+            // txtBoxDKMaSV
+            // 
+            this.txtBoxDKMaSV.Enabled = false;
+            this.txtBoxDKMaSV.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDKMaSV.Location = new System.Drawing.Point(878, 25);
+            this.txtBoxDKMaSV.Name = "txtBoxDKMaSV";
+            this.txtBoxDKMaSV.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDKMaSV.TabIndex = 36;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label24.Location = new System.Drawing.Point(857, 3);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(87, 16);
+            this.label24.TabIndex = 35;
+            this.label24.Text = "Mã sinh viên";
+            // 
+            // dataGridViewDangki
+            // 
+            this.dataGridViewDangki.AllowUserToAddRows = false;
+            this.dataGridViewDangki.AllowUserToDeleteRows = false;
+            this.dataGridViewDangki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDangki.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewDangki.MultiSelect = false;
+            this.dataGridViewDangki.Name = "dataGridViewDangki";
+            this.dataGridViewDangki.ReadOnly = true;
+            this.dataGridViewDangki.RowHeadersWidth = 51;
+            this.dataGridViewDangki.RowTemplate.Height = 24;
+            this.dataGridViewDangki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewDangki.Size = new System.Drawing.Size(852, 597);
+            this.dataGridViewDangki.TabIndex = 34;
+            this.dataGridViewDangki.SelectionChanged += new System.EventHandler(this.dataGridViewDangki_SelectionChanged);
             // 
             // FUsersMain
             // 
@@ -2066,6 +2394,9 @@
             this.tabPageKHMo.ResumeLayout(false);
             this.tabPageKHMo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKHMo)).EndInit();
+            this.tabPageDangKy.ResumeLayout(false);
+            this.tabPageDangKy.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDangki)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2236,5 +2567,32 @@
         private System.Windows.Forms.Button btnDVAcptUpdate;
         private System.Windows.Forms.Button btnKHCancel;
         private System.Windows.Forms.Button btnKHAcptAdd;
+        private System.Windows.Forms.TextBox txtBoxDKDiemTK;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox txtBoxDKDiemCK;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox txtBoxDKDiemQT;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox txtBoxDKDiemTH;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox txtBoxDKMaCT;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox txtBoxDKNam;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox txtBoxDKHK;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtBoxDKMaHP;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtBoxDKMaGV;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtBoxDKMaSV;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.DataGridView dataGridViewDangki;
+        private System.Windows.Forms.Button btnDKDelete;
+        private System.Windows.Forms.Button btnDKCancel;
+        private System.Windows.Forms.Button btnDKAcptAdd;
+        private System.Windows.Forms.Button btnDKAdd;
+        private System.Windows.Forms.Button btnDKUpdate;
+        private System.Windows.Forms.Button btnDKAcptUpdate;
     }
 }

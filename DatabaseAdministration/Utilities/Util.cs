@@ -22,7 +22,7 @@ namespace DatabaseAdministration.Utilities
         // kiểm tra kí tự đặc biệt
         public static bool hasSpecialCharacters(List<TextBox> textBoxes)
         {
-            string pattern = @"[~`!@#$%^&*()_\-+={}[\]|\\:;""'<>,.?/]";
+            string pattern = @"[~`!@#$%^&*()_\-+={}[\]|\\:;'<>,?/]";
             Regex regex = new Regex(pattern);
 
             foreach (TextBox textbox in textBoxes)

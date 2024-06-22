@@ -21,6 +21,7 @@ namespace DatabaseAdministration
         private DateTime tempdate = DateTime.MinValue;
         private PhanCong tempPc = null;
         private KHMo tempKH = null;
+        private DangKy tempDK = null;
         private string tempstring = string.Empty;
 
         public FUsersMain(int role)
@@ -38,6 +39,10 @@ namespace DatabaseAdministration
 
                     loadTTCNSV();
                     loadDataGridViewKHMoSV();
+                    loadDataGridViewDangki();
+
+                    btnDKAdd.Visible = true;
+                    btnDKDelete.Visible = true;
 
                     break;
                 case 2: // NVCB
@@ -50,6 +55,8 @@ namespace DatabaseAdministration
                     loadDataGridViewTBSinhVien();
                     loadDataGridViewDonVi();
                     loadDataGridViewKHMo();
+
+
                     break;
                 case 3: // GIAOVU
                     tabPageTTSinhVien.Parent = null;
@@ -60,6 +67,7 @@ namespace DatabaseAdministration
                     loaddataGridViewPhanCong();
                     loadDataGridViewDonVi();
                     loadDataGridViewKHMo();
+                    loadDataGridViewDangki();
 
                     btnUpdateSinhVien.Visible = true;
                     btnAddSV.Visible = true;
@@ -72,6 +80,9 @@ namespace DatabaseAdministration
                     btnKHAdd.Visible = true;
                     btnKHUpdate.Visible = true;
 
+                    btnDKAdd.Visible = true;
+                    btnDKDelete.Visible = true;
+
                     break;
                 case 4: // GV
                     tabPageTTSinhVien.Parent = null;
@@ -82,6 +93,9 @@ namespace DatabaseAdministration
                     loaddataGridViewPhanCong();
                     loadDataGridViewDonVi();
                     loadDataGridViewKHMo();
+                    loadDataGridViewDangki();
+
+                    btnDKUpdate.Visible = true;
 
                     break;
                 case 5: // TRGDV
@@ -93,10 +107,13 @@ namespace DatabaseAdministration
                     loaddataGridViewPhanCong();
                     loadDataGridViewDonVi();
                     loadDataGridViewKHMo();
+                    loadDataGridViewDangki();
 
                     btnPCAdd.Enabled = true;
                     btnPCDelete.Enabled = true;
                     btnPCUpdate.Enabled = true;
+
+                    btnDKUpdate.Visible = true;
 
                     break;
                 case 6: // TRGKHOA
@@ -108,10 +125,13 @@ namespace DatabaseAdministration
                     loaddataGridViewPhanCong();
                     loadDataGridViewDonVi();
                     loadDataGridViewKHMo();
+                    loadDataGridViewDangki();
 
                     btnPCAdd.Enabled = true;
                     btnPCDelete.Enabled = true;
                     btnPCUpdate.Enabled = true;
+
+                    btnDKUpdate.Visible = true;
 
                     break;
             }
@@ -166,6 +186,15 @@ namespace DatabaseAdministration
                     dataGridViewKHMo.Focus();
                     dataGridViewKHMo.Rows[0].Selected = true;
                     dataGridViewKHMo_SelectionChanged(sender, null);
+                }
+            }
+            else if (selectedTab == tabPageDangKy)
+            {
+                if (dataGridViewDangki.Rows.Count > 0)
+                {
+                    dataGridViewDangki.Focus();
+                    dataGridViewDangki.Rows[0].Selected = true;
+                    dataGridViewDangki_SelectionChanged(sender, null);
                 }
             }
             
@@ -1461,6 +1490,268 @@ namespace DatabaseAdministration
 
             btnKHUpdate.Visible = true;
             btnKHAdd.Visible = true;
+        }
+        // hàm xử lí datagridview và xử lí sự kiện nút tab đăng ký
+        private void loadDataGridViewDangki()
+        {
+            dataGridViewDangki.DataSource = DangKy.getDataTableDangKi();
+            if (dataGridViewDangki.Rows.Count > 0)
+            {
+                dataGridViewDangki.ClearSelection();
+                dataGridViewDangki.Sort(dataGridViewDangki.Columns["MAHP"], ListSortDirection.Ascending);
+                dataGridViewDangki.Rows[0].Selected = true;
+            }
+        }
+        private void dataGridViewDangki_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!dataGridViewDangki.Focused) { return; }
+            if (dataGridViewDangki.Rows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewDangki.SelectedRows[0];
+                if (selectedRow != null)
+                {
+                    txtBoxDKMaSV.Text = selectedRow.Cells["MASV"].Value.ToString();
+                    txtBoxDKMaGV.Text = selectedRow.Cells["MAGV"].Value.ToString();
+                    txtBoxDKMaHP.Text = selectedRow.Cells["MAHP"].Value.ToString();
+                    txtBoxDKHK.Text = selectedRow.Cells["HK"].Value.ToString();
+                    txtBoxDKNam.Text = selectedRow.Cells["NAM"].Value.ToString();
+                    txtBoxDKMaCT.Text = selectedRow.Cells["MACT"].Value.ToString();
+                    txtBoxDKDiemTH.Text = selectedRow.Cells["DIEMTH"].Value.ToString();
+                    txtBoxDKDiemQT.Text = selectedRow.Cells["DIEMQT"].Value.ToString();
+                    txtBoxDKDiemCK.Text = selectedRow.Cells["DIEMCK"].Value.ToString();
+                    txtBoxDKDiemTK.Text = selectedRow.Cells["DIEMTK"].Value.ToString();
+                }
+            }
+        }
+        private void btnDKUpdate_Click(object sender, EventArgs e)
+        {
+            dataGridViewDangki.Enabled = false;
+            txtBoxDKDiemTH.Enabled = true;
+            txtBoxDKDiemQT.Enabled = true;
+            txtBoxDKDiemCK.Enabled = true;
+            txtBoxDKDiemTK.Enabled = true;
+
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxDKMaSV, txtBoxDKMaGV, txtBoxDKMaHP, txtBoxDKHK,
+                txtBoxDKNam, txtBoxDKMaCT, txtBoxDKDiemTH, txtBoxDKDiemQT, txtBoxDKDiemCK, txtBoxDKDiemTK});
+
+
+            btnDKAcptUpdate.Visible = true;
+            btnDKCancel.Visible = true;
+
+            btnDKUpdate.Visible = false;
+            btnDKAdd.Visible = false;
+            btnDKDelete.Visible = false;
+        }
+        private void btnDKAdd_Click(object sender, EventArgs e)
+        {
+            dataGridViewDangki.Enabled = false;
+
+            txtBoxDKMaGV.Enabled = true;
+            txtBoxDKMaHP.Enabled = true;
+            txtBoxDKHK.Enabled = true;
+            txtBoxDKNam.Enabled = true;
+            txtBoxDKMaCT.Enabled = true;
+
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxDKMaSV, txtBoxDKMaGV, txtBoxDKMaHP, txtBoxDKHK,
+                txtBoxDKNam, txtBoxDKMaCT, txtBoxDKDiemTH, txtBoxDKDiemQT, txtBoxDKDiemCK, txtBoxDKDiemTK});
+
+            txtBoxDKMaSV.Text = SinhVien.getCurrentSV().maSV;
+            txtBoxDKMaGV.Text = "";
+            txtBoxDKMaHP.Text = "";
+            txtBoxDKHK.Text = "";
+            txtBoxDKNam.Text = "";
+            txtBoxDKMaCT.Text = ""; 
+            txtBoxDKDiemTH.Text = "";
+            txtBoxDKDiemQT.Text = "";
+            txtBoxDKDiemCK.Text = "";
+            txtBoxDKDiemTK.Text = "";
+
+            btnDKAcptAdd.Visible = true;
+            btnDKCancel.Visible = true;
+
+            btnDKUpdate.Visible = false;
+            btnDKAdd.Visible = false;
+            btnDKDelete.Visible = false;
+        }
+        private void btnDKDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"Xóa Đăng ký đã chọn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                int res = DangKy.deleteDangKy(new DangKy(txtBoxDKMaSV.Text, txtBoxDKMaGV.Text, txtBoxDKMaHP.Text, txtBoxDKHK.Text, txtBoxDKMaCT.Text,
+                    int.Parse(txtBoxDKNam.Text), double.Parse(txtBoxDKDiemTH.Text), double.Parse(txtBoxDKDiemQT.Text), double.Parse(txtBoxDKDiemCK.Text),
+                    double.Parse(txtBoxDKDiemTK.Text)));
+                if (res == 0)
+                {
+                    MessageBox.Show("Deleted.");
+                    loadDataGridViewDangki();
+                }
+                else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+                {
+                    MessageBox.Show("Cannot delete this row.");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong.");
+                }
+            }
+        }
+        private void btnDKAcptUpdate_Click(object sender, EventArgs e)
+        {
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxDKDiemTH, txtBoxDKDiemQT, txtBoxDKDiemCK, txtBoxDKDiemTK }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+            dataGridViewDangki.Enabled = true;
+            txtBoxDKDiemTH.Enabled = false;
+            txtBoxDKDiemQT.Enabled = false;
+            txtBoxDKDiemCK.Enabled = false;
+            txtBoxDKDiemTK.Enabled = false;
+
+            int res = DangKy.updateDangKy(
+                new DangKy(txtBoxDKMaSV.Text, txtBoxDKMaGV.Text, txtBoxDKMaHP.Text, txtBoxDKHK.Text, txtBoxDKMaCT.Text,
+                int.Parse(txtBoxDKNam.Text), double.Parse(txtBoxDKDiemTH.Text), double.Parse(txtBoxDKDiemQT.Text), double.Parse(txtBoxDKDiemCK.Text),
+                double.Parse(txtBoxDKDiemTK.Text)
+                ));
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loadDataGridViewDangki();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxDKMaSV, txtBoxDKMaGV, txtBoxDKMaHP, txtBoxDKHK,
+                txtBoxDKNam, txtBoxDKMaCT, txtBoxDKDiemTH, txtBoxDKDiemQT, txtBoxDKDiemCK, txtBoxDKDiemTK });
+            }
+            else
+            {
+                tempVal.Clear();
+            }
+
+            btnDKAcptUpdate.Visible = false;
+            btnDKCancel.Visible = false;
+
+            btnDKUpdate.Visible = true;
+        }
+        private void btnDKAcptAdd_Click(object sender, EventArgs e)
+        {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxDKMaSV, txtBoxDKMaGV, txtBoxDKMaHP, txtBoxDKHK,
+                txtBoxDKNam, txtBoxDKMaCT }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxDKMaSV, txtBoxDKMaGV, txtBoxDKMaHP, txtBoxDKHK,
+                txtBoxDKNam, txtBoxDKMaCT }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
+            dataGridViewDangki.Enabled = true;
+
+            txtBoxDKMaGV.Enabled = false;
+            txtBoxDKMaHP.Enabled = false;
+            txtBoxDKHK.Enabled = false;
+            txtBoxDKNam.Enabled = false;
+            txtBoxDKMaCT.Enabled = false;
+
+            int res = DangKy.insertDangKy(
+                new DangKy(txtBoxDKMaSV.Text, txtBoxDKMaGV.Text, txtBoxDKMaHP.Text, txtBoxDKHK.Text, txtBoxDKMaCT.Text, int.Parse(txtBoxDKNam.Text),
+                    0, 0, 0, 0
+                ));
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loadDataGridViewDangki();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else if (res == DatabaseProvider.POLICY_WITH_CHECK_OPTION_VIOLATION)
+            {
+                MessageBox.Show("POLICY_WITH_CHECK_OPTION_VIOLATION.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxDKMaSV, txtBoxDKMaGV, txtBoxDKMaHP, txtBoxDKHK,
+                txtBoxDKNam, txtBoxDKMaCT, txtBoxDKDiemTH, txtBoxDKDiemQT, txtBoxDKDiemCK, txtBoxDKDiemTK });
+            }
+            else
+            {
+                tempVal.Clear();
+            }
+
+            btnDKAcptAdd.Visible = false;
+            btnDKCancel.Visible = false;
+
+            btnDKAdd.Visible = true;
+            btnDKDelete.Visible = true;
+        }
+
+        private void btnDKCancel_Click(object sender, EventArgs e)
+        {
+            dataGridViewDangki.Enabled = true;
+            txtBoxDKMaSV.Enabled = false;
+            txtBoxDKMaGV.Enabled = false;
+            txtBoxDKMaHP.Enabled = false;
+            txtBoxDKHK.Enabled = false;
+            txtBoxDKNam.Enabled = false;
+            txtBoxDKMaCT.Enabled = false;
+            txtBoxDKDiemTH.Enabled = false;
+            txtBoxDKDiemQT.Enabled = false;
+            txtBoxDKDiemCK.Enabled = false;
+            txtBoxDKDiemTK.Enabled = false;
+
+            Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxDKMaSV, txtBoxDKMaGV, txtBoxDKMaHP, txtBoxDKHK,
+                txtBoxDKNam, txtBoxDKMaCT, txtBoxDKDiemTH, txtBoxDKDiemQT, txtBoxDKDiemCK, txtBoxDKDiemTK});
+
+            tempVal.Clear();
+            tempDK = null;
+
+            btnDKAcptAdd.Visible = false;
+            btnDKAcptUpdate.Visible = false;
+            btnDKCancel.Visible = false;
+
+            if (role == 4 || role == 5 || role == 6)
+            {
+                btnDKUpdate.Visible = true;
+            }
+            else
+            {
+                btnDKAdd.Visible = true;
+                btnDKDelete.Visible = true;
+            }
         }
     }
 }
