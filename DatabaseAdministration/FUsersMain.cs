@@ -20,7 +20,8 @@ namespace DatabaseAdministration
         private List<string> tempVal = new List<string>();
         private DateTime tempdate = DateTime.MinValue;
         private PhanCong tempPc = null;
-        string tempstring = string.Empty;
+        private KHMo tempKH = null;
+        private string tempstring = string.Empty;
 
         public FUsersMain(int role)
         {
@@ -36,6 +37,8 @@ namespace DatabaseAdministration
                     tabPagePhanCong.Parent = null;
 
                     loadTTCNSV();
+                    loadDataGridViewKHMoSV();
+
                     break;
                 case 2: // NVCB
                     tabPageTTSinhVien.Parent = null;
@@ -46,7 +49,7 @@ namespace DatabaseAdministration
                     loadTTCN();
                     loadDataGridViewTBSinhVien();
                     loadDataGridViewDonVi();
-
+                    loadDataGridViewKHMo();
                     break;
                 case 3: // GIAOVU
                     tabPageTTSinhVien.Parent = null;
@@ -56,6 +59,7 @@ namespace DatabaseAdministration
                     loadDataGridViewTBSinhVien();
                     loaddataGridViewPhanCong();
                     loadDataGridViewDonVi();
+                    loadDataGridViewKHMo();
 
                     btnUpdateSinhVien.Visible = true;
                     btnAddSV.Visible = true;
@@ -64,6 +68,9 @@ namespace DatabaseAdministration
 
                     btnDVAdd.Visible = true;
                     btnDVUpdate.Visible = true;
+
+                    btnKHAdd.Visible = true;
+                    btnKHUpdate.Visible = true;
 
                     break;
                 case 4: // GV
@@ -74,6 +81,7 @@ namespace DatabaseAdministration
                     loadDataGridViewTBSinhVien();
                     loaddataGridViewPhanCong();
                     loadDataGridViewDonVi();
+                    loadDataGridViewKHMo();
 
                     break;
                 case 5: // TRGDV
@@ -84,6 +92,7 @@ namespace DatabaseAdministration
                     loadDataGridViewTBSinhVien();
                     loaddataGridViewPhanCong();
                     loadDataGridViewDonVi();
+                    loadDataGridViewKHMo();
 
                     btnPCAdd.Enabled = true;
                     btnPCDelete.Enabled = true;
@@ -98,6 +107,7 @@ namespace DatabaseAdministration
                     loadDataGridViewNhanSu();
                     loaddataGridViewPhanCong();
                     loadDataGridViewDonVi();
+                    loadDataGridViewKHMo();
 
                     btnPCAdd.Enabled = true;
                     btnPCDelete.Enabled = true;
@@ -147,6 +157,15 @@ namespace DatabaseAdministration
                     dataGridViewDonVi.Focus();
                     dataGridViewDonVi.Rows[0].Selected = true;
                     dataGridViewDonVi_SelectionChanged(sender, null);
+                }
+            }
+            else if (selectedTab == tabPageKHMo)
+            {
+                if (dataGridViewKHMo.Rows.Count > 0)
+                {
+                    dataGridViewKHMo.Focus();
+                    dataGridViewKHMo.Rows[0].Selected = true;
+                    dataGridViewKHMo_SelectionChanged(sender, null);
                 }
             }
             
@@ -210,8 +229,11 @@ namespace DatabaseAdministration
         private void loadDataGridViewTBSinhVien()
         {
             dataGridViewTBSinhVien.DataSource = SinhVien.getDataTableSinhVien();
-            dataGridViewTBSinhVien.ClearSelection();
-            dataGridViewTBSinhVien.Sort(dataGridViewTBSinhVien.Columns["MASV"], ListSortDirection.Ascending);
+            if (dataGridViewTBSinhVien.Rows.Count > 0 )
+            {
+                dataGridViewTBSinhVien.ClearSelection();
+                dataGridViewTBSinhVien.Sort(dataGridViewTBSinhVien.Columns["MASV"], ListSortDirection.Ascending);
+            }
         }
         private void dataGridViewTBSinhVien_SelectionChanged(object sender, EventArgs e)
         {
@@ -519,9 +541,12 @@ namespace DatabaseAdministration
         private void loadDataGridViewNhanSu()
         {
             dataGridViewNhanSu.DataSource = NhanSu.getDataTableNhanSu();
-            dataGridViewNhanSu.ClearSelection();
-            dataGridViewNhanSu.Sort(dataGridViewNhanSu.Columns["MANV"], ListSortDirection.Ascending);
-            dataGridViewNhanSu.Rows[0].Selected = true;
+            if (dataGridViewNhanSu.Rows.Count > 0 )
+            {
+                dataGridViewNhanSu.ClearSelection();
+                dataGridViewNhanSu.Sort(dataGridViewNhanSu.Columns["MANV"], ListSortDirection.Ascending);
+                dataGridViewNhanSu.Rows[0].Selected = true;
+            }
         }
         private void dataGridViewNhanSu_SelectionChanged(object sender, EventArgs e)
         {
@@ -786,9 +811,12 @@ namespace DatabaseAdministration
         private void loaddataGridViewPhanCong()
         {
             dataGridViewPhanCong.DataSource = PhanCong.getDataTablePhanCong();
-            dataGridViewPhanCong.ClearSelection();
-            dataGridViewPhanCong.Sort(dataGridViewPhanCong.Columns["MAHP"], ListSortDirection.Ascending);
-            if(dataGridViewPhanCong.Rows.Count > 0) dataGridViewPhanCong.Rows[0].Selected = true;
+            if(dataGridViewPhanCong.Rows.Count > 0)
+            {
+                dataGridViewPhanCong.ClearSelection();
+                dataGridViewPhanCong.Sort(dataGridViewPhanCong.Columns["MAHP"], ListSortDirection.Ascending);
+                dataGridViewPhanCong.Rows[0].Selected = true;
+            }
         }
         private void dataGridViewPhanCong_SelectionChanged(object sender, EventArgs e)
         {
@@ -1034,9 +1062,12 @@ namespace DatabaseAdministration
         private void loadDataGridViewDonVi()
         {
             dataGridViewDonVi.DataSource = DonVi.getDataTableDonVi();
-            dataGridViewDonVi.ClearSelection();
-            dataGridViewDonVi.Sort(dataGridViewDonVi.Columns["MADV"], ListSortDirection.Ascending);
-            if (dataGridViewDonVi.Rows.Count > 0) dataGridViewDonVi.Rows[0].Selected = true;
+            if (dataGridViewDonVi.Rows.Count > 0)
+            {
+                dataGridViewDonVi.ClearSelection();
+                dataGridViewDonVi.Sort(dataGridViewDonVi.Columns["MADV"], ListSortDirection.Ascending);
+                dataGridViewDonVi.Rows[0].Selected = true;
+            }
         }
         private void dataGridViewDonVi_SelectionChanged(object sender, EventArgs e)
         {
@@ -1145,7 +1176,6 @@ namespace DatabaseAdministration
             btnDVUpdate.Visible = true;
             btnDVAdd.Visible = true;
         }
-
         private void btnDVAcptAdd_Click(object sender, EventArgs e)
         {
             if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxDVMaDV, txtBoxDVTenDV, txtBoxDVTrgDV }))
@@ -1204,7 +1234,6 @@ namespace DatabaseAdministration
             btnDVUpdate.Visible = true;
             btnDVAdd.Visible = true;
         }
-
         private void btnDVCancel_Click(object sender, EventArgs e)
         {
             dataGridViewDonVi.Enabled = true;
@@ -1214,6 +1243,7 @@ namespace DatabaseAdministration
 
             Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxDVMaDV, txtBoxDVTenDV, txtBoxDVTrgDV });
             tempVal.Clear();
+            tempstring = string.Empty;
 
             btnDVAcptUpdate.Visible = false;
             btnDVAcptAdd .Visible = false;
@@ -1221,6 +1251,216 @@ namespace DatabaseAdministration
 
             btnDVUpdate.Visible = true;
             btnDVAdd.Visible = true;
+        }
+        // hàm xử lí datagridview và xử lí sự kiện nút tab khóa học mở
+        private void loadDataGridViewKHMo()
+        {
+            dataGridViewKHMo.DataSource = KHMo.getDataTableKHMo();
+            if (dataGridViewKHMo.Rows.Count > 0)
+            {
+                dataGridViewKHMo.ClearSelection();
+                dataGridViewKHMo.Sort(dataGridViewKHMo.Columns["MAHP"], ListSortDirection.Ascending);
+                dataGridViewKHMo.Rows[0].Selected = true;
+            }
+        }
+        private void loadDataGridViewKHMoSV()
+        {
+            dataGridViewKHMo.DataSource = KHMo.getDataTableKHMoSV();
+            if (dataGridViewKHMo.Rows.Count > 0)
+            {
+                dataGridViewKHMo.ClearSelection();
+                dataGridViewKHMo.Sort(dataGridViewKHMo.Columns["MAHP"], ListSortDirection.Ascending);
+                dataGridViewKHMo.Rows[0].Selected = true;
+            }
+        }
+        private void dataGridViewKHMo_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!dataGridViewKHMo.Focused) { return; }
+            if (dataGridViewKHMo.Rows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewKHMo.SelectedRows[0];
+                if (selectedRow != null)
+                {
+                    txtBoxKHHP.Text = selectedRow.Cells["MAHP"].Value.ToString();
+                    txtBoxKHHK.Text = selectedRow.Cells["HK"].Value.ToString();
+                    txtBoxKHNam.Text = selectedRow.Cells["NAM"].Value.ToString();
+                    txtBoxKHMaCT.Text = selectedRow.Cells["MACT"].Value.ToString();
+                }
+            }
+        }
+        private void btnKHUpdate_Click(object sender, EventArgs e)
+        {
+            dataGridViewKHMo.Enabled = false;
+            txtBoxKHHP.Enabled = true;
+            txtBoxKHHK.Enabled = true;
+            txtBoxKHNam.Enabled = true;
+            txtBoxKHMaCT.Enabled = true;
+
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxKHHP, txtBoxKHHK, txtBoxKHNam, txtBoxKHMaCT });
+            tempKH = new KHMo(txtBoxKHHP.Text, txtBoxKHHK.Text, txtBoxKHMaCT.Text, int.Parse(txtBoxKHNam.Text));
+
+            btnKHAcptUpdate.Visible = true;
+            btnKHCancel.Visible = true;
+
+            btnKHUpdate.Visible = false;
+            btnKHAdd.Visible = false;
+        }
+        private void btnKHAdd_Click(object sender, EventArgs e)
+        {
+            dataGridViewKHMo.Enabled = false;
+            txtBoxKHHP.Enabled = true;
+            txtBoxKHHK.Enabled = true;
+            txtBoxKHNam.Enabled = true;
+            txtBoxKHMaCT.Enabled = true;
+
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxKHHP, txtBoxKHHK, txtBoxKHNam, txtBoxKHMaCT });
+
+            txtBoxKHHP.Text = "";
+            txtBoxKHHK.Text = "";
+            txtBoxKHNam.Text = "";
+            txtBoxKHMaCT.Text = "";
+
+            btnKHAcptAdd.Visible = true;
+            btnKHCancel.Visible = true;
+
+            btnKHUpdate.Visible = false;
+            btnKHAdd.Visible = false;
+        }
+        private void btnKHAcptAdd_Click(object sender, EventArgs e)
+        {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxKHHP, txtBoxKHHK, txtBoxKHNam, txtBoxKHMaCT }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxKHHP, txtBoxKHHK, txtBoxKHNam, txtBoxKHMaCT }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
+            dataGridViewKHMo.Enabled = true;
+            txtBoxKHHP.Enabled = false;
+            txtBoxKHHK.Enabled = false;
+            txtBoxKHNam.Enabled = false;
+            txtBoxKHMaCT.Enabled = false;
+
+            int res = KHMo.insertKHMo(new KHMo(txtBoxKHHP.Text, txtBoxKHHK.Text, txtBoxKHMaCT.Text, int.Parse(txtBoxKHNam.Text)));
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loadDataGridViewKHMo();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxKHHP, txtBoxKHHK, txtBoxKHNam, txtBoxKHMaCT });
+            }
+            else
+            {
+                tempVal.Clear();
+                tempstring = string.Empty;
+            }
+
+            btnKHAcptAdd.Visible = false;
+            btnKHCancel.Visible = false;
+
+            btnKHUpdate.Visible = true;
+            btnKHAdd.Visible = true;
+        }
+        private void btnKHAcptUpdate_Click(object sender, EventArgs e)
+        {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxKHHP, txtBoxKHHK, txtBoxKHNam, txtBoxKHMaCT }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxKHHP, txtBoxKHHK, txtBoxKHNam, txtBoxKHMaCT }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
+            dataGridViewKHMo.Enabled = true;
+            txtBoxKHHP.Enabled = false;
+            txtBoxKHHK.Enabled = false;
+            txtBoxKHNam.Enabled = false;
+            txtBoxKHMaCT.Enabled = false;
+
+            int res = KHMo.updateKHMo(new KHMo(txtBoxKHHP.Text, txtBoxKHHK.Text, txtBoxKHMaCT.Text, int.Parse(txtBoxKHNam.Text)), tempKH);
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loadDataGridViewKHMo();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxKHHP, txtBoxKHHK, txtBoxKHNam, txtBoxKHMaCT });
+            }
+            else
+            {
+                tempVal.Clear();
+                tempKH = null;
+            }
+
+            btnKHAcptUpdate.Visible = false;
+            btnKHCancel.Visible = false;
+
+            btnKHUpdate.Visible = true;
+            btnKHAdd.Visible = true;
+        }
+        private void btnKHCancel_Click(object sender, EventArgs e)
+        {
+            dataGridViewKHMo.Enabled = true;
+            txtBoxKHHP.Enabled = false;
+            txtBoxKHHK.Enabled = false;
+            txtBoxKHNam.Enabled = false;
+            txtBoxKHMaCT.Enabled = false;
+
+            Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxKHHP, txtBoxKHHK, txtBoxKHNam, txtBoxKHMaCT });
+            tempKH = null;
+
+            btnKHAcptUpdate.Visible = false;
+            btnKHAcptAdd.Visible = false;
+            btnKHCancel.Visible = false;
+
+            btnKHUpdate.Visible = true;
+            btnKHAdd.Visible = true;
         }
     }
 }

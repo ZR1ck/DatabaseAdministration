@@ -445,5 +445,27 @@ namespace DatabaseAdministration.DataProvider
             string query = $"INSERT INTO QLDL.DONVI VALUES ('{dv.maDV}', '{dv.tenDV}', '{dv.trgDV}')";
             return ExecuteQueryUpdated(query);
         }
+        public DataTable getDataTableKHMo()
+        {
+            string query = "SELECT * FROM QLDL.KHMO";
+            return ExecuteQuery(query);
+        }
+        public DataTable getDataTableKHMoSV()
+        {
+            string query = "SELECT * FROM QLDL.V_SV_KHMO";
+            return ExecuteQuery(query);
+        }
+        public int updateKHMo(KHMo kh, KHMo old)
+        {
+            string query = $"UPDATE QLDL.KHMO SET " +
+                $"MAHP = '{kh.maHP}', HK = '{kh.HK}', NAM = {kh.nam}, MACT = '{kh.maCT}' " +
+                $"WHERE MAHP = '{old.maHP}' AND HK = '{old.HK}' AND NAM = {old.nam} AND MACT = '{old.maCT}' ";
+            return ExecuteQueryUpdated(query);
+        }
+        public int insertKHMo(KHMo kh)
+        {
+            string query = $"INSERT INTO QLDL.KHMO VALUES ('{kh.maHP}','{kh.HK}', {kh.nam}, '{kh.maCT}') ";
+            return ExecuteQueryUpdated(query);
+        }
     }
 }

@@ -174,22 +174,24 @@
             this.label50 = new System.Windows.Forms.Label();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.tabPageKHMo = new System.Windows.Forms.TabPage();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.textBox47 = new System.Windows.Forms.TextBox();
+            this.btnKHAdd = new System.Windows.Forms.Button();
+            this.btnKHUpdate = new System.Windows.Forms.Button();
+            this.btnKHAcptUpdate = new System.Windows.Forms.Button();
+            this.txtBoxKHMaCT = new System.Windows.Forms.TextBox();
             this.label57 = new System.Windows.Forms.Label();
-            this.textBox48 = new System.Windows.Forms.TextBox();
+            this.txtBoxKHNam = new System.Windows.Forms.TextBox();
             this.label58 = new System.Windows.Forms.Label();
-            this.textBox49 = new System.Windows.Forms.TextBox();
+            this.txtBoxKHHK = new System.Windows.Forms.TextBox();
             this.label59 = new System.Windows.Forms.Label();
-            this.textBox50 = new System.Windows.Forms.TextBox();
+            this.txtBoxKHHP = new System.Windows.Forms.TextBox();
             this.label60 = new System.Windows.Forms.Label();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewKHMo = new System.Windows.Forms.DataGridView();
             this.tabPageDangKy = new System.Windows.Forms.TabPage();
             this.btnDVAcptUpdate = new System.Windows.Forms.Button();
             this.btnDVAcptAdd = new System.Windows.Forms.Button();
             this.btnDVCancel = new System.Windows.Forms.Button();
+            this.btnKHAcptAdd = new System.Windows.Forms.Button();
+            this.btnKHCancel = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageTTNhanSu.SuspendLayout();
             this.tabPageTTSinhVien.SuspendLayout();
@@ -204,7 +206,7 @@
             this.tabPageHocPhan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.tabPageKHMo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKHMo)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1481,6 +1483,7 @@
             // 
             this.dataGridViewPhanCong.AllowUserToAddRows = false;
             this.dataGridViewPhanCong.AllowUserToDeleteRows = false;
+            this.dataGridViewPhanCong.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewPhanCong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPhanCong.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewPhanCong.MultiSelect = false;
@@ -1598,6 +1601,7 @@
             // 
             this.dataGridViewDonVi.AllowUserToAddRows = false;
             this.dataGridViewDonVi.AllowUserToDeleteRows = false;
+            this.dataGridViewDonVi.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewDonVi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDonVi.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewDonVi.MultiSelect = false;
@@ -1815,18 +1819,20 @@
             // 
             // tabPageKHMo
             // 
-            this.tabPageKHMo.Controls.Add(this.button13);
-            this.tabPageKHMo.Controls.Add(this.button14);
-            this.tabPageKHMo.Controls.Add(this.button15);
-            this.tabPageKHMo.Controls.Add(this.textBox47);
+            this.tabPageKHMo.Controls.Add(this.btnKHCancel);
+            this.tabPageKHMo.Controls.Add(this.btnKHAcptAdd);
+            this.tabPageKHMo.Controls.Add(this.btnKHAdd);
+            this.tabPageKHMo.Controls.Add(this.btnKHUpdate);
+            this.tabPageKHMo.Controls.Add(this.btnKHAcptUpdate);
+            this.tabPageKHMo.Controls.Add(this.txtBoxKHMaCT);
             this.tabPageKHMo.Controls.Add(this.label57);
-            this.tabPageKHMo.Controls.Add(this.textBox48);
+            this.tabPageKHMo.Controls.Add(this.txtBoxKHNam);
             this.tabPageKHMo.Controls.Add(this.label58);
-            this.tabPageKHMo.Controls.Add(this.textBox49);
+            this.tabPageKHMo.Controls.Add(this.txtBoxKHHK);
             this.tabPageKHMo.Controls.Add(this.label59);
-            this.tabPageKHMo.Controls.Add(this.textBox50);
+            this.tabPageKHMo.Controls.Add(this.txtBoxKHHP);
             this.tabPageKHMo.Controls.Add(this.label60);
-            this.tabPageKHMo.Controls.Add(this.dataGridView5);
+            this.tabPageKHMo.Controls.Add(this.dataGridViewKHMo);
             this.tabPageKHMo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.tabPageKHMo.Location = new System.Drawing.Point(4, 25);
             this.tabPageKHMo.Name = "tabPageKHMo";
@@ -1835,41 +1841,47 @@
             this.tabPageKHMo.Text = "Khóa học mở";
             this.tabPageKHMo.UseVisualStyleBackColor = true;
             // 
-            // button13
+            // btnKHAdd
             // 
-            this.button13.Location = new System.Drawing.Point(1046, 545);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 34);
-            this.button13.TabIndex = 46;
-            this.button13.Text = "Hủy";
-            this.button13.UseVisualStyleBackColor = true;
+            this.btnKHAdd.Location = new System.Drawing.Point(1050, 482);
+            this.btnKHAdd.Name = "btnKHAdd";
+            this.btnKHAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnKHAdd.TabIndex = 46;
+            this.btnKHAdd.Text = "Thêm";
+            this.btnKHAdd.UseVisualStyleBackColor = true;
+            this.btnKHAdd.Visible = false;
+            this.btnKHAdd.Click += new System.EventHandler(this.btnKHAdd_Click);
             // 
-            // button14
+            // btnKHUpdate
             // 
-            this.button14.Location = new System.Drawing.Point(886, 545);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 34);
-            this.button14.TabIndex = 45;
-            this.button14.Text = "Xong";
-            this.button14.UseVisualStyleBackColor = true;
+            this.btnKHUpdate.Location = new System.Drawing.Point(890, 482);
+            this.btnKHUpdate.Name = "btnKHUpdate";
+            this.btnKHUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnKHUpdate.TabIndex = 45;
+            this.btnKHUpdate.Text = "Sửa";
+            this.btnKHUpdate.UseVisualStyleBackColor = true;
+            this.btnKHUpdate.Visible = false;
+            this.btnKHUpdate.Click += new System.EventHandler(this.btnKHUpdate_Click);
             // 
-            // button15
+            // btnKHAcptUpdate
             // 
-            this.button15.Location = new System.Drawing.Point(966, 545);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 34);
-            this.button15.TabIndex = 44;
-            this.button15.Text = "Sửa";
-            this.button15.UseVisualStyleBackColor = true;
+            this.btnKHAcptUpdate.Location = new System.Drawing.Point(890, 482);
+            this.btnKHAcptUpdate.Name = "btnKHAcptUpdate";
+            this.btnKHAcptUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnKHAcptUpdate.TabIndex = 44;
+            this.btnKHAcptUpdate.Text = "Xong";
+            this.btnKHAcptUpdate.UseVisualStyleBackColor = true;
+            this.btnKHAcptUpdate.Visible = false;
+            this.btnKHAcptUpdate.Click += new System.EventHandler(this.btnKHAcptUpdate_Click);
             // 
-            // textBox47
+            // txtBoxKHMaCT
             // 
-            this.textBox47.Enabled = false;
-            this.textBox47.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox47.Location = new System.Drawing.Point(878, 184);
-            this.textBox47.Name = "textBox47";
-            this.textBox47.Size = new System.Drawing.Size(264, 25);
-            this.textBox47.TabIndex = 33;
+            this.txtBoxKHMaCT.Enabled = false;
+            this.txtBoxKHMaCT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxKHMaCT.Location = new System.Drawing.Point(878, 184);
+            this.txtBoxKHMaCT.Name = "txtBoxKHMaCT";
+            this.txtBoxKHMaCT.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxKHMaCT.TabIndex = 33;
             // 
             // label57
             // 
@@ -1881,14 +1893,14 @@
             this.label57.TabIndex = 32;
             this.label57.Text = "Mã chương trình";
             // 
-            // textBox48
+            // txtBoxKHNam
             // 
-            this.textBox48.Enabled = false;
-            this.textBox48.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox48.Location = new System.Drawing.Point(878, 131);
-            this.textBox48.Name = "textBox48";
-            this.textBox48.Size = new System.Drawing.Size(264, 25);
-            this.textBox48.TabIndex = 31;
+            this.txtBoxKHNam.Enabled = false;
+            this.txtBoxKHNam.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxKHNam.Location = new System.Drawing.Point(878, 131);
+            this.txtBoxKHNam.Name = "txtBoxKHNam";
+            this.txtBoxKHNam.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxKHNam.TabIndex = 31;
             // 
             // label58
             // 
@@ -1900,14 +1912,14 @@
             this.label58.TabIndex = 30;
             this.label58.Text = "Năm";
             // 
-            // textBox49
+            // txtBoxKHHK
             // 
-            this.textBox49.Enabled = false;
-            this.textBox49.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox49.Location = new System.Drawing.Point(878, 78);
-            this.textBox49.Name = "textBox49";
-            this.textBox49.Size = new System.Drawing.Size(264, 25);
-            this.textBox49.TabIndex = 29;
+            this.txtBoxKHHK.Enabled = false;
+            this.txtBoxKHHK.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxKHHK.Location = new System.Drawing.Point(878, 78);
+            this.txtBoxKHHK.Name = "txtBoxKHHK";
+            this.txtBoxKHHK.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxKHHK.TabIndex = 29;
             // 
             // label59
             // 
@@ -1919,14 +1931,14 @@
             this.label59.TabIndex = 28;
             this.label59.Text = "Học kì";
             // 
-            // textBox50
+            // txtBoxKHHP
             // 
-            this.textBox50.Enabled = false;
-            this.textBox50.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox50.Location = new System.Drawing.Point(878, 25);
-            this.textBox50.Name = "textBox50";
-            this.textBox50.Size = new System.Drawing.Size(264, 25);
-            this.textBox50.TabIndex = 27;
+            this.txtBoxKHHP.Enabled = false;
+            this.txtBoxKHHP.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxKHHP.Location = new System.Drawing.Point(878, 25);
+            this.txtBoxKHHP.Name = "txtBoxKHHP";
+            this.txtBoxKHHP.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxKHHP.TabIndex = 27;
             // 
             // label60
             // 
@@ -1938,20 +1950,22 @@
             this.label60.TabIndex = 26;
             this.label60.Text = "Mã học phần";
             // 
-            // dataGridView5
+            // dataGridViewKHMo
             // 
-            this.dataGridView5.AllowUserToAddRows = false;
-            this.dataGridView5.AllowUserToDeleteRows = false;
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView5.MultiSelect = false;
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.ReadOnly = true;
-            this.dataGridView5.RowHeadersWidth = 51;
-            this.dataGridView5.RowTemplate.Height = 24;
-            this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView5.Size = new System.Drawing.Size(852, 597);
-            this.dataGridView5.TabIndex = 25;
+            this.dataGridViewKHMo.AllowUserToAddRows = false;
+            this.dataGridViewKHMo.AllowUserToDeleteRows = false;
+            this.dataGridViewKHMo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewKHMo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewKHMo.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewKHMo.MultiSelect = false;
+            this.dataGridViewKHMo.Name = "dataGridViewKHMo";
+            this.dataGridViewKHMo.ReadOnly = true;
+            this.dataGridViewKHMo.RowHeadersWidth = 51;
+            this.dataGridViewKHMo.RowTemplate.Height = 24;
+            this.dataGridViewKHMo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewKHMo.Size = new System.Drawing.Size(852, 597);
+            this.dataGridViewKHMo.TabIndex = 25;
+            this.dataGridViewKHMo.SelectionChanged += new System.EventHandler(this.dataGridViewKHMo_SelectionChanged);
             // 
             // tabPageDangKy
             // 
@@ -1996,6 +2010,28 @@
             this.btnDVCancel.Visible = false;
             this.btnDVCancel.Click += new System.EventHandler(this.btnDVCancel_Click);
             // 
+            // btnKHAcptAdd
+            // 
+            this.btnKHAcptAdd.Location = new System.Drawing.Point(890, 482);
+            this.btnKHAcptAdd.Name = "btnKHAcptAdd";
+            this.btnKHAcptAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnKHAcptAdd.TabIndex = 47;
+            this.btnKHAcptAdd.Text = "Thêm";
+            this.btnKHAcptAdd.UseVisualStyleBackColor = true;
+            this.btnKHAcptAdd.Visible = false;
+            this.btnKHAcptAdd.Click += new System.EventHandler(this.btnKHAcptAdd_Click);
+            // 
+            // btnKHCancel
+            // 
+            this.btnKHCancel.Location = new System.Drawing.Point(1050, 482);
+            this.btnKHCancel.Name = "btnKHCancel";
+            this.btnKHCancel.Size = new System.Drawing.Size(75, 34);
+            this.btnKHCancel.TabIndex = 48;
+            this.btnKHCancel.Text = "Hủy";
+            this.btnKHCancel.UseVisualStyleBackColor = true;
+            this.btnKHCancel.Visible = false;
+            this.btnKHCancel.Click += new System.EventHandler(this.btnKHCancel_Click);
+            // 
             // FUsersMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2029,7 +2065,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.tabPageKHMo.ResumeLayout(false);
             this.tabPageKHMo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKHMo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2134,18 +2170,18 @@
         private System.Windows.Forms.TextBox textBox40;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.DataGridView dataGridView4;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.TextBox textBox47;
+        private System.Windows.Forms.Button btnKHAdd;
+        private System.Windows.Forms.Button btnKHUpdate;
+        private System.Windows.Forms.Button btnKHAcptUpdate;
+        private System.Windows.Forms.TextBox txtBoxKHMaCT;
         private System.Windows.Forms.Label label57;
-        private System.Windows.Forms.TextBox textBox48;
+        private System.Windows.Forms.TextBox txtBoxKHNam;
         private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.TextBox textBox49;
+        private System.Windows.Forms.TextBox txtBoxKHHK;
         private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.TextBox textBox50;
+        private System.Windows.Forms.TextBox txtBoxKHHP;
         private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.DataGridView dataGridViewKHMo;
         private System.Windows.Forms.TabPage tabPageNhanSu;
         private System.Windows.Forms.Button btnNSAdd;
         private System.Windows.Forms.Button btnNSDelete;
@@ -2198,5 +2234,7 @@
         private System.Windows.Forms.Button btnDVCancel;
         private System.Windows.Forms.Button btnDVAcptAdd;
         private System.Windows.Forms.Button btnDVAcptUpdate;
+        private System.Windows.Forms.Button btnKHCancel;
+        private System.Windows.Forms.Button btnKHAcptAdd;
     }
 }
