@@ -50,6 +50,13 @@ namespace DatabaseAdministration
                 }
                 this.Show();
             }
+            else if (connStatus == LoginHelper.PDB)
+            {
+                this.Hide();
+                FPDBOLS fMain = new FPDBOLS();
+                fMain.ShowDialog();
+                this.Show();
+            }
             else if (connStatus == LoginHelper.INVALID_INFO)
             {
                 MessageBox.Show("Invalid username or password.");
@@ -67,6 +74,20 @@ namespace DatabaseAdministration
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void TxtServiceName_Leave(object sender, EventArgs e)
+        {
+            if (!TxtServiceName.Text.Equals("xe"))
+            {
+                comboBoxRole.SelectedIndex = -1;
+                comboBoxRole.Enabled = false;
+            }
+            else
+            {
+                comboBoxRole.SelectedIndex = 0;
+                comboBoxRole.Enabled = true;
+            }
         }
     }
 }

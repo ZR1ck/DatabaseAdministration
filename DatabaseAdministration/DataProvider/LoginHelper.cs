@@ -14,6 +14,7 @@ namespace DatabaseAdministration.DataProvider
         public const int INVALID_INFO = 1;
         public const int INVALID_ROLE = 2;
         public const int ERROR = 3;
+        public const int PDB = 4;
 
         private string connectionString = "";
         private static LoginHelper instance = null;
@@ -62,6 +63,11 @@ namespace DatabaseAdministration.DataProvider
                     }
                     return ERROR;
                 }
+            }
+
+            if (!serviceName.Equals("xe"))
+            {
+                return PDB;
             }
 
             if (role != 0)

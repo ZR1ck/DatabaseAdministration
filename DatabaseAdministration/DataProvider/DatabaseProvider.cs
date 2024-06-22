@@ -522,11 +522,13 @@ namespace DatabaseAdministration.DataProvider
             string query = $"SELECT * FROM QLDL.HOCPHAN";
             return ExecuteQuery(query);
         }
+
         public DataTable getDataTableHocPhanSV()
         {
             string query = $"SELECT * FROM QLDL.V_SV_HOCPHAN";
             return ExecuteQuery(query);
         }
+
         public int updateHocPhan(HocPhan hp, string mahp)
         {
             string query = $"UPDATE QLDL.HOCPHAN " +
@@ -535,10 +537,17 @@ namespace DatabaseAdministration.DataProvider
                 $"WHERE MAHP = '{mahp}'";
             return ExecuteQueryUpdated(query);
         }
+
         public int insertHocPhan(HocPhan hp)
         {
             string query = $"INSERT INTO QLDL.HOCPHAN VALUES ('{hp.maHP}', '{hp.tenHP}', {hp.soTC}, {hp.soTLT}, {hp.soTTH}, {hp.soSVTD}, '{hp.maDV}')";
             return ExecuteQueryUpdated(query);
+        }
+
+        public DataTable getThongBao()
+        {
+            string query = "SELECT * FROM QLDL_OLS.THONGBAO";
+            return ExecuteQuery(query);
         }
     }
 }

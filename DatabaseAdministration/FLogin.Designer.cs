@@ -160,6 +160,7 @@
             this.TxtServiceName.Size = new System.Drawing.Size(213, 25);
             this.TxtServiceName.TabIndex = 2;
             this.TxtServiceName.Text = "xe";
+            this.TxtServiceName.Leave += new System.EventHandler(this.TxtServiceName_Leave);
             // 
             // TxtHostName
             // 

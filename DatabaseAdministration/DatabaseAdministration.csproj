@@ -117,6 +117,7 @@
     <Compile Include="DAO\DAONhanSu.cs" />
     <Compile Include="DAO\DAOPhanCong.cs" />
     <Compile Include="DAO\DAOSinhVien.cs" />
+    <Compile Include="DAO\DAOThongBao.cs" />
     <Compile Include="DataProvider\DatabaseProvider.cs" />
     <Compile Include="DataProvider\LoginHelper.cs" />
     <Compile Include="DTO\DangKy.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="DTO\NhanSu.cs" />
     <Compile Include="DTO\PhanCong.cs" />
     <Compile Include="DTO\SinhVien.cs" />
+    <Compile Include="DTO\ThongBao.cs" />
     <Compile Include="EditUsernameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +170,12 @@
     <Compile Include="FGrantPrivs.Designer.cs">
       <DependentUpon>FGrantPrivs.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPDBOLS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPDBOLS.Designer.cs">
+      <DependentUpon>FPDBOLS.cs</DependentUpon>
+    </Compile>
     <Compile Include="FTableCols.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +212,9 @@
     <EmbeddedResource Include="FGrantPrivs.resx">
       <DependentUpon>FGrantPrivs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FPDBOLS.resx">
+      <DependentUpon>FPDBOLS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FTableCols.resx">
       <DependentUpon>FTableCols.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,6 +229,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="DatabaseAdministration_TemporaryKey.pfx" />
     <None Include="Oracle.DataAccess.Common.Configuration.Section.xsd">
@@ -251,6 +263,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contact.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
