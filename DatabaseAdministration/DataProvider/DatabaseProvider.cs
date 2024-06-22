@@ -516,5 +516,29 @@ namespace DatabaseAdministration.DataProvider
 
             return ExecuteQueryUpdated(query);
         }
+
+        public DataTable getDataTableHocPhan()
+        {
+            string query = $"SELECT * FROM QLDL.HOCPHAN";
+            return ExecuteQuery(query);
+        }
+        public DataTable getDataTableHocPhanSV()
+        {
+            string query = $"SELECT * FROM QLDL.V_SV_HOCPHAN";
+            return ExecuteQuery(query);
+        }
+        public int updateHocPhan(HocPhan hp, string mahp)
+        {
+            string query = $"UPDATE QLDL.HOCPHAN " +
+                $"SET MAHP = '{hp.maHP}', TENHP = '{hp.tenHP}', SOTC = {hp.soTC}, STLT = {hp.soTLT}, " +
+                $"STTH = {hp.soTTH}, SOSVTD = {hp.soSVTD}, MADV = '{hp.maDV}' " +
+                $"WHERE MAHP = '{mahp}'";
+            return ExecuteQueryUpdated(query);
+        }
+        public int insertHocPhan(HocPhan hp)
+        {
+            string query = $"INSERT INTO QLDL.HOCPHAN VALUES ('{hp.maHP}', '{hp.tenHP}', {hp.soTC}, {hp.soTLT}, {hp.soTTH}, {hp.soSVTD}, '{hp.maDV}')";
+            return ExecuteQueryUpdated(query);
+        }
     }
 }

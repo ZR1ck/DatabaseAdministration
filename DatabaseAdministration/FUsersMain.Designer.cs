@@ -158,24 +158,24 @@
             this.label40 = new System.Windows.Forms.Label();
             this.dataGridViewDonVi = new System.Windows.Forms.DataGridView();
             this.tabPageHocPhan = new System.Windows.Forms.TabPage();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.btnHPAdd = new System.Windows.Forms.Button();
+            this.btnHPUpdate = new System.Windows.Forms.Button();
+            this.btnHPAcptUpdate = new System.Windows.Forms.Button();
+            this.txtBoxHPMaDV = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
-            this.textBox35 = new System.Windows.Forms.TextBox();
+            this.txtBoxHPSoSV = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
-            this.textBox36 = new System.Windows.Forms.TextBox();
+            this.txtBoxHPSoTTH = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
-            this.textBox37 = new System.Windows.Forms.TextBox();
+            this.txtBoxHPSoTLT = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
-            this.textBox38 = new System.Windows.Forms.TextBox();
+            this.txtBoxHPSoTC = new System.Windows.Forms.TextBox();
             this.label48 = new System.Windows.Forms.Label();
-            this.textBox39 = new System.Windows.Forms.TextBox();
+            this.txtBoxHPTenHP = new System.Windows.Forms.TextBox();
             this.label49 = new System.Windows.Forms.Label();
-            this.textBox40 = new System.Windows.Forms.TextBox();
+            this.txtBoxHPMaHP = new System.Windows.Forms.TextBox();
             this.label50 = new System.Windows.Forms.Label();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewHocPhan = new System.Windows.Forms.DataGridView();
             this.tabPageKHMo = new System.Windows.Forms.TabPage();
             this.btnKHCancel = new System.Windows.Forms.Button();
             this.btnKHAcptAdd = new System.Windows.Forms.Button();
@@ -219,6 +219,8 @@
             this.txtBoxDKMaSV = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.dataGridViewDangki = new System.Windows.Forms.DataGridView();
+            this.btnHPAcptAdd = new System.Windows.Forms.Button();
+            this.btnHPCancel = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageTTNhanSu.SuspendLayout();
             this.tabPageTTSinhVien.SuspendLayout();
@@ -231,7 +233,7 @@
             this.tabPageDonVi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDonVi)).BeginInit();
             this.tabPageHocPhan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHocPhan)).BeginInit();
             this.tabPageKHMo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKHMo)).BeginInit();
             this.tabPageDangKy.SuspendLayout();
@@ -1678,24 +1680,26 @@
             // 
             // tabPageHocPhan
             // 
-            this.tabPageHocPhan.Controls.Add(this.button10);
-            this.tabPageHocPhan.Controls.Add(this.button11);
-            this.tabPageHocPhan.Controls.Add(this.button12);
-            this.tabPageHocPhan.Controls.Add(this.textBox34);
+            this.tabPageHocPhan.Controls.Add(this.btnHPCancel);
+            this.tabPageHocPhan.Controls.Add(this.btnHPAcptAdd);
+            this.tabPageHocPhan.Controls.Add(this.btnHPAdd);
+            this.tabPageHocPhan.Controls.Add(this.btnHPUpdate);
+            this.tabPageHocPhan.Controls.Add(this.btnHPAcptUpdate);
+            this.tabPageHocPhan.Controls.Add(this.txtBoxHPMaDV);
             this.tabPageHocPhan.Controls.Add(this.label44);
-            this.tabPageHocPhan.Controls.Add(this.textBox35);
+            this.tabPageHocPhan.Controls.Add(this.txtBoxHPSoSV);
             this.tabPageHocPhan.Controls.Add(this.label45);
-            this.tabPageHocPhan.Controls.Add(this.textBox36);
+            this.tabPageHocPhan.Controls.Add(this.txtBoxHPSoTTH);
             this.tabPageHocPhan.Controls.Add(this.label46);
-            this.tabPageHocPhan.Controls.Add(this.textBox37);
+            this.tabPageHocPhan.Controls.Add(this.txtBoxHPSoTLT);
             this.tabPageHocPhan.Controls.Add(this.label47);
-            this.tabPageHocPhan.Controls.Add(this.textBox38);
+            this.tabPageHocPhan.Controls.Add(this.txtBoxHPSoTC);
             this.tabPageHocPhan.Controls.Add(this.label48);
-            this.tabPageHocPhan.Controls.Add(this.textBox39);
+            this.tabPageHocPhan.Controls.Add(this.txtBoxHPTenHP);
             this.tabPageHocPhan.Controls.Add(this.label49);
-            this.tabPageHocPhan.Controls.Add(this.textBox40);
+            this.tabPageHocPhan.Controls.Add(this.txtBoxHPMaHP);
             this.tabPageHocPhan.Controls.Add(this.label50);
-            this.tabPageHocPhan.Controls.Add(this.dataGridView4);
+            this.tabPageHocPhan.Controls.Add(this.dataGridViewHocPhan);
             this.tabPageHocPhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.tabPageHocPhan.Location = new System.Drawing.Point(4, 25);
             this.tabPageHocPhan.Name = "tabPageHocPhan";
@@ -1704,41 +1708,47 @@
             this.tabPageHocPhan.Text = "Học phần";
             this.tabPageHocPhan.UseVisualStyleBackColor = true;
             // 
-            // button10
+            // btnHPAdd
             // 
-            this.button10.Location = new System.Drawing.Point(1046, 545);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 34);
-            this.button10.TabIndex = 46;
-            this.button10.Text = "Hủy";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnHPAdd.Location = new System.Drawing.Point(1051, 481);
+            this.btnHPAdd.Name = "btnHPAdd";
+            this.btnHPAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnHPAdd.TabIndex = 46;
+            this.btnHPAdd.Text = "Thêm";
+            this.btnHPAdd.UseVisualStyleBackColor = true;
+            this.btnHPAdd.Visible = false;
+            this.btnHPAdd.Click += new System.EventHandler(this.btnHPAdd_Click);
             // 
-            // button11
+            // btnHPUpdate
             // 
-            this.button11.Location = new System.Drawing.Point(886, 545);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 34);
-            this.button11.TabIndex = 45;
-            this.button11.Text = "Xong";
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnHPUpdate.Location = new System.Drawing.Point(890, 481);
+            this.btnHPUpdate.Name = "btnHPUpdate";
+            this.btnHPUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnHPUpdate.TabIndex = 45;
+            this.btnHPUpdate.Text = "Sửa";
+            this.btnHPUpdate.UseVisualStyleBackColor = true;
+            this.btnHPUpdate.Visible = false;
+            this.btnHPUpdate.Click += new System.EventHandler(this.btnHPUpdate_Click);
             // 
-            // button12
+            // btnHPAcptUpdate
             // 
-            this.button12.Location = new System.Drawing.Point(966, 545);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 34);
-            this.button12.TabIndex = 44;
-            this.button12.Text = "Sửa";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnHPAcptUpdate.Location = new System.Drawing.Point(890, 481);
+            this.btnHPAcptUpdate.Name = "btnHPAcptUpdate";
+            this.btnHPAcptUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnHPAcptUpdate.TabIndex = 44;
+            this.btnHPAcptUpdate.Text = "Xong";
+            this.btnHPAcptUpdate.UseVisualStyleBackColor = true;
+            this.btnHPAcptUpdate.Visible = false;
+            this.btnHPAcptUpdate.Click += new System.EventHandler(this.btnHPAcptUpdate_Click);
             // 
-            // textBox34
+            // txtBoxHPMaDV
             // 
-            this.textBox34.Enabled = false;
-            this.textBox34.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox34.Location = new System.Drawing.Point(878, 343);
-            this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new System.Drawing.Size(264, 25);
-            this.textBox34.TabIndex = 39;
+            this.txtBoxHPMaDV.Enabled = false;
+            this.txtBoxHPMaDV.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxHPMaDV.Location = new System.Drawing.Point(878, 343);
+            this.txtBoxHPMaDV.Name = "txtBoxHPMaDV";
+            this.txtBoxHPMaDV.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxHPMaDV.TabIndex = 39;
             // 
             // label44
             // 
@@ -1750,14 +1760,14 @@
             this.label44.TabIndex = 38;
             this.label44.Text = "Mã đơn vị";
             // 
-            // textBox35
+            // txtBoxHPSoSV
             // 
-            this.textBox35.Enabled = false;
-            this.textBox35.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox35.Location = new System.Drawing.Point(878, 290);
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new System.Drawing.Size(264, 25);
-            this.textBox35.TabIndex = 37;
+            this.txtBoxHPSoSV.Enabled = false;
+            this.txtBoxHPSoSV.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxHPSoSV.Location = new System.Drawing.Point(878, 290);
+            this.txtBoxHPSoSV.Name = "txtBoxHPSoSV";
+            this.txtBoxHPSoSV.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxHPSoSV.TabIndex = 37;
             // 
             // label45
             // 
@@ -1769,14 +1779,14 @@
             this.label45.TabIndex = 36;
             this.label45.Text = "Số sinh viên";
             // 
-            // textBox36
+            // txtBoxHPSoTTH
             // 
-            this.textBox36.Enabled = false;
-            this.textBox36.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox36.Location = new System.Drawing.Point(878, 237);
-            this.textBox36.Name = "textBox36";
-            this.textBox36.Size = new System.Drawing.Size(264, 25);
-            this.textBox36.TabIndex = 35;
+            this.txtBoxHPSoTTH.Enabled = false;
+            this.txtBoxHPSoTTH.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxHPSoTTH.Location = new System.Drawing.Point(878, 237);
+            this.txtBoxHPSoTTH.Name = "txtBoxHPSoTTH";
+            this.txtBoxHPSoTTH.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxHPSoTTH.TabIndex = 35;
             // 
             // label46
             // 
@@ -1788,14 +1798,14 @@
             this.label46.TabIndex = 34;
             this.label46.Text = "Số tiét TH";
             // 
-            // textBox37
+            // txtBoxHPSoTLT
             // 
-            this.textBox37.Enabled = false;
-            this.textBox37.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox37.Location = new System.Drawing.Point(878, 184);
-            this.textBox37.Name = "textBox37";
-            this.textBox37.Size = new System.Drawing.Size(264, 25);
-            this.textBox37.TabIndex = 33;
+            this.txtBoxHPSoTLT.Enabled = false;
+            this.txtBoxHPSoTLT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxHPSoTLT.Location = new System.Drawing.Point(878, 184);
+            this.txtBoxHPSoTLT.Name = "txtBoxHPSoTLT";
+            this.txtBoxHPSoTLT.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxHPSoTLT.TabIndex = 33;
             // 
             // label47
             // 
@@ -1807,14 +1817,14 @@
             this.label47.TabIndex = 32;
             this.label47.Text = "Số tiết LT";
             // 
-            // textBox38
+            // txtBoxHPSoTC
             // 
-            this.textBox38.Enabled = false;
-            this.textBox38.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox38.Location = new System.Drawing.Point(878, 131);
-            this.textBox38.Name = "textBox38";
-            this.textBox38.Size = new System.Drawing.Size(264, 25);
-            this.textBox38.TabIndex = 31;
+            this.txtBoxHPSoTC.Enabled = false;
+            this.txtBoxHPSoTC.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxHPSoTC.Location = new System.Drawing.Point(878, 131);
+            this.txtBoxHPSoTC.Name = "txtBoxHPSoTC";
+            this.txtBoxHPSoTC.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxHPSoTC.TabIndex = 31;
             // 
             // label48
             // 
@@ -1826,14 +1836,14 @@
             this.label48.TabIndex = 30;
             this.label48.Text = "Số tính chỉ";
             // 
-            // textBox39
+            // txtBoxHPTenHP
             // 
-            this.textBox39.Enabled = false;
-            this.textBox39.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox39.Location = new System.Drawing.Point(878, 78);
-            this.textBox39.Name = "textBox39";
-            this.textBox39.Size = new System.Drawing.Size(264, 25);
-            this.textBox39.TabIndex = 29;
+            this.txtBoxHPTenHP.Enabled = false;
+            this.txtBoxHPTenHP.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxHPTenHP.Location = new System.Drawing.Point(878, 78);
+            this.txtBoxHPTenHP.Name = "txtBoxHPTenHP";
+            this.txtBoxHPTenHP.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxHPTenHP.TabIndex = 29;
             // 
             // label49
             // 
@@ -1845,14 +1855,14 @@
             this.label49.TabIndex = 28;
             this.label49.Text = "Tên học phần";
             // 
-            // textBox40
+            // txtBoxHPMaHP
             // 
-            this.textBox40.Enabled = false;
-            this.textBox40.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox40.Location = new System.Drawing.Point(878, 25);
-            this.textBox40.Name = "textBox40";
-            this.textBox40.Size = new System.Drawing.Size(264, 25);
-            this.textBox40.TabIndex = 27;
+            this.txtBoxHPMaHP.Enabled = false;
+            this.txtBoxHPMaHP.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxHPMaHP.Location = new System.Drawing.Point(878, 25);
+            this.txtBoxHPMaHP.Name = "txtBoxHPMaHP";
+            this.txtBoxHPMaHP.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxHPMaHP.TabIndex = 27;
             // 
             // label50
             // 
@@ -1864,20 +1874,21 @@
             this.label50.TabIndex = 26;
             this.label50.Text = "Mã học phần";
             // 
-            // dataGridView4
+            // dataGridViewHocPhan
             // 
-            this.dataGridView4.AllowUserToAddRows = false;
-            this.dataGridView4.AllowUserToDeleteRows = false;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView4.MultiSelect = false;
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.ReadOnly = true;
-            this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView4.Size = new System.Drawing.Size(852, 597);
-            this.dataGridView4.TabIndex = 25;
+            this.dataGridViewHocPhan.AllowUserToAddRows = false;
+            this.dataGridViewHocPhan.AllowUserToDeleteRows = false;
+            this.dataGridViewHocPhan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewHocPhan.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewHocPhan.MultiSelect = false;
+            this.dataGridViewHocPhan.Name = "dataGridViewHocPhan";
+            this.dataGridViewHocPhan.ReadOnly = true;
+            this.dataGridViewHocPhan.RowHeadersWidth = 51;
+            this.dataGridViewHocPhan.RowTemplate.Height = 24;
+            this.dataGridViewHocPhan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewHocPhan.Size = new System.Drawing.Size(852, 597);
+            this.dataGridViewHocPhan.TabIndex = 25;
+            this.dataGridViewHocPhan.SelectionChanged += new System.EventHandler(this.dataGridViewHocPhan_SelectionChanged);
             // 
             // tabPageKHMo
             // 
@@ -2360,6 +2371,28 @@
             this.dataGridViewDangki.TabIndex = 34;
             this.dataGridViewDangki.SelectionChanged += new System.EventHandler(this.dataGridViewDangki_SelectionChanged);
             // 
+            // btnHPAcptAdd
+            // 
+            this.btnHPAcptAdd.Location = new System.Drawing.Point(890, 481);
+            this.btnHPAcptAdd.Name = "btnHPAcptAdd";
+            this.btnHPAcptAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnHPAcptAdd.TabIndex = 47;
+            this.btnHPAcptAdd.Text = "Thêm";
+            this.btnHPAcptAdd.UseVisualStyleBackColor = true;
+            this.btnHPAcptAdd.Visible = false;
+            this.btnHPAcptAdd.Click += new System.EventHandler(this.btnHPAcptAdd_Click);
+            // 
+            // btnHPCancel
+            // 
+            this.btnHPCancel.Location = new System.Drawing.Point(1051, 481);
+            this.btnHPCancel.Name = "btnHPCancel";
+            this.btnHPCancel.Size = new System.Drawing.Size(75, 34);
+            this.btnHPCancel.TabIndex = 48;
+            this.btnHPCancel.Text = "Hủy";
+            this.btnHPCancel.UseVisualStyleBackColor = true;
+            this.btnHPCancel.Visible = false;
+            this.btnHPCancel.Click += new System.EventHandler(this.btnHPCancel_Click);
+            // 
             // FUsersMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2390,7 +2423,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDonVi)).EndInit();
             this.tabPageHocPhan.ResumeLayout(false);
             this.tabPageHocPhan.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHocPhan)).EndInit();
             this.tabPageKHMo.ResumeLayout(false);
             this.tabPageKHMo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKHMo)).EndInit();
@@ -2483,24 +2516,24 @@
         private System.Windows.Forms.TextBox txtBoxDVMaDV;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.DataGridView dataGridViewDonVi;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.TextBox textBox34;
+        private System.Windows.Forms.Button btnHPAdd;
+        private System.Windows.Forms.Button btnHPUpdate;
+        private System.Windows.Forms.Button btnHPAcptUpdate;
+        private System.Windows.Forms.TextBox txtBoxHPMaDV;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.TextBox textBox35;
+        private System.Windows.Forms.TextBox txtBoxHPSoSV;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TextBox textBox36;
+        private System.Windows.Forms.TextBox txtBoxHPSoTTH;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.TextBox textBox37;
+        private System.Windows.Forms.TextBox txtBoxHPSoTLT;
         private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.TextBox textBox38;
+        private System.Windows.Forms.TextBox txtBoxHPSoTC;
         private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.TextBox textBox39;
+        private System.Windows.Forms.TextBox txtBoxHPTenHP;
         private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.TextBox textBox40;
+        private System.Windows.Forms.TextBox txtBoxHPMaHP;
         private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView dataGridViewHocPhan;
         private System.Windows.Forms.Button btnKHAdd;
         private System.Windows.Forms.Button btnKHUpdate;
         private System.Windows.Forms.Button btnKHAcptUpdate;
@@ -2594,5 +2627,7 @@
         private System.Windows.Forms.Button btnDKAdd;
         private System.Windows.Forms.Button btnDKUpdate;
         private System.Windows.Forms.Button btnDKAcptUpdate;
+        private System.Windows.Forms.Button btnHPCancel;
+        private System.Windows.Forms.Button btnHPAcptAdd;
     }
 }

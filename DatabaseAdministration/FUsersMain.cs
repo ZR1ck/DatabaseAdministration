@@ -40,6 +40,7 @@ namespace DatabaseAdministration
                     loadTTCNSV();
                     loadDataGridViewKHMoSV();
                     loadDataGridViewDangki();
+                    loadDataGridViewHocPhanSV();
 
                     btnDKAdd.Visible = true;
                     btnDKDelete.Visible = true;
@@ -55,7 +56,7 @@ namespace DatabaseAdministration
                     loadDataGridViewTBSinhVien();
                     loadDataGridViewDonVi();
                     loadDataGridViewKHMo();
-
+                    loadDataGridViewHocPhan();
 
                     break;
                 case 3: // GIAOVU
@@ -68,6 +69,7 @@ namespace DatabaseAdministration
                     loadDataGridViewDonVi();
                     loadDataGridViewKHMo();
                     loadDataGridViewDangki();
+                    loadDataGridViewHocPhan();
 
                     btnUpdateSinhVien.Visible = true;
                     btnAddSV.Visible = true;
@@ -83,6 +85,9 @@ namespace DatabaseAdministration
                     btnDKAdd.Visible = true;
                     btnDKDelete.Visible = true;
 
+                    btnHPUpdate.Visible = true;
+                    btnHPAdd.Visible = true;
+
                     break;
                 case 4: // GV
                     tabPageTTSinhVien.Parent = null;
@@ -94,6 +99,7 @@ namespace DatabaseAdministration
                     loadDataGridViewDonVi();
                     loadDataGridViewKHMo();
                     loadDataGridViewDangki();
+                    loadDataGridViewHocPhan();
 
                     btnDKUpdate.Visible = true;
 
@@ -108,6 +114,7 @@ namespace DatabaseAdministration
                     loadDataGridViewDonVi();
                     loadDataGridViewKHMo();
                     loadDataGridViewDangki();
+                    loadDataGridViewHocPhan();
 
                     btnPCAdd.Enabled = true;
                     btnPCDelete.Enabled = true;
@@ -126,6 +133,7 @@ namespace DatabaseAdministration
                     loadDataGridViewDonVi();
                     loadDataGridViewKHMo();
                     loadDataGridViewDangki();
+                    loadDataGridViewHocPhan();
 
                     btnPCAdd.Enabled = true;
                     btnPCDelete.Enabled = true;
@@ -195,6 +203,15 @@ namespace DatabaseAdministration
                     dataGridViewDangki.Focus();
                     dataGridViewDangki.Rows[0].Selected = true;
                     dataGridViewDangki_SelectionChanged(sender, null);
+                }
+            }
+            else if (selectedTab == tabPageHocPhan)
+            {
+                if (dataGridViewHocPhan.Rows.Count > 0)
+                {
+                    dataGridViewHocPhan.Focus();
+                    dataGridViewHocPhan.Rows[0].Selected = true;
+                    dataGridViewHocPhan_SelectionChanged(sender, null);
                 }
             }
             
@@ -1718,7 +1735,6 @@ namespace DatabaseAdministration
             btnDKAdd.Visible = true;
             btnDKDelete.Visible = true;
         }
-
         private void btnDKCancel_Click(object sender, EventArgs e)
         {
             dataGridViewDangki.Enabled = true;
@@ -1752,6 +1768,260 @@ namespace DatabaseAdministration
                 btnDKAdd.Visible = true;
                 btnDKDelete.Visible = true;
             }
+        }
+        // hàm xử lí datagridview và xử lí sự kiện nút tab học phần
+        private void loadDataGridViewHocPhan()
+        {
+            dataGridViewHocPhan.DataSource = HocPhan.getDataTableHocPhan();
+            if (dataGridViewHocPhan.Rows.Count > 0)
+            {
+                dataGridViewHocPhan.ClearSelection();
+                dataGridViewHocPhan.Sort(dataGridViewHocPhan.Columns["MAHP"], ListSortDirection.Ascending);
+                dataGridViewHocPhan.Rows[0].Selected = true;
+            }
+        }
+        private void loadDataGridViewHocPhanSV()
+        {
+            dataGridViewHocPhan.DataSource = HocPhan.getDataTableHocPhanSV();
+            if (dataGridViewHocPhan.Rows.Count > 0)
+            {
+                dataGridViewHocPhan.ClearSelection();
+                dataGridViewHocPhan.Sort(dataGridViewHocPhan.Columns["MAHP"], ListSortDirection.Ascending);
+                dataGridViewHocPhan.Rows[0].Selected = true;
+            }
+        }
+        private void dataGridViewHocPhan_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!dataGridViewHocPhan.Focused) { return; }
+            if (dataGridViewHocPhan.Rows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewHocPhan.SelectedRows[0];
+                if (selectedRow != null)
+                {
+                    txtBoxHPMaHP.Text = selectedRow.Cells["MAHP"].Value.ToString();
+                    txtBoxHPTenHP.Text = selectedRow.Cells["TENHP"].Value.ToString();
+                    txtBoxHPSoTC.Text = selectedRow.Cells["SOTC"].Value.ToString();
+                    txtBoxHPSoTLT.Text = selectedRow.Cells["STLT"].Value.ToString();
+                    txtBoxHPSoTTH.Text = selectedRow.Cells["STTH"].Value.ToString();
+                    txtBoxHPSoSV.Text = selectedRow.Cells["SOSVTD"].Value.ToString();
+                    txtBoxHPMaDV.Text = selectedRow.Cells["MADV"].Value.ToString();
+                }
+            }
+        }
+        private void btnHPUpdate_Click(object sender, EventArgs e)
+        {
+            dataGridViewHocPhan.Enabled = false;
+            txtBoxHPMaHP.Enabled = true;
+            txtBoxHPTenHP.Enabled = true;
+            txtBoxHPSoTC.Enabled = true;
+            txtBoxHPSoTLT.Enabled = true;
+            txtBoxHPSoTTH.Enabled = true;
+            txtBoxHPSoSV.Enabled = true;
+            txtBoxHPMaDV.Enabled = true;
+
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxHPMaHP, txtBoxHPTenHP, txtBoxHPSoTC, txtBoxHPSoTLT,
+                txtBoxHPSoTTH, txtBoxHPSoSV, txtBoxHPMaDV });
+            tempstring = txtBoxHPMaHP.Text;
+
+            btnHPAcptUpdate.Visible = true;
+            btnHPCancel.Visible = true;
+
+            btnHPUpdate.Visible = false;
+            btnHPAdd.Visible = false;
+        }
+
+        private void btnHPAdd_Click(object sender, EventArgs e)
+        {
+            dataGridViewHocPhan.Enabled = false;
+            txtBoxHPMaHP.Enabled = true;
+            txtBoxHPTenHP.Enabled = true;
+            txtBoxHPSoTC.Enabled = true;
+            txtBoxHPSoTLT.Enabled = true;
+            txtBoxHPSoTTH.Enabled = true;
+            txtBoxHPSoSV.Enabled = true;
+            txtBoxHPMaDV.Enabled = true;
+
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxHPMaHP, txtBoxHPTenHP, txtBoxHPSoTC, txtBoxHPSoTLT,
+                txtBoxHPSoTTH, txtBoxHPSoSV, txtBoxHPMaDV });
+
+            txtBoxHPMaHP.Text = "";
+            txtBoxHPTenHP.Text = "";
+            txtBoxHPSoTC.Text = "";
+            txtBoxHPSoTLT.Text = "";
+            txtBoxHPSoTTH.Text = "";
+            txtBoxHPSoSV.Text = "";
+            txtBoxHPMaDV.Text = "";
+
+            btnHPAcptAdd.Visible = true;
+            btnHPCancel.Visible = true;
+
+            btnHPUpdate.Visible = false;
+            btnHPAdd.Visible = false;
+        }
+
+        private void btnHPAcptUpdate_Click(object sender, EventArgs e)
+        {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxHPMaHP, txtBoxHPTenHP, txtBoxHPSoTC, txtBoxHPSoTLT,
+                txtBoxHPSoTTH, txtBoxHPSoSV, txtBoxHPMaDV }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxHPMaHP, txtBoxHPTenHP, txtBoxHPSoTC, txtBoxHPSoTLT,
+                txtBoxHPSoTTH, txtBoxHPSoSV, txtBoxHPMaDV }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
+            dataGridViewHocPhan.Enabled = true;
+
+            txtBoxHPMaHP.Enabled = false;
+            txtBoxHPTenHP.Enabled = false;
+            txtBoxHPSoTC.Enabled = false;
+            txtBoxHPSoTLT.Enabled = false;
+            txtBoxHPSoTTH.Enabled = false;
+            txtBoxHPSoSV.Enabled = false;
+            txtBoxHPMaDV.Enabled = false;
+
+            int res = HocPhan.updateHocPhan(
+                new HocPhan(txtBoxHPMaHP.Text, txtBoxHPTenHP.Text, txtBoxHPMaDV.Text,
+                    int.Parse(txtBoxHPSoTC.Text), int.Parse(txtBoxHPSoTLT.Text), int.Parse(txtBoxHPSoTTH.Text),
+                    int.Parse(txtBoxHPSoSV.Text)
+                ), tempstring);
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loadDataGridViewHocPhan();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxHPMaHP, txtBoxHPTenHP, txtBoxHPSoTC, txtBoxHPSoTLT,
+                txtBoxHPSoTTH, txtBoxDKMaCT, txtBoxHPMaDV });
+            }
+            else
+            {
+                tempVal.Clear();
+                tempstring = string.Empty;
+            }
+
+            btnHPAcptUpdate.Visible = false;
+            btnHPCancel.Visible = false;
+
+            btnHPUpdate.Visible = true;
+            btnHPAdd.Visible = true;
+        }
+
+        private void btnHPAcptAdd_Click(object sender, EventArgs e)
+        {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxHPMaHP, txtBoxHPTenHP, txtBoxHPSoTC, txtBoxHPSoTLT,
+                txtBoxHPSoTTH, txtBoxHPSoSV, txtBoxHPMaDV }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxHPMaHP, txtBoxHPTenHP, txtBoxHPSoTC, txtBoxHPSoTLT,
+                txtBoxHPSoTTH, txtBoxHPSoSV, txtBoxHPMaDV }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
+            dataGridViewHocPhan.Enabled = true;
+
+            txtBoxHPMaHP.Enabled = false;
+            txtBoxHPTenHP.Enabled = false;
+            txtBoxHPSoTC.Enabled = false;
+            txtBoxHPSoTLT.Enabled = false;
+            txtBoxHPSoTTH.Enabled = false;
+            txtBoxHPSoSV.Enabled = false;
+            txtBoxHPMaDV.Enabled = false;
+
+            int res = HocPhan.insertHocPhan(
+                new HocPhan(txtBoxHPMaHP.Text, txtBoxHPTenHP.Text, txtBoxHPMaDV.Text,
+                    int.Parse(txtBoxHPSoTC.Text), int.Parse(txtBoxHPSoTLT.Text), int.Parse(txtBoxHPSoTTH.Text),
+                    int.Parse(txtBoxHPSoSV.Text)
+                ));
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loadDataGridViewHocPhan();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxHPMaHP, txtBoxHPTenHP, txtBoxHPSoTC, txtBoxHPSoTLT,
+                txtBoxHPSoTTH, txtBoxDKMaCT, txtBoxHPMaDV });
+            }
+            else
+            {
+                tempVal.Clear();
+            }
+
+            btnHPAcptAdd.Visible = false;
+            btnHPCancel.Visible = false;
+
+            btnHPUpdate.Visible = true;
+            btnHPAdd.Visible = true;
+        }
+
+        private void btnHPCancel_Click(object sender, EventArgs e)
+        {
+            dataGridViewHocPhan.Enabled = true;
+            txtBoxHPMaHP.Enabled = false;
+            txtBoxHPTenHP.Enabled = false;
+            txtBoxHPSoTC.Enabled = false;
+            txtBoxHPSoTLT.Enabled = false;
+            txtBoxHPSoTTH.Enabled = false;
+            txtBoxHPSoSV.Enabled = false;
+            txtBoxHPMaDV.Enabled = false;
+
+            Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxHPMaHP, txtBoxHPTenHP, txtBoxHPSoTC, txtBoxHPSoTLT,
+                txtBoxHPSoTTH, txtBoxDKMaCT, txtBoxHPMaDV });
+            tempstring = string.Empty;
+            tempVal.Clear();
+
+            btnHPAcptAdd.Visible = false;
+            btnHPAcptUpdate.Visible = false;
+            btnHPCancel.Visible = false;
+
+            btnHPUpdate.Visible = true;
+            btnHPAdd.Visible = true;
         }
     }
 }

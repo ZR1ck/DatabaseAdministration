@@ -112,6 +112,7 @@
   <ItemGroup>
     <Compile Include="DAO\DAODangKy.cs" />
     <Compile Include="DAO\DAODonVi.cs" />
+    <Compile Include="DAO\DAOHocPhan.cs" />
     <Compile Include="DAO\DAOKHMo.cs" />
     <Compile Include="DAO\DAONhanSu.cs" />
     <Compile Include="DAO\DAOPhanCong.cs" />
