@@ -20,6 +20,7 @@ namespace DatabaseAdministration
         private List<string> tempVal = new List<string>();
         private DateTime tempdate = DateTime.MinValue;
         private PhanCong tempPc = null;
+        string tempstring = string.Empty;
 
         public FUsersMain(int role)
         {
@@ -44,6 +45,7 @@ namespace DatabaseAdministration
 
                     loadTTCN();
                     loadDataGridViewTBSinhVien();
+                    loadDataGridViewDonVi();
 
                     break;
                 case 3: // GIAOVU
@@ -53,11 +55,15 @@ namespace DatabaseAdministration
                     loadTTCN();
                     loadDataGridViewTBSinhVien();
                     loaddataGridViewPhanCong();
+                    loadDataGridViewDonVi();
 
                     btnUpdateSinhVien.Visible = true;
                     btnAddSV.Visible = true;
 
                     btnPCUpdate.Enabled = true;
+
+                    btnDVAdd.Visible = true;
+                    btnDVUpdate.Visible = true;
 
                     break;
                 case 4: // GV
@@ -67,6 +73,7 @@ namespace DatabaseAdministration
                     loadTTCN();
                     loadDataGridViewTBSinhVien();
                     loaddataGridViewPhanCong();
+                    loadDataGridViewDonVi();
 
                     break;
                 case 5: // TRGDV
@@ -76,6 +83,7 @@ namespace DatabaseAdministration
                     loadTTCN();
                     loadDataGridViewTBSinhVien();
                     loaddataGridViewPhanCong();
+                    loadDataGridViewDonVi();
 
                     btnPCAdd.Enabled = true;
                     btnPCDelete.Enabled = true;
@@ -89,6 +97,7 @@ namespace DatabaseAdministration
                     loadDataGridViewTBSinhVien();
                     loadDataGridViewNhanSu();
                     loaddataGridViewPhanCong();
+                    loadDataGridViewDonVi();
 
                     btnPCAdd.Enabled = true;
                     btnPCDelete.Enabled = true;
@@ -131,6 +140,16 @@ namespace DatabaseAdministration
                     dataGridViewPhanCong_SelectionChanged(sender, null);
                 }
             }
+            else if (selectedTab == tabPageDonVi)
+            {
+                if (dataGridViewDonVi.Rows.Count > 0)
+                {
+                    dataGridViewDonVi.Focus();
+                    dataGridViewDonVi.Rows[0].Selected = true;
+                    dataGridViewDonVi_SelectionChanged(sender, null);
+                }
+            }
+            
         }
         // hàm lấy thông tin cá nhân của người dùng hiện tại
         private bool loadTTCN()
@@ -1003,12 +1022,205 @@ namespace DatabaseAdministration
             tempPc = null;
 
             btnPCAcptUpdate.Visible = false;
+            btnPCAcptAdd.Visible = false;
             btnPCCancel.Visible = false;
 
             btnPCUpdate.Visible = true;
             btnPCAdd.Visible = true;
             btnPCDelete.Visible = true;
 
+        }
+        // hàm xử lí datagridview và xử lí sự kiện nút tab đơn vị
+        private void loadDataGridViewDonVi()
+        {
+            dataGridViewDonVi.DataSource = DonVi.getDataTableDonVi();
+            dataGridViewDonVi.ClearSelection();
+            dataGridViewDonVi.Sort(dataGridViewDonVi.Columns["MADV"], ListSortDirection.Ascending);
+            if (dataGridViewDonVi.Rows.Count > 0) dataGridViewDonVi.Rows[0].Selected = true;
+        }
+        private void dataGridViewDonVi_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!dataGridViewDonVi.Focused) { return; }
+            if (dataGridViewDonVi.Rows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewDonVi.SelectedRows[0];
+                if (selectedRow != null)
+                {
+                    txtBoxDVMaDV.Text = selectedRow.Cells["MADV"].Value.ToString();
+                    txtBoxDVTenDV.Text = selectedRow.Cells["TENDV"].Value.ToString();
+                    txtBoxDVTrgDV.Text = selectedRow.Cells["TRGDV"].Value.ToString();
+                }
+            }
+        }
+        private void btnDVUpdate_Click(object sender, EventArgs e)
+        {
+            dataGridViewDonVi.Enabled = false;
+            txtBoxDVMaDV.Enabled = true;
+            txtBoxDVTenDV.Enabled = true;
+            txtBoxDVTrgDV.Enabled = true;
+
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxDVMaDV, txtBoxDVTenDV, txtBoxDVTrgDV});
+            tempstring = txtBoxDVMaDV.Text;
+
+            btnDVAcptUpdate.Visible = true;
+            btnDVCancel.Visible = true;
+
+            btnDVUpdate.Visible = false;
+            btnDVAdd.Visible = false;
+        }
+        private void btnDVAdd_Click(object sender, EventArgs e)
+        {
+            dataGridViewDonVi.Enabled = false;
+            txtBoxDVMaDV.Enabled = true;
+            txtBoxDVTenDV.Enabled = true;
+            txtBoxDVTrgDV.Enabled = true;
+
+            tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxDVMaDV, txtBoxDVTenDV, txtBoxDVTrgDV });
+
+            txtBoxDVMaDV.Text = "";
+            txtBoxDVTenDV.Text = "";
+            txtBoxDVTrgDV.Text = "";
+
+            btnDVAcptAdd.Visible = true;
+            btnDVCancel.Visible = true;
+
+            btnDVUpdate.Visible = false;
+            btnDVAdd.Visible = false;
+        }
+        private void btnDVAcptUpdate_Click(object sender, EventArgs e)
+        {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxDVMaDV, txtBoxDVTenDV, txtBoxDVTrgDV }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxDVMaDV, txtBoxDVTenDV, txtBoxDVTrgDV }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
+            dataGridViewDonVi.Enabled = true;
+            txtBoxDVMaDV.Enabled = false;
+            txtBoxDVTenDV.Enabled = false;
+            txtBoxDVTrgDV.Enabled = false;
+
+            int res = DonVi.updateDonVi(new DonVi(txtBoxDVMaDV.Text, txtBoxDVTenDV.Text, txtBoxDVTrgDV.Text), tempstring);
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loadDataGridViewDonVi();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxDVMaDV, txtBoxDVTenDV, txtBoxDVTrgDV });
+            }
+            else
+            {
+                tempVal.Clear();
+                tempstring = string.Empty;
+            }
+
+            btnDVAcptUpdate.Visible = false;
+            btnDVCancel.Visible = false;
+
+            btnDVUpdate.Visible = true;
+            btnDVAdd.Visible = true;
+        }
+
+        private void btnDVAcptAdd_Click(object sender, EventArgs e)
+        {
+            if (Util.hasEmptyTextBox(new List<TextBox> { txtBoxDVMaDV, txtBoxDVTenDV, txtBoxDVTrgDV }))
+            {
+                MessageBox.Show("Empty field.");
+                return;
+            }
+            if (Util.hasSpecialCharacters(new List<TextBox> { txtBoxDVMaDV, txtBoxDVTenDV, txtBoxDVTrgDV }))
+            {
+                MessageBox.Show("Contain special character.");
+                return;
+            }
+
+            dataGridViewDonVi.Enabled = true;
+            txtBoxDVMaDV.Enabled = false;
+            txtBoxDVTenDV.Enabled = false;
+            txtBoxDVTrgDV.Enabled = false;
+
+            int res = DonVi.insertDonVi(new DonVi(txtBoxDVMaDV.Text, txtBoxDVTenDV.Text, txtBoxDVTrgDV.Text));
+            if (res == 0)
+            {
+                MessageBox.Show("Done.");
+                loadDataGridViewDonVi();
+            }
+            else if (res == DatabaseProvider.INTEGRITY_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("INTEGRITY_CONSTRAINT_VIOLATED.");
+
+            }
+            else if (res == DatabaseProvider.UNIQUE_CONSTRAINT_VIOLATED)
+            {
+                MessageBox.Show("UNIQUE_CONSTRAINT_VIOLATED.");
+            }
+            else if (res == DatabaseProvider.NO_ROWSAFFECTED)
+            {
+                MessageBox.Show("NO_ROWSAFFECTED.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
+
+            if (res != 0)
+            {
+                Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxDVMaDV, txtBoxDVTenDV, txtBoxDVTrgDV });
+            }
+            else
+            {
+                tempVal.Clear();
+                tempstring = string.Empty;
+            }
+
+            btnDVAcptAdd.Visible = false;
+            btnDVCancel.Visible = false;
+
+            btnDVUpdate.Visible = true;
+            btnDVAdd.Visible = true;
+        }
+
+        private void btnDVCancel_Click(object sender, EventArgs e)
+        {
+            dataGridViewDonVi.Enabled = true;
+            txtBoxDVMaDV.Enabled = false;
+            txtBoxDVTenDV.Enabled = false;
+            txtBoxDVTrgDV.Enabled = false;
+
+            Util.loadTxtBoxes(tempVal, new List<TextBox> { txtBoxDVMaDV, txtBoxDVTenDV, txtBoxDVTrgDV });
+            tempVal.Clear();
+
+            btnDVAcptUpdate.Visible = false;
+            btnDVAcptAdd .Visible = false;
+            btnDVCancel.Visible = false;
+
+            btnDVUpdate.Visible = true;
+            btnDVAdd.Visible = true;
         }
     }
 }

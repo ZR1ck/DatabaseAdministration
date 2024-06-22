@@ -110,6 +110,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\DAODonVi.cs" />
     <Compile Include="DAO\DAONhanSu.cs" />
     <Compile Include="DAO\DAOPhanCong.cs" />
     <Compile Include="DAO\DAOSinhVien.cs" />

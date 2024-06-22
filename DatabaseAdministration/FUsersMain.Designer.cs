@@ -145,16 +145,15 @@
             this.label30 = new System.Windows.Forms.Label();
             this.dataGridViewPhanCong = new System.Windows.Forms.DataGridView();
             this.tabPageDonVi = new System.Windows.Forms.TabPage();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.btnDVUpdate = new System.Windows.Forms.Button();
+            this.btnDVAdd = new System.Windows.Forms.Button();
+            this.txtBoxDVTrgDV = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
-            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.txtBoxDVTenDV = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
-            this.textBox30 = new System.Windows.Forms.TextBox();
+            this.txtBoxDVMaDV = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewDonVi = new System.Windows.Forms.DataGridView();
             this.tabPageHocPhan = new System.Windows.Forms.TabPage();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
@@ -188,6 +187,9 @@
             this.label60 = new System.Windows.Forms.Label();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.tabPageDangKy = new System.Windows.Forms.TabPage();
+            this.btnDVAcptUpdate = new System.Windows.Forms.Button();
+            this.btnDVAcptAdd = new System.Windows.Forms.Button();
+            this.btnDVCancel = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageTTNhanSu.SuspendLayout();
             this.tabPageTTSinhVien.SuspendLayout();
@@ -198,7 +200,7 @@
             this.tabPagePhanCong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPhanCong)).BeginInit();
             this.tabPageDonVi.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDonVi)).BeginInit();
             this.tabPageHocPhan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.tabPageKHMo.SuspendLayout();
@@ -1493,16 +1495,18 @@
             // 
             // tabPageDonVi
             // 
-            this.tabPageDonVi.Controls.Add(this.button7);
-            this.tabPageDonVi.Controls.Add(this.button8);
-            this.tabPageDonVi.Controls.Add(this.button9);
-            this.tabPageDonVi.Controls.Add(this.textBox28);
+            this.tabPageDonVi.Controls.Add(this.btnDVCancel);
+            this.tabPageDonVi.Controls.Add(this.btnDVAcptAdd);
+            this.tabPageDonVi.Controls.Add(this.btnDVAcptUpdate);
+            this.tabPageDonVi.Controls.Add(this.btnDVUpdate);
+            this.tabPageDonVi.Controls.Add(this.btnDVAdd);
+            this.tabPageDonVi.Controls.Add(this.txtBoxDVTrgDV);
             this.tabPageDonVi.Controls.Add(this.label38);
-            this.tabPageDonVi.Controls.Add(this.textBox29);
+            this.tabPageDonVi.Controls.Add(this.txtBoxDVTenDV);
             this.tabPageDonVi.Controls.Add(this.label39);
-            this.tabPageDonVi.Controls.Add(this.textBox30);
+            this.tabPageDonVi.Controls.Add(this.txtBoxDVMaDV);
             this.tabPageDonVi.Controls.Add(this.label40);
-            this.tabPageDonVi.Controls.Add(this.dataGridView3);
+            this.tabPageDonVi.Controls.Add(this.dataGridViewDonVi);
             this.tabPageDonVi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.tabPageDonVi.Location = new System.Drawing.Point(4, 25);
             this.tabPageDonVi.Name = "tabPageDonVi";
@@ -1511,41 +1515,36 @@
             this.tabPageDonVi.Text = "Đơn vị";
             this.tabPageDonVi.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // btnDVUpdate
             // 
-            this.button7.Location = new System.Drawing.Point(1046, 545);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 34);
-            this.button7.TabIndex = 46;
-            this.button7.Text = "Hủy";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnDVUpdate.Location = new System.Drawing.Point(889, 483);
+            this.btnDVUpdate.Name = "btnDVUpdate";
+            this.btnDVUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnDVUpdate.TabIndex = 45;
+            this.btnDVUpdate.Text = "Sửa";
+            this.btnDVUpdate.UseVisualStyleBackColor = true;
+            this.btnDVUpdate.Visible = false;
+            this.btnDVUpdate.Click += new System.EventHandler(this.btnDVUpdate_Click);
             // 
-            // button8
+            // btnDVAdd
             // 
-            this.button8.Location = new System.Drawing.Point(886, 545);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 34);
-            this.button8.TabIndex = 45;
-            this.button8.Text = "Xong";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnDVAdd.Location = new System.Drawing.Point(1049, 483);
+            this.btnDVAdd.Name = "btnDVAdd";
+            this.btnDVAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnDVAdd.TabIndex = 44;
+            this.btnDVAdd.Text = "Thêm";
+            this.btnDVAdd.UseVisualStyleBackColor = true;
+            this.btnDVAdd.Visible = false;
+            this.btnDVAdd.Click += new System.EventHandler(this.btnDVAdd_Click);
             // 
-            // button9
+            // txtBoxDVTrgDV
             // 
-            this.button9.Location = new System.Drawing.Point(966, 545);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 34);
-            this.button9.TabIndex = 44;
-            this.button9.Text = "Sửa";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // textBox28
-            // 
-            this.textBox28.Enabled = false;
-            this.textBox28.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox28.Location = new System.Drawing.Point(878, 131);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(264, 25);
-            this.textBox28.TabIndex = 31;
+            this.txtBoxDVTrgDV.Enabled = false;
+            this.txtBoxDVTrgDV.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDVTrgDV.Location = new System.Drawing.Point(878, 131);
+            this.txtBoxDVTrgDV.Name = "txtBoxDVTrgDV";
+            this.txtBoxDVTrgDV.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDVTrgDV.TabIndex = 31;
             // 
             // label38
             // 
@@ -1557,14 +1556,14 @@
             this.label38.TabIndex = 30;
             this.label38.Text = "Trưởng đơn vị";
             // 
-            // textBox29
+            // txtBoxDVTenDV
             // 
-            this.textBox29.Enabled = false;
-            this.textBox29.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox29.Location = new System.Drawing.Point(878, 78);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(264, 25);
-            this.textBox29.TabIndex = 29;
+            this.txtBoxDVTenDV.Enabled = false;
+            this.txtBoxDVTenDV.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDVTenDV.Location = new System.Drawing.Point(878, 78);
+            this.txtBoxDVTenDV.Name = "txtBoxDVTenDV";
+            this.txtBoxDVTenDV.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDVTenDV.TabIndex = 29;
             // 
             // label39
             // 
@@ -1576,14 +1575,14 @@
             this.label39.TabIndex = 28;
             this.label39.Text = "Tên đơn vị";
             // 
-            // textBox30
+            // txtBoxDVMaDV
             // 
-            this.textBox30.Enabled = false;
-            this.textBox30.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox30.Location = new System.Drawing.Point(878, 25);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(264, 25);
-            this.textBox30.TabIndex = 27;
+            this.txtBoxDVMaDV.Enabled = false;
+            this.txtBoxDVMaDV.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtBoxDVMaDV.Location = new System.Drawing.Point(878, 25);
+            this.txtBoxDVMaDV.Name = "txtBoxDVMaDV";
+            this.txtBoxDVMaDV.Size = new System.Drawing.Size(264, 25);
+            this.txtBoxDVMaDV.TabIndex = 27;
             // 
             // label40
             // 
@@ -1595,20 +1594,21 @@
             this.label40.TabIndex = 26;
             this.label40.Text = "Mã đơn vị";
             // 
-            // dataGridView3
+            // dataGridViewDonVi
             // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.AllowUserToDeleteRows = false;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView3.MultiSelect = false;
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.ReadOnly = true;
-            this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(852, 597);
-            this.dataGridView3.TabIndex = 25;
+            this.dataGridViewDonVi.AllowUserToAddRows = false;
+            this.dataGridViewDonVi.AllowUserToDeleteRows = false;
+            this.dataGridViewDonVi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDonVi.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewDonVi.MultiSelect = false;
+            this.dataGridViewDonVi.Name = "dataGridViewDonVi";
+            this.dataGridViewDonVi.ReadOnly = true;
+            this.dataGridViewDonVi.RowHeadersWidth = 51;
+            this.dataGridViewDonVi.RowTemplate.Height = 24;
+            this.dataGridViewDonVi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewDonVi.Size = new System.Drawing.Size(852, 597);
+            this.dataGridViewDonVi.TabIndex = 25;
+            this.dataGridViewDonVi.SelectionChanged += new System.EventHandler(this.dataGridViewDonVi_SelectionChanged);
             // 
             // tabPageHocPhan
             // 
@@ -1963,6 +1963,39 @@
             this.tabPageDangKy.Text = "Đăng ký";
             this.tabPageDangKy.UseVisualStyleBackColor = true;
             // 
+            // btnDVAcptUpdate
+            // 
+            this.btnDVAcptUpdate.Location = new System.Drawing.Point(889, 483);
+            this.btnDVAcptUpdate.Name = "btnDVAcptUpdate";
+            this.btnDVAcptUpdate.Size = new System.Drawing.Size(75, 34);
+            this.btnDVAcptUpdate.TabIndex = 47;
+            this.btnDVAcptUpdate.Text = "Xong";
+            this.btnDVAcptUpdate.UseVisualStyleBackColor = true;
+            this.btnDVAcptUpdate.Visible = false;
+            this.btnDVAcptUpdate.Click += new System.EventHandler(this.btnDVAcptUpdate_Click);
+            // 
+            // btnDVAcptAdd
+            // 
+            this.btnDVAcptAdd.Location = new System.Drawing.Point(889, 483);
+            this.btnDVAcptAdd.Name = "btnDVAcptAdd";
+            this.btnDVAcptAdd.Size = new System.Drawing.Size(75, 34);
+            this.btnDVAcptAdd.TabIndex = 48;
+            this.btnDVAcptAdd.Text = "Thêm";
+            this.btnDVAcptAdd.UseVisualStyleBackColor = true;
+            this.btnDVAcptAdd.Visible = false;
+            this.btnDVAcptAdd.Click += new System.EventHandler(this.btnDVAcptAdd_Click);
+            // 
+            // btnDVCancel
+            // 
+            this.btnDVCancel.Location = new System.Drawing.Point(1049, 483);
+            this.btnDVCancel.Name = "btnDVCancel";
+            this.btnDVCancel.Size = new System.Drawing.Size(75, 34);
+            this.btnDVCancel.TabIndex = 49;
+            this.btnDVCancel.Text = "Hủy";
+            this.btnDVCancel.UseVisualStyleBackColor = true;
+            this.btnDVCancel.Visible = false;
+            this.btnDVCancel.Click += new System.EventHandler(this.btnDVCancel_Click);
+            // 
             // FUsersMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1990,7 +2023,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPhanCong)).EndInit();
             this.tabPageDonVi.ResumeLayout(false);
             this.tabPageDonVi.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDonVi)).EndInit();
             this.tabPageHocPhan.ResumeLayout(false);
             this.tabPageHocPhan.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
@@ -2074,16 +2107,15 @@
         private System.Windows.Forms.Label label77;
         private System.Windows.Forms.Label label78;
         private System.Windows.Forms.Label label79;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TextBox textBox28;
+        private System.Windows.Forms.Button btnDVUpdate;
+        private System.Windows.Forms.Button btnDVAdd;
+        private System.Windows.Forms.TextBox txtBoxDVTrgDV;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.TextBox textBox29;
+        private System.Windows.Forms.TextBox txtBoxDVTenDV;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.TextBox textBox30;
+        private System.Windows.Forms.TextBox txtBoxDVMaDV;
         private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dataGridViewDonVi;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
@@ -2163,5 +2195,8 @@
         private System.Windows.Forms.Button btnPCAcptAdd;
         private System.Windows.Forms.Button btnPCAcptUpdate;
         private System.Windows.Forms.Button btnPCCancel;
+        private System.Windows.Forms.Button btnDVCancel;
+        private System.Windows.Forms.Button btnDVAcptAdd;
+        private System.Windows.Forms.Button btnDVAcptUpdate;
     }
 }

@@ -425,5 +425,25 @@ namespace DatabaseAdministration.DataProvider
                 $"'{pc.maGV}', '{pc.maHP}', '{pc.HK}', {pc.nam}, '{pc.maCT}')";
             return ExecuteQueryUpdated(query);
         }
+
+        public DataTable getDatatableDonVi()
+        {
+            string query = "SELECT * FROM QLDL.DONVI";
+            return ExecuteQuery(query);
+        }
+
+        public int updateDonVi(DonVi dv, string madv)
+        {
+            string query = $"UPDATE QLDL.DONVI " +
+                $"SET MADV = '{dv.maDV}', TENDV = '{dv.tenDV}', TRGDV = '{dv.trgDV}' " +
+                $"WHERE MADV = '{madv}'";
+            return ExecuteQueryUpdated(query);
+        }
+
+        public int insertDonVi(DonVi dv)
+        {
+            string query = $"INSERT INTO QLDL.DONVI VALUES ('{dv.maDV}', '{dv.tenDV}', '{dv.trgDV}')";
+            return ExecuteQueryUpdated(query);
+        }
     }
 }
