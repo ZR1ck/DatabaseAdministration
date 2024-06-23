@@ -43,9 +43,10 @@ GRANT SELECT ON QLDL.KHMO TO NVCB;
 --BEGIN dbms_rls.drop_policy 
 --(object_schema =>'QLDL',
 --object_name => 'NHANSU',
---policy_name => 'VPD_NHANSU'
+--policy_name => 'POLICY_NHANSU'
 --);
 --END;
+--/
 --DROP FUNCTION VPD_NHANSU;
 
 
@@ -107,9 +108,8 @@ Grant update(DIEMTH, DIEMQT, DIEMCK, DIEMTK) on QLDL.DANGKY to GV;
 --policy_name => 'POLICY_DANGKY'
 --);
 --END;
-
---DROP VIEW QLDL.v_GV;
---DROP VIEW QLDL.v2_GV;
+--/
+--DROP FUNCTION VPD_DANGKY;
 
 --SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE = 'SV001';
 

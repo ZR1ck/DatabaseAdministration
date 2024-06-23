@@ -1,5 +1,5 @@
 -- CS#3 ----------------------------------------------------------------------------------------------------------
-grant NVCB to GIAOVU
+grant NVCB to GIAOVU;
 -- XEM - THEM - CAP NHAT TREN SINHVIEN, DONVI, HOCPHAN, KHMO
 GRANT SELECT, UPDATE, INSERT ON QLDL.SINHVIEN TO GIAOVU;
 GRANT SELECT, UPDATE, INSERT ON QLDL.DONVI TO GIAOVU;
@@ -60,13 +60,13 @@ END;
 
 GRANT UPDATE ON QLDL.PHANCONG TO GIAOVU;
 
-BEGIN dbms_rls.drop_policy 
-(object_schema =>'QLDL',
-object_name => 'PHANCONG',
-policy_name => 'POLICY_PHANCONG'
-);
-END;
-/
+--BEGIN dbms_rls.drop_policy 
+--(object_schema =>'QLDL',
+--object_name => 'PHANCONG',
+--policy_name => 'POLICY_PHANCONG'
+--);
+--END;
+--/
 --DROP FUNCTION VPD_PHANCONG;
 
 
@@ -273,6 +273,8 @@ SELECT * FROM QLDL.HOCPHAN WHERE MAHP IN (
 
 GRANT SELECT ON QLDL.V_SV_HOCPHAN TO SV;
 
+--DROP VIEW QLDL.V_SV_KHMO;
+--DROP VIEW QLDL.V_SV_HOCPHAN;
 
 -- THEM XOA CAC DONG DU LIEU LIEN QUAN DEN MINH TRONG DANGKY NEU THOI GIAN CON HOP LE
 -- XEM VPD_DANGKY2
