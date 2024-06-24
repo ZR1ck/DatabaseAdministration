@@ -157,7 +157,7 @@ BEGIN
     IF (USERROLE = 'TRGDV') THEN
         FOR CUR IN (SELECT MANV
                     FROM QLDL.NHANSU
-                    WHERE MADV IN (SELECT MADV FROM QLDL.DONVI WHERE TRGDV = '''' || SYS_CONTEXT ('USERENV', 'SESSION_USER') || '''')) 
+                    WHERE MADV IN (SELECT MADV FROM QLDL.DONVI WHERE TRGDV = SYS_CONTEXT ('USERENV', 'SESSION_USER'))) 
         LOOP
             IF (STRSQL IS NOT NULL) THEN
                 STRSQL := STRSQL ||''',''';
