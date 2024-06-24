@@ -382,5 +382,11 @@ namespace DatabaseAdministration
                 dataGridViewUser.ClearSelection();
             }
         }
+
+        private void btnAudit_Click(object sender, EventArgs e)
+        {
+            FAudit fAudit = new FAudit();
+            fAudit.ShowDialog();
+        }
     }
 }

@@ -51,6 +51,7 @@ namespace DatabaseAdministration
             this.btnAddRole = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAudit = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
@@ -275,6 +276,7 @@ namespace DatabaseAdministration
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.btnAudit);
             this.panel2.Controls.Add(this.btnDeleteCurrentRole);
             this.panel2.Controls.Add(this.btnDeleteCurrentUser);
             this.panel2.Controls.Add(this.btnModify);
@@ -357,6 +359,18 @@ namespace DatabaseAdministration
             this.panel1.Size = new System.Drawing.Size(782, 490);
             this.panel1.TabIndex = 4;
             // 
+            // btnAudit
+            // 
+            this.btnAudit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAudit.Location = new System.Drawing.Point(3, 302);
+            this.btnAudit.Name = "btnAudit";
+            this.btnAudit.Size = new System.Drawing.Size(184, 46);
+            this.btnAudit.TabIndex = 6;
+            this.btnAudit.Text = "Audit";
+            this.btnAudit.UseVisualStyleBackColor = true;
+            this.btnAudit.Click += new System.EventHandler(this.btnAudit_Click);
+            // 
             // FMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -411,6 +425,7 @@ namespace DatabaseAdministration
         private TabPage tabPageColPrivs;
         private DataGridView dataGridViewColPrivs;
         private Button btnDeleteCurrentRole;
+        private Button btnAudit;
     }
 
     public class TabButton : UserControl

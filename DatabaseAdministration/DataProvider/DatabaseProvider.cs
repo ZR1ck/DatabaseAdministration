@@ -549,5 +549,17 @@ namespace DatabaseAdministration.DataProvider
             string query = "SELECT * FROM QLDL_OLS.THONGBAO";
             return ExecuteQuery(query);
         }
+
+        public DataTable getFGAAuditTrail()
+        {
+            string query = "select * from dba_fga_audit_trail";
+            return ExecuteQuery(query);
+        }
+
+        public DataTable getAuditTrail()
+        {
+            string query = "SELECT * FROM DBA_AUDIT_TRAIL WHERE OWNER = 'QLDL' ORDER BY TIMESTAMP";
+            return ExecuteQuery(query);
+        }
     }
 }

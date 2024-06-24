@@ -146,6 +146,12 @@
     <Compile Include="FAddUser.Designer.cs">
       <DependentUpon>FAddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="FAudit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FAudit.Designer.cs">
+      <DependentUpon>FAudit.cs</DependentUpon>
+    </Compile>
     <Compile Include="FGrantRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FAddUser.resx">
       <DependentUpon>FAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FAudit.resx">
+      <DependentUpon>FAudit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FGrantRole.resx">
       <DependentUpon>FGrantRole.cs</DependentUpon>
