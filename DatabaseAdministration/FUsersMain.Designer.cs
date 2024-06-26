@@ -2151,7 +2151,7 @@
             // 
             // btnDKAcptAdd
             // 
-            this.btnDKAcptAdd.Location = new System.Drawing.Point(888, 548);
+            this.btnDKAcptAdd.Location = new System.Drawing.Point(780, 548);
             this.btnDKAcptAdd.Name = "btnDKAcptAdd";
             this.btnDKAcptAdd.Size = new System.Drawing.Size(75, 34);
             this.btnDKAcptAdd.TabIndex = 16;

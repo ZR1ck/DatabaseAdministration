@@ -1563,6 +1563,11 @@ namespace DatabaseAdministration
         {
             dataGridViewDangki.Enabled = false;
 
+            if (role != 1)
+            {
+                txtBoxDKMaSV.Enabled = true;
+            }
+
             txtBoxDKMaGV.Enabled = true;
             txtBoxDKMaHP.Enabled = true;
             txtBoxDKHK.Enabled = true;
@@ -1572,7 +1577,14 @@ namespace DatabaseAdministration
             tempVal = Util.savePrevTxtBox(new List<TextBox> { txtBoxDKMaSV, txtBoxDKMaGV, txtBoxDKMaHP, txtBoxDKHK,
                 txtBoxDKNam, txtBoxDKMaCT, txtBoxDKDiemTH, txtBoxDKDiemQT, txtBoxDKDiemCK, txtBoxDKDiemTK});
 
-            txtBoxDKMaSV.Text = SinhVien.getCurrentSV().maSV;
+            if (role == 1)
+            {
+                txtBoxDKMaSV.Text = SinhVien.getCurrentSV().maSV;
+            }
+            else
+            {
+                txtBoxDKMaSV.Text = "";
+            }
             txtBoxDKMaGV.Text = "";
             txtBoxDKMaHP.Text = "";
             txtBoxDKHK.Text = "";
