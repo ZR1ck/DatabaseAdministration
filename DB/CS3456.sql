@@ -94,11 +94,11 @@ BEGIN
             EXTRACT(YEAR from current_date)
         INTO day, month, year
         FROM dual; 
-            if month = 1 or month = 6 or month = 9 then
+            if month = 1 or month = 5 or month = 9 then
                 if day - 1 <= 14 then
                     if month = 1 then
                         hocki := 'HK1';
-                    elsif month = 6 then
+                    elsif month = 5 then
                         hocki := 'HK2';
                     elsif month = 9 then
                         hocki := 'HK3';
